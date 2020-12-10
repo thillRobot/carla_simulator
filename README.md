@@ -647,6 +647,18 @@ Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try w
 ##### - osm2xodr 
 This package can be used convert the **.osm** file to **.xodr** file which can be ingested by carla. [osm2xodr](https://github.com/JHMeusener/osm2xodr) 
 This is a custom script that I made from the example that came with the package.
+**PyProj** and **osmread** are required to for **osm2xodr**. I installed them in the conda environment as shown below.
+
+```
+conda activate carla09101
+```
+```
+conda install -c conda-forge pyproj -n carla09101
+```
+```
+pip3 install osmread
+```
+
 Run the cscript to convert the files. For now the filenames are hardcoded in the python script, but I would like to add command line arguments for the filenames. 
 ```
 python3 ~/carla_simulator/osm2xodr/convert_map.py
