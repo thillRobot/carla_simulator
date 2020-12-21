@@ -600,6 +600,16 @@ JAVA is required to run these tools. I am using  `openjdk-8-jre`  which is am ol
 sudo apt-get install openjdk-8-jre
 ```
 
+Alternatively you can use install `jdk8` with conda which is nice, but we have to use the Borg...
+
+```
+conda activate carla
+```
+```
+conda install -c cidermole jdk8
+```
+
+
 ##### - JOSM - Extensible Editor for OpenStreetMap(.osm)
 This JAVA app can be used to download maps from OpenStreetMap end edit **.osm** files. Read more on the [josm Github](https://josm.openstreetmap.de/). Install the packge with with apt following the instructions [here](https://josm.openstreetmap.de/wiki/Download#Ubuntu)
 
