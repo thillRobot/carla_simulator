@@ -683,13 +683,13 @@ cp ${CARLA_ROOT}/PythonAPI/util/condif.py ${CARLA_ROOT}/PythonAPI/util/import_ma
 ```
 With the simulator running, execute the python script to load the new map. There are no errors, but nothing happens except `No nodes loaded.` is shown. 
 ```
-python3 ${CARLA_ROOT}/PythonAPI/util/import_map.py --osm-path=/home/thill/carla_simulator/openstreetmap/map2.xodr
+python3 ${CARLA_ROOT}/PythonAPI/util/import_map.py --osm-path=/home/thill/openstreetmap/map2.xodr
 Converting OSM data to opendrive
 No nodes loaded.
 ```
 I also tried method **b)** from the tutorial and nothing happens. This method is effectively the same as **a)**, and the results are the same. The command and the outout are shown below. Once again, `No nodes loaded.` is shown. 
 ```
-python3 ${CARLA_ROOT}/PythonAPI/util/config.py --osm-path=/home/thill/carla_simulator/openstreetmap/map2.xodr
+python3 ${CARLA_ROOT}/PythonAPI/util/config.py --osm-path=/home/thill/openstreetmap/map2.xodr
 Converting OSM data to opendrive
 No nodes loaded.
 ```
@@ -709,6 +709,7 @@ For now, this is a two step process.
 This Java app can be used to convert a **.osm** file into **.obj** file which contains the buildings and other objects and polygons.
 Download the package [here](http://osm2world.org/download/) and extract it somewhere reasonable.
 ```
+cd ~/openstreetmap/OSM2World/latest
 java -jar OSM2World.jar
 ```
 ```
