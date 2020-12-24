@@ -631,10 +631,11 @@ sudo apt-get install josm-latest
 ```
 Run the app. Find information in the josm [wiki](https://josm.openstreetmap.de/wiki/Introduction) related to using the tool.
 ```
+cd ~/openstreetmap/josm
 java -jar josm.jar
 ```
 
-
+JOSM is not working in a conda env right now.
 
 
 
@@ -671,7 +672,7 @@ pip3 install osmread
 
 Run the cscript to convert the files. For now the filenames are hardcoded in the python script, but I would like to add command line arguments for the filenames. 
 ```
-python3 ~/carla_simulator/osm2xodr/convert_map.py
+python3 ~/openstreemap/osm2xodr/convert_map.py
 ```
 
 #### Step 3 - Import into CARLA
@@ -697,7 +698,7 @@ I commented on this Github post here (https://github.com/carla-simulator/carla/i
 
 The solution is to run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right?
 ```
-python3 ${CARLA_ROOT}/PythonAPI/util/config.py -x /home/thill/carla_simulator/openstreetmap/map2.xodr
+python3 ${CARLA_ROOT}/PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
 ```
 
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
