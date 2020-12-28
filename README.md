@@ -206,8 +206,6 @@ then actitvate the environment (this needs to be done at the start of each sessi
 finally add the paths to the conda environment so that you do not have to do this each time
 this line shows to set a env var permanently in the conda environment
 
-`conda env config vars set CARLA_ROOT=~/carla_simulator/carla`
-
 re-actitvate the environment after setting vars 
 
 `conda activate carla`
@@ -218,12 +216,11 @@ If you are using **Python2.7**:
 
 **or**, if you are using **Python3.7**:
 
-`conda env config vars set PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
-
 `conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA PARENT PATH>/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:<CARLA PARENT PATH>/PythonAPI/carla/agents:<CARLA PARENT PATH>/PythonAPI/carla`
 
 in my case this is:
-`conda env config vars set PYTHONPATH=$PYTHONPATH:carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:carla_simulator/PythonAPI/carla/agents:carla_simulator/PythonAPI/carla`
+
+`conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla`
  
 
 re-actitvate the environment after setting vars again (could this be combined?)
