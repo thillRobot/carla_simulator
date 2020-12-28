@@ -220,6 +220,12 @@ If you are using **Python2.7**:
 
 `conda env config vars set PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
 
+`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA PARENT PATH>/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:<CARLA PARENT PATH>/PythonAPI/carla/agents:<CARLA PARENT PATH>/PythonAPI/carla`
+
+in my case this is:
+`conda env config vars set PYTHONPATH=$PYTHONPATH:carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:carla_simulator/PythonAPI/carla/agents:carla_simulator/PythonAPI/carla`
+ 
+
 re-actitvate the environment after setting vars again (could this be combined?)
 
 `conda activate carla`
