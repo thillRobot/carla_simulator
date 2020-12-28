@@ -870,7 +870,7 @@ add this line to the bottom of /etc/default/docker to allow a container to acces
 
 You can use `echo` to so append the file from the coammand line. It is shown below.
 
-`sudo echo "DOCKER_OPTS=" --dns 192.168.254.45" >> /etc/default/docker"`
+`sudo echo "DOCKER_OPTS=" --dns 192.168.254.254" >> /etc/default/docker"`
 
 Then restart docker.
 
