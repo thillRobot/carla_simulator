@@ -143,7 +143,7 @@ docker run \
  -e DISPLAY=$DISPLAY \
  -v /tmp/.X11-unix:/tmp/.X11-unix \
  -it \
- carlasim/carla:latest \
+ carlasim/carla:0.9.11 \
  bash
 ```
 
