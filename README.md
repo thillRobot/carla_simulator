@@ -147,6 +147,9 @@ docker run \
  bash
 ```
 
+
+sudo docker run -p 2000-2002:2000-2002 --runtime=nvidia --gpus all -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it carlasim/carla:0.9.11 bash
+
 You can see the ID in the terminal where you would expect the hostname to be.
 
 ```
