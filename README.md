@@ -121,7 +121,7 @@ Choose a version of CARLA that you want to use and pull (download an image) with
 
 #### Developement
 
-`docker pull carlasim/carla:0.9.10.1 `
+`docker pull carlasim/carla:0.9.11`
 
 #### Developement - latest
 There is a new version out. ***latest*** was updated around 11/23/2020
@@ -212,15 +212,15 @@ re-actitvate the environment after setting vars
 
 If you are using **Python2.7**:
 
-`conda env config vars set PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
+`conda env config vars set PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
 
 **or**, if you are using **Python3.7**:
 
-`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA PARENT PATH>/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:<CARLA PARENT PATH>/PythonAPI/carla/agents:<CARLA PARENT PATH>/PythonAPI/carla`
+`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA PARENT PATH>/carla/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:<CARLA PARENT PATH>/PythonAPI/carla/agents:<CARLA PARENT PATH>/PythonAPI/carla`
 
 in my case this is:
 
-`conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla`
+`conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.11pr-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla`
  
 
 re-actitvate the environment after setting vars again (could this be combined?)
@@ -263,11 +263,11 @@ Choose the appropriate version of Python and set `PYTHON_PATH`.
 
 If you are using **Python2.7**:
 
-```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
+```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
 
 **or**, if you are using **Python3.7**:
 
-```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
+```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
 
 Then, you can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`.
 
