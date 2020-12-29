@@ -275,14 +275,14 @@ Then, you can run *some* of the examples in `/PythonAPI/examples` and `/PythonAP
  
  - [x] carla 0.8.4
  - [x] carla 0.9.10 
- - [x] carla 0.9.10.1 
- - [x] carla latest
+ - [x] carla 0.9.10.1
+ - [ ] carla 0.9.11
  
 ## Using CARLA Version:latest
 
 I just started experimenting with the version. I assume it has some bug fixes, but maybe it has new bugs! We will see.
  
-## Using CARLA Version 0.9.10.1
+## Using CARLA Version 0.9.11
 
 This requires modern nividia drivers(>390), I installed  nvidia450 -> nvidia455
 
@@ -295,11 +295,11 @@ This will run the script `CarlaUE4.sh` in the carla container. Using the `--name
 
 #### Run CarlaUE4.sh with default server parameters
  ```
- docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 ./CarlaUE4.sh
+ docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' -p 2000-2002:2000-2002 carlasim/carla:0.9.11 ./CarlaUE4.sh
  ```
 #### Run CarlaUE4.sh with various server parameters   
  ```
- docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+ docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' -p 2000-2002:2000-2002 carlasim/carla:0.9.11 ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
  ```
  
  The command is repeated below in a readable format.
@@ -312,7 +312,7 @@ This will run the script `CarlaUE4.sh` in the carla container. Using the `--name
   -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v $XAUTHORITY:$XAUTHORITY \
   -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
-  -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 \
+  -p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
   ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
   ```      
  
@@ -349,14 +349,14 @@ or shown below so you can read the commands
     -p 2000-2002:2000-2002 \
     -it \
     --gpus all \
-    carlasim/carla:0.9.10.1 ./CarlaUE4.sh -opengl
+    carlasim/carla:0.9.11 ./CarlaUE4.sh -opengl
  ```
  
 #### running `bash` in the container
 This will run BASH in the carla container without starting the simulator.
 
 ```
-docker run --name carlabash --rm --gpus all -it --net=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw -it carlasim/carla:0.9.10.1 bash
+docker run --name carlabash --rm --gpus all -it --net=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw -it carlasim/carla:0.9.11 bash
 ```
 
 You can start the server from inside the container. I am not sure why you woulREMOTEd want to do this, but the link I mentioned does it this way.
