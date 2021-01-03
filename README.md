@@ -755,18 +755,27 @@ Click import mesh **.obj** and after model loads export it as a **.fbx** file.
 
 #### Step 5 - Map ingestion in a CARLA package
 
-##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
-This is described [here](https://carla.readthedocs.io/en/latest/tuto_A_add_map/) in a separate page of the carla docs. The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. Follow this [tutorial](https://github.com/carla-simulator/carla/tree/master/Util/Docker) to build CARLA in a docker.  
-
-First clone a copy of CARLA from github before performing the Docker build. The required Dockerfile is in `carla/Util/Docker`.
-
-
-
-
 
 
 ##### Build CARLA + map tools from source (older method)
-I succesfully build carla in 18.04 from source but I ran into errors attempting map ingestion. Use reccomended method above.
+I succesfully build carla in 18.04 from source but I ran into errors attempting map ingestion. Use reccomended method below.
+
+##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
+The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. 
+
+Clone a copy of CARLA from [github](https://github.com/carla-simulator/carla) before performing the Docker build. The required Dockerfile is in `carla/Util/Docker`.
+
+Follow this [tutorial](https://github.com/carla-simulator/carla/tree/master/Util/Docker) to build CARLA in a docker. This takes a long time and requires alot of memory. 
+
+##### Prepare Files for Map Ingestion
+Preparation of the files is [here](https://carla.readthedocs.io/en/latest/tuto_A_add_map/) in a separate page of the carla docs.
+One **.xodr** file and one **.fbx** file are required for each map along with one **.json** file for each map asset package.  I wrote the **.json** file manually, but the carla documents claim that this can be generated automatically. The directory structure of these files is described in the docs.   
+
+Move the files to be ingested into `carla/Import/` in the package you are going to use `PythonAPI` and run following.,
+
+
+
+
 
 
 
