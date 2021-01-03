@@ -754,7 +754,21 @@ blender
 Click import mesh **.obj** and after model loads export it as a **.fbx** file.
 
 #### Step 5 - Map ingestion in a CARLA package
-This is described [here](https://carla.readthedocs.io/en/latest/tuto_A_add_map/) in a separate page of the carla docs. The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. Follow this [tutorial](https://github.com/carla-simulator/carla/tree/master/Util/Docker) to build CARLA in a docker. Apparently the only way to ingest custom maps is to compile CARLA + UE4. 
+
+##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
+This is described [here](https://carla.readthedocs.io/en/latest/tuto_A_add_map/) in a separate page of the carla docs. The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. Follow this [tutorial](https://github.com/carla-simulator/carla/tree/master/Util/Docker) to build CARLA in a docker.  
+
+First clone a copy of CARLA from github before performing the Docker build. The required Dockerfile is in `carla/Util/Docker`.
+
+
+
+
+
+
+##### Build CARLA + map tools from source (older method)
+I succesfully build carla in 18.04 from source but I ran into errors attempting map ingestion. Use reccomended method above.
+
+
 
 
 ### Adding a Map with RoadRunner
