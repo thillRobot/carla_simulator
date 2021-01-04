@@ -6,6 +6,8 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 ## Goals/Things to Do
 
+- [ ] split this README into multple pages - it has become a montser
+
 - [ ] figure out how to use carla settings file
 - [x] install and test ROS_BRIDGE in ros melodic
 - [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
@@ -754,9 +756,20 @@ blender
 Click import mesh **.obj** and after model loads export it as a **.fbx** file.
 
 #### Step 5 - Compile CARLA for Map ingestion 
+A compiled versiuon of carla is required for map ingestion and some other tools. There are two options shown below for compiling CARLA.
 
-##### Build CARLA + map tools from source (older method)
-I succesfully build carla in 18.04 from source but I ran into errors attempting map ingestion. Use reccomended method below.
+##### Build CARLA from Source (older method)
+I succesfully build carla in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). I ran into errors, but I am making progress. 
+
+I was able to perform the map ingestion by preparing the files manually as described below and running the following. This process needs to be documented and tested further.
+
+```
+make package ARGS="--packages=Package03"
+
+```
+This results in a standalone asset package directory in `carl/Dist`. 
+
+I beleive that this package must be exported to be used for distribution. 
 
 ##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
 The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. 
@@ -1050,7 +1063,6 @@ Nicholas from CARLA team said first test that you can run 'tutorial.py'. OK, let
 `export PYTHONPATH=$PYTHONPATH:/home/carla/PythonAPI/carla/dist/carla-0.9.10-py3.7-linux-x86_64.egg:/home/carla/PythonAPI/carla/agents:/home/carla/PythonAPI/carla`
 
 I am still stuck on running the API in a container. whatever
-
 
 
 ### Have a Nice Day!
