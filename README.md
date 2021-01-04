@@ -10,6 +10,9 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 - [x] install and test ROS_BRIDGE in ros melodic
 - [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
 
+- [x] build carla from source 
+- [x] build carla with docker
+
 - [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car
 - [ ] record a *metric* for Dr. Canfield
 - [ ] use RVIZ to visualize the data from carla
