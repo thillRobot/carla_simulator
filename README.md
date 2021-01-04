@@ -734,7 +734,7 @@ For now, this is a two step process.
 This Java app can be used to convert a **.osm** file into **.obj** file which contains the buildings and other objects and polygons.
 Download the package [here](http://osm2world.org/download/) and extract it somewhere reasonable.
 ```
-cd ~/openstreetmap/OSM2World/latest
+cd ~/carla_simulator/OSM2World/latest
 java -jar OSM2World.jar
 ```
 ```
