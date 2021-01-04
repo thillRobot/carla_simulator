@@ -842,7 +842,7 @@ Move the files to be ingested into `carla/Import/` of the compiled CARLA package
 |    |    +-- Package03.json 
 |    +-- README.md
 ```
-```
+
 
 ##### Ingest and Generate Asset Package 
 ```
