@@ -4,16 +4,17 @@ October 07, 2020 - December 06, 2020 - December 29, 2020
 ## Watch
 You can see some demonstration videos on [Youtube](https://www.youtube.com/channel/UCH3bAvnmCLCRjyyorfUJXKg)
 
-## Goals
+## Goals/Things to Do
 
+- [ ] figure out how to use carla settings file
 - [x] install and test ROS_BRIDGE in ros melodic
 - [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
-- [ ] test ros_bridge with COROS  
-- [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car - Jon H. worked on this 
+
+- [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car
 - [ ] record a *metric* for Dr. Canfield
 - [ ] use RVIZ to visualize the data from carla
-- [ ] make a custom map with open street map and carla tools - i have tried and I am stuck
-- [ ] get access to RoadRunner and make custom town - i have requested a trial
+- [ ] make a custom map with open street map and carla tools - i am getting much closer 
+- [ ] get access to RoadRunner and make custom town - i have talked to Mike and ken about this.
 
 - [x] learn to use CONDA for python client - this will help with testing - done - big improvement
 - [x] start the server in a different town, HDMaps/Town02.pcd  
@@ -21,13 +22,12 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 - [ ] document and test basic use of CARLA - not in a docker container
 - [ ] clean up this document, it is a huge mess - it is a little better
 
-- [x] try the stable version (0.8.4 or 0.8.2) - does not have ROS_BRIDGE support I do not think
 - [x] test client on local machine - not in docker - Done - Working
 - [x] test client on remote machine - not in docker - Done - Working
 - [x] test client on local machine - in a docker   - DONE - not working
 - [x] test server on local machine - in a docker - DONE - Working
 - [ ] test server on local machine - not in a docker - NOT DONE
-
+- [ ] test ros_bridge with COROS  
 
 ## Useful Resources
 
