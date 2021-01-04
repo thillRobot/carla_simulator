@@ -833,13 +833,16 @@ One **.xodr** file and one **.fbx** file are required for each map along with on
 
 Move the files to be ingested into `carla/Import/` of the compiled CARLA package which will generate the assets package. 
 
-.
+```
 +-- Import
 |    +-- Package03
-|    |    +-- Map03  
+|    |    +-- Map03
+|    |    |    +-- Map03.fbx
+|    |    |    +-- Map03.xodr
+|    |    +-- Package03.json 
 |    +-- README.md
 ```
-
+```
 
 ##### Ingest and Generate Asset Package 
 ```
