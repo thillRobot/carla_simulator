@@ -287,9 +287,9 @@ You need to have `numpy` and `pygame` installed. The CARLA website reccomends do
 
 However, you can also install them with pip and the `requirements.txt` file. I am not sure which is better. It seems that using the requirements.txt in conda takes long time. What does this mean, I dont know.
 
-now that `CARLA_ROOT` is set you can install the python requirements with the folllowing:
 
-`pip3 install -r ${CARLA_ROOT}/PythonAPI/examples/requirements.txt`
+
+`pip3 install -r <CARLA PATH>/PythonAPI/examples/requirements.txt`
 
 `automatic_control.py` requires the networkx module to be install - i used conda to install it (the env most still be active of course)
 
@@ -440,26 +440,26 @@ i had to set the PYTHONPATH for the carla module to work. Basically the PYTHONPA
 
 This starts a client and lets you drive with PYGAME. Also because these scripts at home they will easy to modify.
 
-`python3 ${CARLA_ROOT}/PythonAPI/examples/manual_control.py`
+`python3 PythonAPI/examples/manual_control.py`
 
 If the client is remote then you have to inlcude the IP address of the host.
 
-`python3 ${CARLA_ROOT}/PythonAPI/examples/manual_control.py --host 192.168.254.45` 
+`python3 PythonAPI/examples/manual_control.py --host 192.168.254.45` 
 
 #### Configuring the CARLA server from a client
 A new useful feature I have just discovered is `/PythonAPI/utils/config.py`. This scripts is used to configure a running CARLA server. You can do things like change the town map and other things. This is very useful becuase is it a pain (so much that I was unable to do so!) from the server side. I guess this makes sensse...
 
 Here is an example that shows how to change the town map.
 
-`python3 ${CARLA_ROOT}/PythonAPI/util/config.py --map Town04`
+`python3 PythonAPI/util/config.py --map Town04`
 
 And this line changes the weather. 
 
-`python3 ${CARLA_ROOT}/PythonAPI/util/config.py --weather HardRainNoon`
+`python3 PythonAPI/util/config.py --weather HardRainNoon`
 
 This sets the simulation fixed frame (frames per second). This does not affect the framerate displayed in server or client windows.
 
-`python3 ${CARLA_ROOT}/PythonAPI/util/config.py --fps 10`
+`python3 PythonAPI/util/config.py --fps 10`
 
 #### Timeout Error with remote use of PythonAPI
 Sometimes running the PythonAPT remote throws an error like this. 
