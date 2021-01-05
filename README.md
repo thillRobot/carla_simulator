@@ -148,7 +148,7 @@ Then restart docker.
 There are multple ways to install and run the CARLA package. Which is the right way, who knows.
 
 **Install Option 1: CARLA from Source** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client - or do developement
-  * CARLA Client - The PythonAPI can be used without compiling or building anything, but there are python dependencies.
+  * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
   * CARLA Server + UE Editor + Map Ingestion Tools - This requires building CARLA and UE4 from source. This requires ~30G of storage space and significant memory. Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
    
 **Install Option 2: CARLA in Docker** - Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
