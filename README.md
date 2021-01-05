@@ -149,15 +149,19 @@ There are multple ways to install and run the CARLA package. Which is the right 
 
 **Install Option 1: CARLA from Source** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client - or do developement
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
-  * CARLA Server + UE Editor + Map Ingestion Tools - This requires building CARLA and UE4 from source. This requires ~30G of storage space and significant memory. Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
+  * CARLA Server + UE Editor - This requires building CARLA and UE4 from source. This requires ~30G of storage space and significant memory. Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
+  * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
    
 **Install Option 2: CARLA in Docker** - Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
   * CARLA Client - This should be easy, but this does not work a the moment - does not seem to be needed
   * CARLA Server - This works good - see middle of this document
   
 **Install Option 3: CARLA Build in Docker** - to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
+  * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
+  * CARLA Server - The server can be run after building.
+  * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built.
 
-**Install Option 4: Install with Package Manager** - Install CARLA package with `apt install` - this should be very straight forward - good for a general user
+**Install Option 4: Install with Package Manager** - Install CARLA package with `apt install` - This should be  good for a general user.
   * CARLA Client - I have not tested this yet.
   * CARLA Server - I have not tested this yet.
   
