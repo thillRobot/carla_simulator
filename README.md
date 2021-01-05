@@ -820,12 +820,12 @@ The compile operation may crash if the system runs out of memory. This happened 
 ###### rsync issue
 With carla:latest right after 0.9.11 release the `docker build` step failed with a different error. You can read about issue [#3758](https://github.com/carla-simulator/carla/issues/3758) on Github. The fix for this is described in the link, but there was some confusion about the Dockerfile. The file I am using is shown here. I need to learn more about docker to understand this completely. 
 
-1 - In `Util/Docker`, create a file called `MyPackage.sh`
-2 - `cd ..`
-3 - run `cat BuildTools/Package.sh > Docker/MyPackage.sh`
-4 - Change line 166 in `MyPackage.sh` to `copy_if_changed "./Unreal/CarlaUE4/Plugins/" "${DESTINATION}/Plugins/"`
-5 - `cd Docker`
-6 - change `Carla.Dockerfile` to:
+1. - In `Util/Docker`, create a file called `MyPackage.sh`
+2. - `cd ..`
+3. - run `cat BuildTools/Package.sh > Docker/MyPackage.sh`
+4. - Change line 166 in `MyPackage.sh` to `copy_if_changed "./Unreal/CarlaUE4/Plugins/" "${DESTINATION}/Plugins/"`
+5. - `cd Docker`
+6. - change `Carla.Dockerfile` to:
 
 ```
 FROM carla-prerequisites:latest
