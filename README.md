@@ -95,6 +95,10 @@ This requires modern nividia drivers(>390), I installed  nvidia450 -> nvidia455
 
 `docker pull carlasim/carla:0.9.10.1`
 
+### Version 0.8.4
+
+This is the **stable** version.
+
 ## Installing Docker 
 I installed `docker-ce` and `nvidia-docker2` following the instructions from docker that is pointed to in the carla docs. This requires the nvidia drivers. 
 * [Read about CARLA in Docker](https://carla.readthedocs.io/en/latest/build_docker/)
@@ -143,27 +147,22 @@ Then restart docker.
 ### Options for Installing CARLA
 There are multple ways to install and run the CARLA package. Which is the right way, who knows.
 
-*Option 1:* Download and Extract from CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client - or do developement
-  * CARLA Client - This is easy - requires numpy and pygame only (or use requirements.txt) 
-  * CARLA Server -  This appears to be a very involved - requires building CARLA and UNREAL4 (https://carla.readthedocs.io/en/latest/build_linux/) - I have not tested this yet.
+*Install Option 1: CARLA from Source* Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client - or do developement
+  * CARLA Client - The PythonAPI can be used without compiling or building anything, but there are python dependencies.
+  * CARLA Server + UE Editor + Map Ingestion Tools - This requires building CARLA and UE4 from source. This requires ~30G of storage space and significant memory. Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
    
-*Option 2:* Install CARLA package with `apt install` - this should be very straight forward - but hard to change versions - for a general user
+*Install Option 2: CARLA in Docker* Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
+  * CARLA Client - This should be easy, but this does not work a the moment - does not seem to be needed
+  * CARLA Server - This works good - see middle of this document
+  
+*Install Option 3: CARLA Build in Docker*  to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
+
+*Install Option 4: Install with Package Manager* Install CARLA package with `apt install` - this should be very straight forward - good for a general user
   * CARLA Client - I have not tested this yet.
   * CARLA Server - I have not tested this yet.
-
-*Option 3:* Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
-  * CARLA Client - This should be easy, but this does not work - see bottom of this document
-  * CARLA Server - This works good, but it did require some figuring out - see middle of this document
   
-*Option 4:* Use Docker to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs [] 
-
-*Option 5:* Clone CARLA from Github and compile from source. This requires ~30G of storage space and significant memory.
-
-
-I am using Option 3, Docker Approach for the server for flexibility in testing. Currently, my working demo is a hybrid of approach 1 and 3 from above. It would nice if we had full functionality in a Docker container (method 3 only) because this would allow for complete portability. I am working on this.
-
-### Pull CARLA image with docker
-Choose a version of CARLA that you want to use and pull (download an image) with docker. You can see the available tags here (https://hub.docker.com/r/carlasim/carla/tags?page=1&ordering=last_updated). 
+### *Install Option 1:* - Pull CARLA image with docker
+Choose a version of CARLA that you want to use and pull (download an image) with docker. You can see the available tags at the docker hub [here](https://hub.docker.com/r/carlasim/carla/tags?page=1&ordering=last_updated). 
 
 #### Stable
 
@@ -174,13 +173,13 @@ Choose a version of CARLA that you want to use and pull (download an image) with
 `docker pull carlasim/carla:0.9.11`
 
 #### Developement - latest
-There is a new version out. ***latest*** was updated around 11/23/2020
 
 `docker pull carlasim/carla:latest`
 
-### Bring CARLA into home directory for testing
+### Bring CARLA into home directory for testing and `PythonAPI`
+
 #### Option A: copy egg from docker image
-This method is preffered becuase it does not make sense to download the package twice. Also, this ensures that you are working on exactly the same version. I learned this here (https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71)
+This method is preffered becuase it does not make sense to download the package twice. Also, this ensures that you are working on exactly the same version. I learned this [here](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71)
 
 ##### Step 1: find container ID
 This can be done in multple ways. One way is to open `bash` in the container. This can be done with the command below.
@@ -231,16 +230,20 @@ cd carla_simulator/carla09101/PythonAPI/
 Now you have a copy of the PythonAPI in home, so if you bork it up you can get a fresh copy.
 
 #### Option B: Download and extract CARLA pre-compiled package from Github (reccomended option by CARLA for choosing versions)
-Download and extract the appropriate version from Github. (https://github.com/carla-simulator/carla)
+Download and extract the appropriate version from [Github.](https://github.com/carla-simulator/carla)
 I am currently putting the package in ` ~/carla_simulator/carla<version number>`
 This option might by needed if you do not have docker. This could happen with an `AMD` gpu.
 
+### *Install Option 2:*
+
+### *Install Option 3:*
+
 ### Setup CARLA PythonAPI Dependencies
 #### Setup Option 1 (reccomended): Use the PythonAPI CONDA Environment - This saves time and is preferred method during testing
-Once way to use the PythonAPI in Ubuntu 20.04 in with CONDA. Install conda following instructions here (https://docs.anaconda.com/anaconda/install/linux/). Use CONDA for a virtual environment I have setup for conveinence. This way you do not have to set the paths each time or install dependencies. 
-Here is the CONDA cheatsheet: https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf
+Once way to use the PythonAPI in Ubuntu 20.04 in with CONDA. Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). Use CONDA for a virtual environment I have setup for conveinence. This way you do not have to set the paths each time or install dependencies. 
+Here is the CONDA [cheatsheet:](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
 
-This turtorial (https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71) shows a similar way that uses `virtualenv`. There are one or two bugs in the tutorial, but overall it was very useful to read because this person is doing something very similar to me. 
+This [turtorial](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71) shows a similar way that uses `virtualenv`. There are one or two bugs in the tutorial, but overall it was very useful to read because this person is doing something very similar to me. 
 
 Create a environment to use the PythonAPI in (this only needs to be done once). 
 
@@ -291,8 +294,8 @@ now that `CARLA_ROOT` is set you can install the python requirements with the fo
 Now you can test the different features included in the API.
 
 #### Setup Option 2: install neccesary deps with apt and/or pip (not in conda or virualenv)
-The PythonAPI requires NUMPY and PYGAME (https://carla.readthedocs.io/en/latest/start_quickstart/). 
-Do I need the `--user` option ? What does that even do? I think I know.
+The PythonAPI requires NUMPY and PYGAME as described in the [docs.](https://carla.readthedocs.io/en/latest/start_quickstart/)
+Do I need the `--user` option ? What does that even do? I think I know. FIGURE THIS OUT - USE CONDA TO KEEP DEPS STRAIGHT !!!
 
 If you are using **Python2.7**:
 
@@ -358,7 +361,7 @@ This will run the script `CarlaUE4.sh` in the carla container. Using the `--name
  
   *Graphics Quality*: Run the graphics in `Low` or `Epic` quality mode. The `Low` setting increases the display framerate significantly. If you run `0.9.10.1` in `Low` with `-opengl` the screen appears washed out with white and other colors. This is an over exposure issue related to the quality setting transistion that seems to be known in previous versions (not talked about much it in 0.9.10.1). If you run in `Low` then use `vulkan`. If you run in `Epic` you can use either `opengl` or `vulkan`.
 
-  *Graphics Library*: Run the graphics with `vulkan` or `opengl`. Previously I was unable to run the server in `vulkan` mode. This is a known issue with 0.9.10.1, but I finally found a solution here (https://github.com/carla-simulator/carla/issues/3377). The fix is to start the server with`--gpus 'all,"capabilities=graphics,utility,display,video,compute"'`. We were previously using `--gpus all`. With this change you can now run with out without the `-opengl` flag. I wonder why the fix was so obscure and hard to find. 
+  *Graphics Library*: Run the graphics with `vulkan` or `opengl`. Previously I was unable to run the server in `vulkan` mode. This is a known issue with 0.9.10.1, but I finally found a solution [here](https://github.com/carla-simulator/carla/issues/3377). The fix is to start the server with`--gpus 'all,"capabilities=graphics,utility,display,video,compute"'`. We were previously using `--gpus all`. With this change you can now run with out without the `-opengl` flag. I wonder why the fix was so obscure and hard to find. 
 
 Running in `vulkan` fixed the over exposure white screen issues. The white screen issue still happens with `-opengl` and `-quality-level=Low`.
 
@@ -419,8 +422,8 @@ the API is located in the carla directory `/carla/PythonAPI`  or `${CARLA_ROOT}/
 #### Start a CARLA Client - The client is a vehicle driving in the world server
 
 I origanally wanted the client to be run from inside the container. I am not sure exactly why. It seems like it should be available in the container...
-On the client side I have had some trouble with the 'no module named carla issue' - https://github.com/carla-simulator/carla/issues/1137
-this is related to properly setting the path for the 'carla' python module from /carla/PythonAPI. 
+On the client side I have had some trouble with the 'no module named carla issue' - [#1137](https://github.com/carla-simulator/carla/issues/1137)
+this is related to properly setting the path for the 'carla' python module from /carla/PythonAP. 
 
 In Ubuntu 20.04 (server machine) I downloaded and extracted carla 0.9.10 - 'pip3 install pygame' did not work so I had to use 'apt install python3-pygame'
 i had to set the PYTHONPATH for the carla module to work. Basically the PYTHONPATH must include the path to .egg file for the right version of carla, I think that this is the same problem I am having in the docker container 'no module named carla'
@@ -475,7 +478,7 @@ editing line 1038 in `manual_control.py`. I wonder why it defaults to something 
 
 ### CARLA ROS-BRIDGE (ros-melodic only)
 This gives us access to data from the simulation in ROS
-Follow the instructions on the ROS-BRIDGE github (https://github.com/carla-simulator/ros-bridge)
+Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge)
 
 #### Install Option A (for users): install with `apt`
 ```
@@ -545,7 +548,7 @@ This the main reason I am holding onto `Ubuntu18.04`.
 
 ####  xdg-user-dir: not found
 I ran into this  error: `sh: 1: xdg-user-dir: not found`. This seems to be common issue, and the CARLA teams says it can be ignored.
-There is some discussion here (https://github.com/carla-simulator/carla/issues/3156).There are still warnings but it seems like the simulation has started.
+There is some discussion [here](https://github.com/carla-simulator/carla/issues/3156).There are still warnings but it seems like the simulation has started.
 
 #### white screen wash out
 
@@ -620,7 +623,7 @@ Run the client. Notice that this script can be easiyl modified. `PythonClient` i
 ### Generating Custom Maps with OpenStreetMap (Generate maps with OpenStreetMap)
 I started trying to build a custom town. This is one of my big goals for this project. I want to run CARLA in a virtual TNTECH Campus.
 
-I have tried to follow this CARLA tutorial here (https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/), but I am stuck. 
+I have tried to follow this CARLA tutorial [here](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/), but I am stuck. 
 
 Progress so far (steps from tutorial in link above)
 
