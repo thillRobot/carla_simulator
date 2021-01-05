@@ -711,7 +711,8 @@ pip3 install osmread
 
 Run the cscript to convert the files. For now the filenames are hardcoded in the python script, but I would like to add command line arguments for the filenames. 
 ```
-python3 ~/openstreemap/osm2xodr/convert_map.py
+cd <ROOT PATH>/osm2xodr
+python3 main.py
 ```
 
 #### Step 3 - Import into CARLA
