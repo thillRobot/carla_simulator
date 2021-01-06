@@ -18,7 +18,7 @@ I am not alone, and this is good.
 
 ## Requirements
  
-### Required/Related Software
+### Software
 
 * CARLA - the core of this project
 * Python - Python2.7 and Python3.7 are used
