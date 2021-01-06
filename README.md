@@ -1,6 +1,7 @@
 # CARLA_SIMULATOR - open source vehicle simulator
-This README is intended to be a guide to using CARLA, and this is *not* a distribution of the package.
-October 07, 2020 - December 06, 2020 - December 29, 2020
+This README is intended to be a guide to using CARLA. This is *not* a distribution of the package.
+
+October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
 
 ## Watch
 You can see some demonstration videos on [Youtube](https://www.youtube.com/channel/UCH3bAvnmCLCRjyyorfUJXKg)
