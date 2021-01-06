@@ -99,7 +99,7 @@ This requires modern nividia drivers(>390), I installed  nvidia450 -> nvidia455
 
 ### Version 0.8.4
 
-This is the **stable** version.
+This is the **stable** version. Breif testing of this version is shown at the bottom of the README.
 
 ## Installing Docker 
 I installed `docker-ce` and `nvidia-docker2` following the instructions from docker that is pointed to in the carla docs. This requires the nvidia drivers. 
