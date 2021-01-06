@@ -21,7 +21,7 @@ I am not alone. This is good.
 
 
 
-## Installing and Configuring CARLA
+## Installing CARLA
 
 ### Options for Installing and Using CARLA
 There are multiple ways to install and run the CARLA package. Choose the option which based on your desired functionality. 
