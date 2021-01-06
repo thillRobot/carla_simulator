@@ -178,7 +178,7 @@ Now you have a copy of the PythonAPI on the host, and if you bork it up you can 
 
 
 ### Installing CARLA Option 4: Build in Docker
-* This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.*
+*This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.*
 
 ##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
 Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
