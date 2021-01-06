@@ -52,6 +52,7 @@ This option is for for general use and testing. Download and extract the CARLA p
 cd <CARLA ROOT>
 ./ImportAssets.sh
 ```
+The CARLA package is configured and ready to use. See the *Using CARLA* section below to continue.  
 
 ### CARLA Option 2: - Build from Source 
 ##### Build CARLA from Source (older method)
@@ -64,7 +65,6 @@ Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/b
 This section needs documentation.
 
 Build carla from source in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). 
-
   
 ### CARLA Option 3: - Run in Docker
 This option is for general use, testing, and developement. 
