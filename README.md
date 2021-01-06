@@ -417,11 +417,11 @@ Someone suggested this in a forum somewhere, but that does not mean it is a good
 
 ### CARLA PythonAPI - this is a set of tools and example for interacting with the CARLA server
 There are all kinds of things that you can try. "get in the there and mess around" - CARLA docs
-the API is located in the carla directory `/carla/PythonAPI`  or `${CARLA_ROOT}/PythonAPI`
+the API is located in the carla directory `/carla/PythonAPI` 
 
 #### Spawn NPC Vehicles and Pedestrains 
 
-`python3 ${CARLA_ROOT}/PythonAPI/examples/spawn_npc.py -n 20`
+`python3 PythonAPI/examples/spawn_npc.py -n 20`
 
 #### Start a CARLA Client - The client is a vehicle driving in the world server
 
