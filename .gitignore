@@ -7,6 +7,8 @@
 *.egg-info
 *.EGG-INFO
 .*.cfg
+*.gz
+
 bin/
 build/
 develop-eggs/
@@ -17,7 +19,7 @@ parts/
 dist/
 var/
 
-/carla
-/carla_09101
-/carla_latest
-
+carla*
+osm2*
+OSM2*
+.fbx
