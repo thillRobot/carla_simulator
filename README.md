@@ -49,9 +49,11 @@ I am not alone. This is good.
 
 * CARLA - the core of this project
 * Python - Python2.7 and Python3.7 are used
-* NUMPY and PYGAME
+* NUMPY and PYGAME minumum Python dependencies
+* additional Python deps needed for full PythonAPI
 * docker CE
 * nvidia-docker2 (this requires nvidia drivers and driver version limits carla version)
+* docker UE4
 * ROS Melodic (Noetic in testing)
 * CARLA_ROS_BRIDGE
 * CONDA/ANACONDA (for virtual python emvironments)
