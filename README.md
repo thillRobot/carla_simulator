@@ -1,5 +1,5 @@
 # carla_simulator
-This README is intended to be a guide to using CARLA. This is *not* a distribution of the package.
+This README is intended to be a guide to using CARLA. This repository is *not* a distribution of the CARLA package.
 
 October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
 
@@ -50,9 +50,17 @@ I am not alone. This is good.
 
 ## Hardware
 
+### Server+Client Computer:
+
+* Computer: MSI H87-G43 (caseless miracle)
+* CPU:      i7-4770k @ 3.5 x 8
+* Graphics: Geforce GTX 1650
+* RAM:      16 GB + 16 GB swap
+* OS:       Ubuntu18.04
+
 ### Server Computer:
 
-* Computer: Dell t1600
+* Computer: Dell t1600 (sleepy box)
 * CPU:      Xeon CPU E31245 @ 3.30GHz × 8
 * Graphics: Geforce GT 630 - > Geforce GTX 1650
 * RAM:      8GB - > 16 GB
@@ -147,20 +155,20 @@ Then restart docker.
 ## Installing and Configuring CARLA
 
 ### Options for Installing and Using CARLA
-There are multple ways to install and run the CARLA package. Which is the right way, who knows.
+There are multiple ways to install and run the CARLA package. Choose the option which based on your desired functionality. 
 
-**CARLA Option 1: Run in Pre-Compiled Package** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client -
+**CARLA Option 1: Run in Pre-Compiled Package** - This option is for for general use and testing. 
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
   * CARLA Server - This server can be run without compiling or building.
   
-**CARLA Option 2: Build from Source** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - this option is for development
+**CARLA Option 2: Build from Source** - This option is for CARLA development and map generation.
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
-  * CARLA Server + UE Editor - This requires building CARLA and UE4 from source. This requires ~30G of storage space and significant memory. Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
+  * CARLA Server + UE Editor - This requires building CARLA and UE4 from source which requires ~30G of storage and significant memory. 
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
    
 **CARLA Option 3: Run in Docker** - Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
-  * CARLA Client - This should be easy, but this does not work a the moment - does not seem to be needed
-  * CARLA Server - This works good - see middle of this document
+  * CARLA Client - This does not work a the moment - also this does not seem to be needed
+  * CARLA Server - This has been tested and works good 
   
 **CARLA Option 4: Build in Docker** - to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
   * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
@@ -169,25 +177,32 @@ There are multple ways to install and run the CARLA package. Which is the right 
 
 
 ### CARLA Option 1: - Run in Pre-Compiled Package  
-Clone or download and extract CARLA pre-compiled package from [Github.](https://github.com/carla-simulator/carla). This is a reccomended option by CARLA for choosing and switching versions. I am currently putting the packages in ` ~/carla_simulator/carla<version number>`. You can also down load the map assets separately. 
+Clone or download and extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) 
+Clone or download and extract CARLA pre-compiled package from [Github.](https://github.com/carla-simulator/carla). The top directory of the package will be known as `<CARLA_ROOT>`. Choose versions with `git checkout tag` or download the appropriate compressed file. Download the map assets separately as compressed files, and place them in the /Import directory. Navigate to `<CARLA ROOT>` and run the import script.
 
+```
+cd <CARLA ROOT>
+./ImportAssets.sh
+```
 
 ### CARLA Option 2: - Build from Source 
 ##### Build CARLA from Source (older method)
 
-Follow the CARLA docs for installing from source. I need to document this!
+Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
 
-I succesfully build carla in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). I ran into errors, but I am making progress. 
+ Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) is this the right link?
 
-I was able to perform the map ingestion by preparing the files manually as described below and running the following. This process needs to be documented and tested further.
+This section needs documentation.
 
-```
-make package ARGS="--packages=Package03"
+Build carla from source in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). Once the package is built there are many tools available.
 
-```
-This results in a standalone asset package directory in `carl/Dist`. 
+`make help` 	Prints all available commands.
+`make launch` 	Launches CARLA server in Editor window.
+`make PythonAPI` 	Builds the CARLA client.
+`make package` 	Builds CARLA and creates a packaged version for distribution.
+`make clean` 	Deletes all the binaries and temporals generated by the build system.
+`make rebuild` 	make clean and make launch both in one command.
 
-I beleive that this package must be exported to be used for distribution. 
   
 
 ### CARLA Option 3: - Run in Docker
