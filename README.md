@@ -310,8 +310,8 @@ I have only done limited testing for this option. This method has been reccomend
 
 This [turtorial](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71) shows a similar way that uses `virtualenv`. There are one or two bugs in the tutorial, but overall it was very useful to read because this person is doing something very similar to me. 
 
-### Python Dependencies Option 2: `$USER` or System wide Installation
-This method is not reccomended because the deps can get messy. 
+### Python Dependencies Option 3: `$USER` or System wide Installation
+This method is not reccomended because the dependecies may conflict with other projects.  
 The PythonAPI requires NUMPY and PYGAME as described in the [docs.](https://carla.readthedocs.io/en/latest/start_quickstart/)
 Do I need the `--user` option ? What does that even do? I think I know. FIGURE THIS OUT - USE CONDA TO KEEP DEPS STRAIGHT !!!
 
