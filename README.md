@@ -159,7 +159,7 @@ There are multiple ways to install and run the CARLA package. Choose the option 
 
 **CARLA Option 1: Run in Pre-Compiled Package** - This option is for for general use and testing. 
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
-  * CARLA Server - This server can be run without compiling or building.
+  * CARLA Server - The server can be run without compiling or building.
   
 **CARLA Option 2: Build from Source** - This option is for CARLA development and map generation.
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
