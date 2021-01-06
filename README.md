@@ -281,13 +281,7 @@ then actitvate the environment (this needs to be done at the start of each sessi
 finally add the paths to the conda environment so that you do not have to do this each time
 this line shows to set a env var permanently in the conda environment.
 
-If you are using **Python2.7**:
-
 `conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>.egg:<CARLA PATH>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla`
-
-**or**, if you are using **Python3.7**:
-
-`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>.egg:<CARLA ROOT>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla`
 
 To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. The python version of you are using should match the *.egg* file name. 
 
@@ -331,15 +325,16 @@ If you are using **Python2.7**:
 
 To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. Choose the appropriate version of Python.
 
-If you are using **Python2.7**:
+```
+export PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>:<CARLA ROOT>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla
+```
 
-```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
+For example:
+```
+export PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla`
+```
 
-**or**, if you are using **Python3.7**:
-
-```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
-
-Then, you can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
+You can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
 
 ###### After *Installing Python Dependencies*, continue to *Using CARLA* to test the simulator.
 
