@@ -6,35 +6,6 @@ October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
 ## Watch
 You can see some demonstration videos on [Youtube](https://www.youtube.com/channel/UCH3bAvnmCLCRjyyorfUJXKg)
 
-## Goals/Things to Do
-
-- [x] split this README into multple pages - it has become a montser
-
-- [ ] figure out how to use carla settings file
-- [x] install and test ROS_BRIDGE in ros melodic
-- [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
-
-- [x] build carla from source and test
-- [x] build carla with docker and test
-
-- [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car
-- [ ] record a *metric* for Dr. Canfield
-- [ ] use RVIZ to visualize the data from carla
-- [ ] make a custom map with open street map and carla tools - i am getting much closer 
-- [ ] get access to RoadRunner and make custom town - i have talked to Mike and ken about this.
-
-- [x] learn to use CONDA for python client - this will help with testing - done - big improvement
-- [x] start the server in a different town, HDMaps/Town02.pcd  
-- [x] change the town from the client side, HDMaps/Town02.pcd 
-- [ ] document and test basic use of CARLA - not in a docker container
-- [ ] clean up this document, it is a huge mess - it is a little better
-
-- [x] test client on local machine - not in docker - Done - Working
-- [x] test client on remote machine - not in docker - Done - Working
-- [x] test client on local machine - in a docker   - DONE - not working
-- [x] test server on local machine - in a docker - DONE - Working
-- [ ] test server on local machine - not in a docker - NOT DONE
-- [ ] test ros_bridge with COROS  
 
 ## Useful Resources
 
@@ -753,6 +724,37 @@ Run the client. Notice that this script can be easiyl modified. `PythonClient` i
 `/.manual_control_twh.py --autopilot --host 192.168.1.2 -q Low`
 
 
-This is a work in progress, and I am open to comments and/or suggestions. 
+## Changelog
+## Goals/Things to Do
 
+- [x] split this README into multple pages - it has become a montser
+
+- [ ] figure out how to use carla settings file
+- [x] install and test ROS_BRIDGE in ros melodic
+- [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
+
+- [x] build carla from source and test
+- [x] build carla with docker and test
+
+- [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car
+- [ ] record a *metric* for Dr. Canfield
+- [ ] use RVIZ to visualize the data from carla
+- [ ] make a custom map with open street map and carla tools - i am getting much closer 
+- [ ] get access to RoadRunner and make custom town - i have talked to Mike and ken about this.
+
+- [x] learn to use CONDA for python client - this will help with testing - done - big improvement
+- [x] start the server in a different town, HDMaps/Town02.pcd  
+- [x] change the town from the client side, HDMaps/Town02.pcd 
+- [ ] document and test basic use of CARLA - not in a docker container
+- [ ] clean up this document, it is a huge mess - it is a little better
+
+- [x] test client on local machine - not in docker - Done - Working
+- [x] test client on remote machine - not in docker - Done - Working
+- [x] test client on local machine - in a docker   - DONE - not working
+- [x] test server on local machine - in a docker - DONE - Working
+- [ ] test server on local machine - not in a docker - NOT DONE
+- [ ] test ros_bridge with COROS  
+
+
+This is a work in progress, and I am open to comments and/or suggestions. 
 ### Have a Nice Day!
