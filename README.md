@@ -161,19 +161,19 @@ There are multiple ways to install and run the CARLA package. Choose the option 
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
   * CARLA Server - The server can be run without compiling or building.
   
-**CARLA Option 2: Build from Source** - This option is for CARLA development and map generation.
-  * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
-  * CARLA Server + UE Editor - This requires building CARLA and UE4 from source which requires ~30G of storage and significant memory. 
+**CARLA Option 2: Build from Source** - This option is for CARLA development and map generation. Building requires ~30G of storage and significant memory. 
+  * CARLA Client - Can the PythonAPI can be used without compiling or building? There are python dependencies that must be met.
+  * CARLA Server + UE Editor - After building, the provided tools can be used to edit CARLA worlds in the UE4 editor.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
    
-**CARLA Option 3: Run in Docker** - Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
-  * CARLA Client - This does not work a the moment - also this does not seem to be needed
-  * CARLA Server - This has been tested and works good 
+**CARLA Option 3: Run in Docker** - This option is for general use, testing, and developement. 
+  * CARLA Client - This does not work at the moment. Also, this does not seem to be needed. Use Option 1 for the `PythonAPI`.
+  * CARLA Server - This has been tested and works good. The server is portable and can be accesed remotely.
   
-**CARLA Option 4: Build in Docker** - to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
+**CARLA Option 4: Build in Docker** - This option is for CARLA development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.
   * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
-  * CARLA Server - The server can be run after building.
-  * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built.
+  * CARLA Server - The server can be run after building, and the server is portable and can be accesed remotely.
+  * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of CARLA can be built.
 
 
 ### CARLA Option 1: - Run in Pre-Compiled Package  
@@ -199,6 +199,7 @@ Build carla from source in 18.04 from source following the docs [here](https://c
   
 
 ### CARLA Option 3: - Run in Docker
+ Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - 
 Choose a version of CARLA that you want to use and pull (download an image) with docker. You can see the available tags at the docker hub [here](https://hub.docker.com/r/carlasim/carla/tags?page=1&ordering=last_updated). 
 
 #### Stable
@@ -267,6 +268,7 @@ Now you have a copy of the PythonAPI on the host, and if you bork it up you can 
 
 ### CARLA Option 4: Build in Docker
 ##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
+Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
 The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. 
 
 Clone a copy of CARLA from [github](https://github.com/carla-simulator/carla) before performing the Docker build. The required Dockerfile is in `carla/Util/Docker`.
