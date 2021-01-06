@@ -207,6 +207,12 @@ The import seems to have worked. There is a problem with the location. The spawn
 I was able to perform the map ingestion by preparing the files manually as described below and running the following. This process needs to be documented and tested further.
 
 ```
+some stuff here
+```
+After the map has been imported a standalone asset package can be exported with the following command.
+
+
+```
 make package ARGS="--packages=Package03"
 
 ```
