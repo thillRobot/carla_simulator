@@ -340,7 +340,11 @@ Installation and configuration is complete. You can now test the simulator.
 The server is the world simulation and must be started first.
 
 ### CARLA Option 1: Run in Pre-Compiled Package
-The server can be run in a distribution package (pre-compiled) or a package with the provided script. 
+- This option is for for general use and testing. 
+  * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
+  * CARLA Server - The server can be run without compiling or building. The server can be accesed remotely.
+
+The server can be run in a distribution package (pre-compiled) with the provided script. 
 
 Move to `<CARLA ROOT>` and run the script to start the server. 
 ```
@@ -349,7 +353,12 @@ cd <CARLA ROOT>
 ```
 A window will open showing CARLA Town01 from the observer view. You can fly around using the mouse and arrrow keys. Add actors to the world with the `PythonAPI` as described below.
 
-### Run server in built from source CARLA package
+
+### CARLA Option 2: Build from Source
+This option is for CARLA development and map generation. Building requires ~30G of storage and significant memory. 
+  * CARLA Client - Can the PythonAPI can be used without compiling or building? There are python dependencies that must be met.
+  * CARLA Server + UE Editor - After building, the provided tools can be used to edit CARLA worlds in the UE4 editor.
+  * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
 
 Once the package is built there are many tools available. Read the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
 
