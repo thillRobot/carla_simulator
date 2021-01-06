@@ -47,7 +47,7 @@ There are multiple ways to install and run the CARLA package. Choose the option 
 
 ### CARLA Option 1: - Run in Pre-Compiled Package  
 Clone or download and extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) 
-Clone or download and extract CARLA pre-compiled package from [Github.](https://github.com/carla-simulator/carla). The top directory of the package will be known as `<CARLA_ROOT>`. Choose versions with `git checkout tag` or download the appropriate compressed file. Download the map assets separately as compressed files, and place them in the /Import directory. Navigate to `<CARLA ROOT>` and run the import script.
+Clone or download and extract CARLA pre-compiled package from [Github](https://github.com/carla-simulator/carla). In this document, the top directory of the package will be known as `<CARLA_ROOT>`. Choose versions with `git checkout tag` or download the appropriate compressed file. Download the map assets separately as compressed files, and place them in the /Import directory. Navigate to `<CARLA ROOT>` and run the import script.
 
 ```
 cd <CARLA ROOT>
