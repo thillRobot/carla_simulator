@@ -24,7 +24,7 @@ I am not alone. This is good.
 ## Installing CARLA
 
 ### Options for Installing and Using CARLA
-There are multiple ways to install and run the CARLA package. Choose the option which based on your desired functionality. 
+There are multiple ways to install and use the CARLA package. Choose the option which based on your desired functionality. 
 
 **CARLA Option 1: Run in Pre-Compiled Package** - This option is for for general use and testing. 
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
