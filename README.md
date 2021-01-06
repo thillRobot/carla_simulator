@@ -14,122 +14,31 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 - [COROS + CARLA 0.9.10.1 (ROS with docker)](https://hub.docker.com/r/johannhaselberger/coros)
 
+I am not alone, and this is good.
 
-
-I am not alone. This is good.
-
-## Installing Python Dependencies
-At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage the (Python?) dependencies.
- 
-### Python Dependencies Option 1: Use CONDA Environments
-This is the reccomended method to manage the Python dependencies and is the primary method used in this guide.
-Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). This way you do not have to set the paths each time or install dependencies. 
-The CONDA [cheatsheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf) is very useful.
-
-#### Create Virtual Environment
-Create a environment to use the PythonAPI in (this only needs to be done once). 
-
-If you are using **Python2.7**:
-
-`conda create --name carla python=2.7`
-
-**or**, if you are using **Python3.7**:
-
-`conda create --name carla python=3.7`
-
-then actitvate the environment (this needs to be done at the start of each session)
-
-`conda activate carla`
-
-#### Add Neccesary Paths to `PYTHONPATH`
-finally add the paths to the conda environment so that you do not have to do this each time
-this line shows to set a env var permanently in the conda environment.
-
-If you are using **Python2.7**:
-
-`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>.egg:<CARLA PATH>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla`
-
-**or**, if you are using **Python3.7**:
-
-`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>.egg:<CARLA ROOT>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla`
-
-To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. The python version of you are using should match the *.egg* file name. 
-
-`conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla`
- 
-re-actitvate the environment after setting environment variables
-`conda activate carla`
-
-#### Install Python Dependencies
-You need to have `numpy` and `pygame` installed. The CARLA website reccomends doing like this. 
-
-`pip3 install --user numpy pygame`
-
-Alternatively,you can also install them with pip and the `requirements.txt` file. I am not sure which is better. The `requirements.txt` file installs more dependencies.
-
-`pip3 install -r <CARLA PATH>/PythonAPI/examples/requirements.txt`
-
-`automatic_control.py` requires the networkx module to be install - i used conda to install it (the env most still be active of course)
-
-`conda install networkx`
-
-Now you can test the different features included in the API.
-
-### Python Dependencies Option 2: Use VENV Environments
-I have only done limited testing for this option. This method has been reccomended by the CARLA team and others.
-
-This [turtorial](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71) shows a similar way that uses `virtualenv`. There are one or two bugs in the tutorial, but overall it was very useful to read because this person is doing something very similar to me. 
-
-### Python Dependencies Option 2: `$USER` or System wide Installation
-This method is not reccomended because the deps can get messy. 
-The PythonAPI requires NUMPY and PYGAME as described in the [docs.](https://carla.readthedocs.io/en/latest/start_quickstart/)
-Do I need the `--user` option ? What does that even do? I think I know. FIGURE THIS OUT - USE CONDA TO KEEP DEPS STRAIGHT !!!
-
-If you are using **Python2.7**:
-
-`pip install --user pygame numpy`
-
-**or**, if you are using **Python3.7**:
-
-`pip3 install --user pygame numpy`
-
-To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. Choose the appropriate version of Python.
-
-If you are using **Python2.7**:
-
-```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
-
-**or**, if you are using **Python3.7**:
-
-```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
-
-Then, you can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
-
-###### After *Installing Python Dependencies*, continue to *Installing CARLA* to setup the simulator.
 
 ## Installing CARLA
 
 ### Options for Installing and Using CARLA
 There are multiple ways to install and use the CARLA package. Choose the option which based on your desired functionality. 
 
-**Installing CARLA Option 1: Run in Pre-Compiled Package** - This option is for for general use and testing. 
+**Installing CARLA Option 1: Run in Pre-Compiled Package** - *This option is for for general use and testing.* 
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
   * CARLA Server - The server can be run without compiling or building. The server can be accesed remotely.
   
-**Installing CARLA Option 2: Build from Source** - This option is for development and map generation. Building requires ~30G of storage and significant memory. 
+**Installing CARLA Option 2: Build from Source** - *This option is for development and map generation. Building requires ~30G of storage and significant memory.* 
   * CARLA Client - Can the PythonAPI can be used without compiling or building? There are python dependencies that must be met.
   * CARLA Server + UE Editor - After building, the provided tools can be used to edit CARLA worlds in the UE4 editor.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
    
-**Installing CARLA Option 3: Run in Docker** - This option is for general use, testing, and developement. 
+**Installing CARLA Option 3: Run in Docker** - *This option is for general use, testing, and developement.* 
   * CARLA Client - This does not work at the moment. Also, this does not seem to be needed. Use Option 1 for the `PythonAPI`.
   * CARLA Server - This has been tested and works good. The server is portable and can be accesed remotely.
   
-**Installing CARLA Option 4: Build in Docker** - This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.
+**Installing CARLA Option 4: Build in Docker** - *This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.*
   * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
   * CARLA Server - The server can be run after building, and the server is portable and can be accesed remotely.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of CARLA can be built.
-
 
 ### Installing CARLA Option 1: - Run in Pre-Compiled Package  
 *This option is for for general use and testing.* 
@@ -279,8 +188,9 @@ Clone a copy of CARLA from [github](https://github.com/carla-simulator/carla) be
 
 Follow this [tutorial](https://github.com/carla-simulator/carla/tree/master/Util/Docker) to build CARLA in a docker. This takes a long time and requires alot of memory and storage.
 
-Setup the dependencies and firewall. Also, setup DNS for docker container (see xyz)
+Setup the dependencies with conda and setup firewall. Also, setup DNS for docker container (see xyz)
 ```
+conda activate <CARLA ENV>
 pip3 install ue4-docker
 ```
 ```
@@ -341,14 +251,104 @@ WORKDIR /home/ue4/carla
 ```
 After applying the fix from `@will-sloan` the build finished succesfully. 
 
-Now You have 
+###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
 
-###### After *Installing CARLA*, continue to *Using CARLA* to test the simulator
+
+## Installing Python Dependencies
+At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage the (Python?) dependencies.
+ 
+### Python Dependencies Option 1: Use CONDA Environments
+This is the reccomended method to manage the Python dependencies and is the primary method used in this guide.
+Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). This way you do not have to set the paths each time or install dependencies. 
+The CONDA [cheatsheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf) is very useful.
+
+#### Create Virtual Environment
+Create a environment to use the PythonAPI in (this only needs to be done once). 
+
+If you are using **Python2.7**:
+
+`conda create --name carla python=2.7`
+
+**or**, if you are using **Python3.7**:
+
+`conda create --name carla python=3.7`
+
+then actitvate the environment (this needs to be done at the start of each session)
+
+`conda activate carla`
+
+#### Add Neccesary Paths to `PYTHONPATH`
+finally add the paths to the conda environment so that you do not have to do this each time
+this line shows to set a env var permanently in the conda environment.
+
+If you are using **Python2.7**:
+
+`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>.egg:<CARLA PATH>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla`
+
+**or**, if you are using **Python3.7**:
+
+`conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>.egg:<CARLA ROOT>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla`
+
+To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. The python version of you are using should match the *.egg* file name. 
+
+`conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla`
+ 
+re-actitvate the environment after setting environment variables
+`conda activate carla`
+
+#### Install Python Dependencies
+You need to have `numpy` and `pygame` installed. The CARLA website reccomends doing like this. 
+
+`pip3 install --user numpy pygame`
+
+Alternatively,you can also install them with pip and the `requirements.txt` file. I am not sure which is better. The `requirements.txt` file installs more dependencies.
+
+`pip3 install -r <CARLA PATH>/PythonAPI/examples/requirements.txt`
+
+`automatic_control.py` requires the networkx module to be install - i used conda to install it (the env most still be active of course)
+
+`conda install networkx`
+
+Now you can test the different features included in the API.
+
+### Python Dependencies Option 2: Use VENV Environments
+I have only done limited testing for this option. This method has been reccomended by the CARLA team and others.
+
+This [turtorial](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71) shows a similar way that uses `virtualenv`. There are one or two bugs in the tutorial, but overall it was very useful to read because this person is doing something very similar to me. 
+
+### Python Dependencies Option 2: `$USER` or System wide Installation
+This method is not reccomended because the deps can get messy. 
+The PythonAPI requires NUMPY and PYGAME as described in the [docs.](https://carla.readthedocs.io/en/latest/start_quickstart/)
+Do I need the `--user` option ? What does that even do? I think I know. FIGURE THIS OUT - USE CONDA TO KEEP DEPS STRAIGHT !!!
+
+If you are using **Python2.7**:
+
+`pip install --user pygame numpy`
+
+**or**, if you are using **Python3.7**:
+
+`pip3 install --user pygame numpy`
+
+To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. Choose the appropriate version of Python.
+
+If you are using **Python2.7**:
+
+```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
+
+**or**, if you are using **Python3.7**:
+
+```export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla```
+
+Then, you can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
+
+###### After *Installing Python Dependencies*, continue to *Using CARLA* to test the simulator.
+
 
 ## Using CARLA 
 
 ### The CARLA Server
 The server is the world simulation and must be started first.
+
 
 ### Using CARLA Option 1: Run in Pre-Compiled Package
 *This option is for for general use and testing.*
@@ -366,7 +366,7 @@ A window will open showing CARLA Town01 from the observer view. You can fly arou
 
 
 ### Using CARLA Option 2: Build from Source
-This option is for CARLA development and map generation. Building requires ~30G of storage and significant memory. 
+*This option is for CARLA development and map generation. Building requires ~30G of storage and significant memory.* 
   * CARLA Client - Can the PythonAPI can be used without compiling or building? There are python dependencies that must be met.
   * CARLA Server + UE Editor - After building, the provided tools can be used to edit CARLA worlds in the UE4 editor.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
@@ -390,9 +390,11 @@ A window will open showing CARLA Town01 from the observer view. You can fly arou
 
 
 ### Using CARLA Option 3: Run in Docker
-
 *This option is for general use, testing, and developement.* 
+  * CARLA Client - This does not work at the moment. Also, this does not seem to be needed. Use Option 1 for the `PythonAPI`.
+  * CARLA Server - This has been tested and works good. The server is portable and can be accesed remotely.
 
+  
 Alternatively, the server can be run in a docker container. Use the `--name` option to choose a name for the container or the container starts with a random funny name. If these lines require `sudo` see instructions above for configuring docker permissions.
 
 #### Run CarlaUE4.sh with default server parameters
@@ -478,7 +480,18 @@ You sometime need to remove the container before you can start the server again.
 It is not reccomended to run the docker as `--privileged` even though some forums may suggest it. This gives container root access to host, and this is risky.
 Someone suggested this in a forum somewhere, but that does not mean it is a good idea. It is even suggested to do so in the dockerfile!
 
-### CARLA PythonAPI - this is a set of tools and example for interacting with the CARLA server
+### Using CARLA Option 4: Build in Docker  
+  *This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.*
+  * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
+  * CARLA Server - The server can be run after building, and the server is portable and can be accesed remotely.
+  * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of CARLA can be built.
+
+###### After Starting Server in *Using CARLA*, Add Actors and Configure the simulator in *Using PythonAPI* 
+
+## Using PythonAPI - this is a set of tools and example for interacting with the CARLA server
+
+These commands are independent of the *Using CARLA Option* that you chose above.
+
 There are all kinds of things that you can try. "get in the there and mess around" - CARLA docs
 the API is located in the carla directory `/carla/PythonAPI` 
 
