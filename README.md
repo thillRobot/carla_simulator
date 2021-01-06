@@ -6,14 +6,14 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 ## Goals/Things to Do
 
-- [ ] split this README into multple pages - it has become a montser
+- [x] split this README into multple pages - it has become a montser
 
 - [ ] figure out how to use carla settings file
 - [x] install and test ROS_BRIDGE in ros melodic
 - [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
 
-- [x] build carla from source 
-- [x] build carla with docker
+- [x] build carla from source and test
+- [x] build carla with docker and test
 
 - [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car
 - [ ] record a *metric* for Dr. Canfield
@@ -322,8 +322,19 @@ Then, you can run *some* of the examples in `/PythonAPI/examples` and `/PythonAP
 
 ### CARLA Server - The server is the world simulation
 
+### Run the server in a CARLA package 
+The server must be run in a distribution package (pre-compiled) or a package that was built from source locally. 
+
+Move to `<CARLA ROOT>` and run the script to start the server. 
+```
+cd <CARLA ROOT>
+./CarlaUE4.sh
+```
+A window will open showing CARLA Town01 from the observer view. You can fly around using the mouse and arrrow keys. Add actors to the world with the `PythonAPI` as described below.
+
+
 ### Run the server in a docker container
-This will run the script `CarlaUE4.sh` in the carla container. Using the `--name` option to choose a name for the container or the container starts with a random funny name. If these lines require `sudo` see instructions above for configuring permissions.
+Alternatively, run the script `CarlaUE4.sh` in a docker container. Using the `--name` option to choose a name for the container or the container starts with a random funny name. If these lines require `sudo` see instructions above for configuring docker permissions.
 
 #### Run CarlaUE4.sh with default server parameters
  ```
@@ -420,18 +431,20 @@ the API is located in the carla directory `/carla/PythonAPI`
 
 I origanally wanted the client to be run from inside the container. I am not sure exactly why. It seems like it should be available in the container...
 On the client side I have had some trouble with the 'no module named carla issue' - [#1137](https://github.com/carla-simulator/carla/issues/1137)
-this is related to properly setting the path for the 'carla' python module from /carla/PythonAP. 
+this is related to properly setting the path for the 'carla' python module from `/carla/PythonAPI`. 
 
-In Ubuntu 20.04 (server machine) I downloaded and extracted carla 0.9.10 - 'pip3 install pygame' did not work so I had to use 'apt install python3-pygame'
-i had to set the PYTHONPATH for the carla module to work. Basically the PYTHONPATH must include the path to .egg file for the right version of carla, I think that this is the same problem I am having in the docker container 'no module named carla'
+In Ubuntu 20.04 (server machine) I downloaded and extracted carla 0.9.10 - `pip3 install pygame` did not work so I had to use `apt install python3-pygame`
+i had to set the PYTHONPATH for the carla module to work. Basically the `PYTHONPATH` must include the path to *.egg* file for the right version of carla, I think that this is the same problem I am having in the docker container 'no module named carla'
 
-#### Running the client in users home directory (~/) of the local (server) machine 
+#### Run the client on the local (server) machine 
 
-#### run CARLA client in CONDA Environment 
+Activate the CONDA environment and move to the top of the CARLA packge your are using.  
+```
+conda activate carla
+cd <CARLA ROOT>
+```
 
-`conda activate carla`
-
-This starts a client and lets you drive with PYGAME. Also because these scripts at home they will easy to modify.
+Start a client. You are the driver of a single car which you control through the pygame window. These scripts can be easily to modified.
 
 `python3 PythonAPI/examples/manual_control.py`
 
@@ -439,10 +452,10 @@ If the client is remote then you have to inlcude the IP address of the host.
 
 `python3 PythonAPI/examples/manual_control.py --host 192.168.254.45` 
 
-#### Configuring the CARLA server from a client
-A new useful feature I have just discovered is `/PythonAPI/utils/config.py`. This scripts is used to configure a running CARLA server. You can do things like change the town map and other things. This is very useful becuase is it a pain (so much that I was unable to do so!) from the server side. I guess this makes sensse...
+#### Configuring the CARLA server with PythonAPI
+Many useful features are inlcuded in `/PythonAPI/utils/config.py`. This script is used to configure a running CARLA server. You can change the town map and other parameters. 
 
-Here is an example that shows how to change the town map.
+The command below changes the CARLA map and environment. 
 
 `python3 PythonAPI/util/config.py --map Town04`
 
@@ -616,6 +629,6 @@ Run the client. Notice that this script can be easiyl modified. `PythonClient` i
 `/.manual_control_twh.py --autopilot --host 192.168.1.2 -q Low`
 
 
-
+This is a work in progress, and I am open to comments and/or suggestions. 
 
 ### Have a Nice Day!
