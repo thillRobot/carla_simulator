@@ -66,7 +66,8 @@ Download and extract the CARLA package from [Github](https://github.com/carla-si
 cd <CARLA ROOT>
 ./ImportAssets.sh
 ```
-The CARLA package is configured and ready to use. See the *Using CARLA* section below to continue.  
+
+###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
 
 ### Installing CARLA Option 2: - Build from Source 
 ##### Build CARLA from Source (older method)
@@ -79,6 +80,8 @@ Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/b
 This section needs documentation.
 
 Build carla from source in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). 
+
+###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
   
 ### Installing CARLA Option 3: - Run in Docker
 *This option is for general use, testing, and developement.* 
@@ -194,6 +197,7 @@ cd carla_simulator/carla09101/PythonAPI/
 
 Now you have a copy of the PythonAPI on the host, and if you bork it up you can easily fresh copy.
 
+###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
 
 ### Installing CARLA Option 4: Build in Docker
 *This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.*
