@@ -202,6 +202,19 @@ destroying 0 walkers
 The import seems to have worked. There is a problem with the location. The spawning locations are not where the town is apparantely. YOU ARE SUPER CLOSE!
 
 
+### text below here is out of place ?
+
+I was able to perform the map ingestion by preparing the files manually as described below and running the following. This process needs to be documented and tested further.
+
+```
+make package ARGS="--packages=Package03"
+
+```
+This results in a standalone asset package directory in `carl/Dist`. 
+
+I beleive that this package must be exported to be used for distribution. 
+
+
 ### Adding a Map with RoadRunner
 (https://carla.readthedocs.io/en/latest/tuto_A_add_map/#introduction)
 *RoadRunner is the recommended software to create a map due to its simplicity* - CARLA docs
