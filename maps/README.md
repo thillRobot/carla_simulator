@@ -1,5 +1,5 @@
-# carla_maps
- The is a git-lfs repository for storing maps and map data for the CARLA. 
+# carla_simulator/maps/
+ This README is intended to be a guide for preparing and editing custom maps for the CARLA open source vehilce simulator.
 
 ## Making Custom Maps for CARLA 
 
