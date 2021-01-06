@@ -46,7 +46,7 @@ There are multiple ways to install and run the CARLA package. Choose the option 
 
 
 ### CARLA Option 1: - Run in Pre-Compiled Package  
-Download and extract the CARLA package from [Github](https://github.com/carla-simulator/carla/releases).  In this document, the top directory of the package will be known as `<CARLA_ROOT>`. Choose versions by downloading the appropriate compressed file. Download the map assets separately as compressed files, and place them in the /Import directory. Navigate to `<CARLA ROOT>` and run the import script to bring the assets into the package.
+This option is for for general use and testing. Download and extract the CARLA package from [Github](https://github.com/carla-simulator/carla/releases).  In this document, the top directory of the package will be known as `<CARLA_ROOT>`. Choose versions by downloading the appropriate compressed file. Download the map assets separately as compressed files, and place them in the /Import directory. Navigate to `<CARLA ROOT>` and run the import script to bring the assets into the package.
 
 ```
 cd <CARLA ROOT>
@@ -55,6 +55,7 @@ cd <CARLA ROOT>
 
 ### CARLA Option 2: - Build from Source 
 ##### Build CARLA from Source (older method)
+This option is for development and map generation. Building requires ~30G of storage and significant memory.
 
 Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
 
@@ -65,8 +66,8 @@ This section needs documentation.
 Build carla from source in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). 
 
   
-
 ### CARLA Option 3: - Run in Docker
+This option is for general use, testing, and developement. 
 #### Installing Docker 
 I installed `docker-ce` and `nvidia-docker2` following the instructions from docker that is pointed to in the carla docs. This requires the nvidia drivers. 
 * [Read about CARLA in Docker](https://carla.readthedocs.io/en/latest/build_docker/)
@@ -177,6 +178,8 @@ Now you have a copy of the PythonAPI on the host, and if you bork it up you can 
 
 
 ### CARLA Option 4: Build in Docker
+This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.
+
 ##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
 Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
 The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. 
