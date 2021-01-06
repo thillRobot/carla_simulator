@@ -30,7 +30,7 @@ There are multiple ways to install and run the CARLA package. Choose the option 
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
   * CARLA Server - The server can be run without compiling or building. The server can be accesed remotely.
   
-**CARLA Option 2: Build from Source** - This option is for CARLA development and map generation. Building requires ~30G of storage and significant memory. 
+**CARLA Option 2: Build from Source** - This option is for development and map generation. Building requires ~30G of storage and significant memory. 
   * CARLA Client - Can the PythonAPI can be used without compiling or building? There are python dependencies that must be met.
   * CARLA Server + UE Editor - After building, the provided tools can be used to edit CARLA worlds in the UE4 editor.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
@@ -39,7 +39,7 @@ There are multiple ways to install and run the CARLA package. Choose the option 
   * CARLA Client - This does not work at the moment. Also, this does not seem to be needed. Use Option 1 for the `PythonAPI`.
   * CARLA Server - This has been tested and works good. The server is portable and can be accesed remotely.
   
-**CARLA Option 4: Build in Docker** - This option is for CARLA development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.
+**CARLA Option 4: Build in Docker** - This option is for development, map generation, and package distribution. Building requires ~300G of storage space and significant memory.
   * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
   * CARLA Server - The server can be run after building, and the server is portable and can be accesed remotely.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of CARLA can be built.
