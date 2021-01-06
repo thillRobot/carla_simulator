@@ -1,0 +1,12 @@
+{
+  "maps": [
+    {
+      "name": "Map04",
+      "source": "./Map04/Map04.fbx",
+      "use_carla_materials": true,
+      "xodr": "./Map04/Map04.xodr"
+    }
+  ],
+  "props": [
+  ]
+}

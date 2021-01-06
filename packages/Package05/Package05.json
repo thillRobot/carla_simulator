@@ -1,0 +1,13 @@
+{
+  "maps": [
+    {
+      "name": "Map05",
+      "source": "./Map05/Map05.fbx",
+      "use_carla_materials": true,
+      "xodr": "./Map05/Map05.xodr"
+    }
+  ],
+  "props": [
+  ]
+}
+Howdy! 

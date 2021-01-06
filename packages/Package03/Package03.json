@@ -1,0 +1,12 @@
+{
+  "maps": [
+    {
+      "name": "Map03",
+      "source": "./Map03/Map03.fbx",
+      "use_carla_materials": true,
+      "xodr": "./Map03/Map03.xodr"
+    }
+  ],
+  "props": [
+  ]
+}
