@@ -1,4 +1,4 @@
-# maps/
+# maps
  This README is intended to be a guide for preparing and editing custom maps for the CARLA open source vehilce simulator.
 
 ## Making Custom Maps for CARLA 
