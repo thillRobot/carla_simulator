@@ -110,26 +110,29 @@ You can use `echo` to so append the file from the coammand line. It is shown bel
 Then restart docker.
 
 `sudo service docker restart`
- Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - 
-Choose a version of CARLA that you want to use and pull (download an image) with docker. You can see the available tags at the docker hub [here](https://hub.docker.com/r/carlasim/carla/tags?page=1&ordering=last_updated). 
 
-##### Stable
+##### Pull CARLA image with Docker
+
+Use Docker to pull a CARLA image following the docs [here](https://carla.readthedocs.io/en/latest/build_docker/).
+Choose the version of CARLA that you want to use and pull (download an image) with docker. You can see the available tags at the docker hub [here](https://hub.docker.com/r/carlasim/carla/tags?page=1&ordering=last_updated). 
+
+###### Stable
 
 `docker pull carlasim/carla:0.8.4`
 
-##### Developement
+###### Developement
 
 `docker pull carlasim/carla:0.9.11`
 
-##### Developement - latest
+###### Developement - latest
 
 `docker pull carlasim/carla:latest`
 
-#### Bring CARLA into home directory for `PythonAPI`
+##### Bring CARLA into home directory for `PythonAPI`
 
 Even though this is the CARLA in Docker option, the `PythonAPI` will be used locally on the host. Copy the `PythonAPI/` with egg file from thge docker image. This method is preffered becuase it does not make sense to download the package twice. Also, this ensures that you are working on exactly the same version. I learned this [here](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71)
 
-##### Step 1: find container ID
+###### Step 1: find container ID
 This can be done in multple ways. One way is to open `bash` in the container. This can be done with the command below.
 
 ```
@@ -158,7 +161,7 @@ Altentively, you can see find the container ID with the following command.
 docker ps -a
 `
 
-##### Step 2: Copy the PythonAPI source from the container to the home folder of the host computer.
+###### Step 2: Copy the PythonAPI source from the container to the home folder of the host computer.
 
 `
 docker cp <container id>:<src path> <dst path>
