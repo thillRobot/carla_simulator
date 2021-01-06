@@ -19,7 +19,7 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 I am not alone. This is good.
 
 ### Install Python Dependencies
-At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage to (Python?) dependencies.
+At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage the (Python?) dependencies.
  
 #### Python Deps Option 2: Use CONDA Environments
 This is the reccomended method to manage the Python dependencies and is the primary method used in this guide..
