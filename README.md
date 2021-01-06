@@ -149,32 +149,33 @@ Then restart docker.
 ### Options for Installing CARLA
 There are multple ways to install and run the CARLA package. Which is the right way, who knows.
 
-**Install Option 1: CARLA from Source** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client - or do developement
+**Install Option 1: CARLA in Pre-Compiled Package** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - if you just need a client -
+  * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
+  * CARLA Server - This server can be run without compiling or building.
+  
+**Install Option 2: CARLA from Source** - Clone or Download and Extract the CARLA package from Github (https://github.com/carla-simulator/carla/releases) - this option is for development
   * CARLA Client - The PythonAPI can be used without compiling or building. There are python dependencies that must be met.
   * CARLA Server + UE Editor - This requires building CARLA and UE4 from source. This requires ~30G of storage space and significant memory. Follow the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/).
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built. 
    
-**Install Option 2: CARLA in Docker** - Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
+**Install Option 3: CARLA in Docker** - Use Docker to pull and run a CARLA image (https://carla.readthedocs.io/en/latest/build_docker/) - for development and testing - extremely portability
   * CARLA Client - This should be easy, but this does not work a the moment - does not seem to be needed
   * CARLA Server - This works good - see middle of this document
   
-**Install Option 3: CARLA Build in Docker** - to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
+**Install Option 4: CARLA Build in Docker** - to build UE4, CARLA, the docker tools needed to ingest maps and build carla distributions. This requires ~300G of storage space and significant memory. Follow the docs for [Building Carla in a Docker](https://github.com/carla-simulator/carla/tree/master/Util/Docker).
   * CARLA Client - The PythonAPI can be used after building. There are python dependencies that must be met.
   * CARLA Server - The server can be run after building.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built.
 
-**Install Option 4: Install with Package Manager** - Install CARLA package with `apt install` - This should be  good for a general user.
-  * CARLA Client - I have not tested this yet.
-  * CARLA Server - I have not tested this yet.
-  
-### *Install Option 1:* - CARLA from Source 
-Clone or download and extract CARLA pre-compiled package from [Github.](https://github.com/carla-simulator/carla). This is a reccomended option by CARLA for choosing and switching versions. I am currently putting the packages in ` ~/carla_simulator/carla<version number>`
+### *Install Option 1:* - CARLA in Pre-Compiled Package  
+Clone or download and extract CARLA pre-compiled package from [Github.](https://github.com/carla-simulator/carla). This is a reccomended option by CARLA for choosing and switching versions. I am currently putting the packages in ` ~/carla_simulator/carla<version number>`. You can also down load the map assets separately. 
 
-This option might by needed if you do not have docker. This could happen with an `AMD` gpu.  
+
+### *Install Option 2:* - CARLA from Source 
+##### Build CARLA from Source (older method)
 
 Follow the CARLA docs for installing from source. I need to document this!
 
-##### Build CARLA from Source (older method)
 I succesfully build carla in 18.04 from source following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/). I ran into errors, but I am making progress. 
 
 I was able to perform the map ingestion by preparing the files manually as described below and running the following. This process needs to be documented and tested further.
@@ -187,7 +188,8 @@ This results in a standalone asset package directory in `carl/Dist`.
 
 I beleive that this package must be exported to be used for distribution. 
   
-### *Install Option 2:* - CARLA in docker
+
+### *Install Option 3:* - CARLA in Docker
 Choose a version of CARLA that you want to use and pull (download an image) with docker. You can see the available tags at the docker hub [here](https://hub.docker.com/r/carlasim/carla/tags?page=1&ordering=last_updated). 
 
 #### Stable
@@ -202,9 +204,9 @@ Choose a version of CARLA that you want to use and pull (download an image) with
 
 `docker pull carlasim/carla:latest`
 
-### Bring CARLA into home directory for testing and `PythonAPI`
+### Bring CARLA into home directory for `PythonAPI`
 
-Copy copy the PythonAPI and egg file from docker image. This method is preffered becuase it does not make sense to download the package twice. Also, this ensures that you are working on exactly the same version. I learned this [here](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71)
+Even though this is the CARLA in Docker option, the `PythonAPI` will be used locally on the host. Copy the `PythonAPI/` with egg file from thge docker image. This method is preffered becuase it does not make sense to download the package twice. Also, this ensures that you are working on exactly the same version. I learned this [here](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71)
 
 ##### Step 1: find container ID
 This can be done in multple ways. One way is to open `bash` in the container. This can be done with the command below.
@@ -220,7 +222,6 @@ docker run \
  carlasim/carla:0.9.11 \
  bash
 ```
-
 
 sudo docker run -p 2000-2002:2000-2002 --runtime=nvidia --gpus all -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it carlasim/carla:0.9.11 bash
 
@@ -255,8 +256,7 @@ cd carla_simulator/carla09101/PythonAPI/
 Now you have a copy of the PythonAPI on the host, and if you bork it up you can easily fresh copy.
 
 
-### *Install Option 3:* Build CARLA in Docker
-
+### *Install Option 4:* Build CARLA in Docker
 ##### Build CARLA + map tools with Docker (reccomended method for map ingestion)
 The reccomended procedure is to build CARLA from the latest source into a docker container using `ue4-docker`. 
 
@@ -326,7 +326,7 @@ WORKDIR /home/ue4/carla
 ```
 After applying the fix from `@will-sloan` the build finished succesfully. 
 
-### Setup CARLA PythonAPI Dependencies
+### Setup CARLA PythonAPI Dependencies - This must be done regardless of the install optoion chosen above.
 #### Setup Option 1 (reccomended): Use the PythonAPI CONDA Environment - This saves time and is preferred method during testing
 Once way to use the PythonAPI in Ubuntu 20.04 in with CONDA. Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). Use CONDA for a virtual environment I have setup for conveinence. This way you do not have to set the paths each time or install dependencies. 
 Here is the CONDA [cheatsheet:](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
