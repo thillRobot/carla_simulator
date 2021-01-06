@@ -6,7 +6,6 @@ October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
 ## Watch
 You can see some demonstration videos on [Youtube](https://www.youtube.com/channel/UCH3bAvnmCLCRjyyorfUJXKg)
 
-
 ## Useful Resources
 
 - [Official Carla Documentation](https://carla.readthedocs.io/en/latest/)
@@ -19,68 +18,6 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 I am not alone. This is good.
 
-## Hardware
-
-### Server+Client Computer:
-
-* Computer: MSI H87-G43 (caseless miracle)
-* CPU:      i7-4770k @ 3.5 x 8
-* Graphics: Geforce GTX 1650
-* RAM:      16 GB + 16 GB swap
-* OS:       Ubuntu18.04
-
-### Server Computer:
-
-* Computer: Dell t1600 (sleepy box)
-* CPU:      Xeon CPU E31245 @ 3.30GHz × 8
-* Graphics: Geforce GT 630 - > Geforce GTX 1650
-* RAM:      8GB - > 16 GB
-* OS:       Ubuntu 20.04/Ubuntu18.04
-
-### Client Computer:
-
-* Computer: Intel NUC7i7BNH
-* CPU:      Intel i7
-* Graphics: KabyLake GT3e
-* RAM:      16GB
-* OS:       Ubuntu 18.04
-
-### Required/Related Software
-
-* CARLA - the core of this project
-* Python - Python2.7 and Python3.7 are used
-* NUMPY and PYGAME minumum Python dependencies
-* additional Python deps needed for full PythonAPI
-* docker CE
-* nvidia-docker2 (this requires nvidia drivers and driver version limits carla version)
-* docker UE4
-* ROS Melodic (Noetic in testing)
-* CARLA_ROS_BRIDGE
-* CONDA/ANACONDA (for virtual python emvironments)
-
-## CARLA Version Notes
- 
- - [x] carla 0.8.4
- - [x] carla 0.9.10 
- - [x] carla 0.9.10.1
- - [x] carla 0.9.11
- - [ ] carla latest 
- 
-### Version:latest
-
-Is this the same as 0.9.11 ?
- 
-### Version 0.9.11
-
-I just started experimenting with the version. I assume it has some bug fixes, but maybe it has new bugs! We will see.
-
-This requires modern nividia drivers(>390), I installed  nvidia450 -> nvidia455
-
-`docker pull carlasim/carla:0.9.10.1`
-
-### Version 0.8.4
-
-This is the **stable** version. Breif testing of this version is shown at the bottom of the README.
 
 
 
@@ -725,6 +662,69 @@ Run the client. Notice that this script can be easiyl modified. `PythonClient` i
 `cd ~/carla_simlulator/carla084/PythonClient`
 
 `/.manual_control_twh.py --autopilot --host 192.168.1.2 -q Low`
+
+## Tested Hardware
+
+### Server+Client Computer:
+
+* Computer: MSI H87-G43 (caseless miracle)
+* CPU:      i7-4770k @ 3.5 x 8
+* Graphics: Geforce GTX 1650
+* RAM:      16 GB + 16 GB swap
+* OS:       Ubuntu18.04
+
+### Server Computer:
+
+* Computer: Dell t1600 (sleepy box)
+* CPU:      Xeon CPU E31245 @ 3.30GHz × 8
+* Graphics: Geforce GT 630 - > Geforce GTX 1650
+* RAM:      8GB - > 16 GB
+* OS:       Ubuntu 20.04/Ubuntu18.04
+
+### Client Computer:
+
+* Computer: Intel NUC7i7BNH
+* CPU:      Intel i7
+* Graphics: KabyLake GT3e
+* RAM:      16GB
+* OS:       Ubuntu 18.04
+
+### Required/Related Software
+
+* CARLA - the core of this project
+* Python - Python2.7 and Python3.7 are used
+* NUMPY and PYGAME minumum Python dependencies
+* additional Python deps needed for full PythonAPI
+* docker CE
+* nvidia-docker2 (this requires nvidia drivers and driver version limits carla version)
+* docker UE4
+* ROS Melodic (Noetic in testing)
+* CARLA_ROS_BRIDGE
+* CONDA/ANACONDA (for virtual python emvironments)
+
+## CARLA Version Notes
+ 
+ - [x] carla 0.8.4
+ - [x] carla 0.9.10 
+ - [x] carla 0.9.10.1
+ - [x] carla 0.9.11
+ - [ ] carla latest 
+ 
+### Version:latest
+
+Is this the same as 0.9.11 ?
+ 
+### Version 0.9.11
+
+I just started experimenting with the version. I assume it has some bug fixes, but maybe it has new bugs! We will see.
+
+This requires modern nividia drivers(>390), I installed  nvidia450 -> nvidia455
+
+`docker pull carlasim/carla:0.9.10.1`
+
+### Version 0.8.4
+
+This is the **stable** version. Breif testing of this version is shown at the bottom of the README.
 
 
 ## Changelog
