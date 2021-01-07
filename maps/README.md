@@ -174,15 +174,27 @@ Move the files to be ingested into `carla/Import/` of the compiled CARLA package
 |    +-- README.md
 ```
 
+#### Step 4 - Perform Map Ingestion
+##### Map Ingestion Option 1: use `make`
+This is option is for ingesting maps into a compiled from source CARLA package.
 
-##### Ingest and Generate Asset Package 
 ```
-cd ~/carla_simulator/carla/Util/Docker
+cd <CARLA ROOT>
+
+make import
 ```
+If the ingestion was successful you should see the asset packages under `<CARLA ROOT>/CarlaUE4/content/`  or `<CARLA ROOT>/Unreal/CarlaUE4/content/` 
+With the simulator running, change to a newly imported map. 
+
+
+##### Map Ingestion Option 2: use `docker-ue4` and `docker_tools.py` 
+Use this option if you have been using the docker tools primarily or if you do not have a CARLA build environmnent
 ```
-./docker_tools.py --input ~/carla_simulator/carla/Import --output ~/carla_simulator/carla/Ingested --packages Package03
+cd <CARLA ROOT>/Util/Docker
+
+./docker_tools.py --input <CARLA ROOT>/Import --output ~<CARLA ROOT>/Ingested --packages Package03
 ```
-This will generate a compressed file containing the assets package in the specified directory. Example: `Package03_0.9.11-dirty.tar.gz`
+This will generate a compressed file containing the assets package in the specified directory. Example: `Package03_0.9.11-dirty.tar.gz`. This file can be imported into a CARLA package for use. 
 
 #### Step 6 - Importing Asset Package into CARLA 
 Move the compressed asset package to the `carla/Import` directory of the package in which you will use `PythonAPI/util/config.py` to set the map. 
