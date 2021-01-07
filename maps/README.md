@@ -50,12 +50,17 @@ sudo apt-get install josm
 sudo apt-get install josm-latest
 ```
 Run the app. Find information in the josm [wiki](https://josm.openstreetmap.de/wiki/Introduction) related to using the tool.
+
+```
+josm
+```
+
+Alternatively, you can download and run the *.jar* file. Note: JOSM is not working in a conda env right now. So does it require JDK8? (no JDK11 I think) 
 ```
 cd ~/openstreetmap/josm
 java -jar josm.jar
 ```
 
-JOSM is not working in a conda env right now. So does it require JDK8? 
 
 #### Step 2 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
