@@ -161,6 +161,7 @@ Make sure to read a follow the intallation instructions. Most importantly downlo
 
 Use the osm imported to first import the terrain. Then import the building models and trees onto the terrain. 
 
+Export the model as an **.fbx** file to be ingested. 
 
 #### Step 5 - Compile CARLA for Map ingestion 
 A compiled versiuon of carla is required for map ingestion and some other tools. There are two options shown below for compiling CARLA.
