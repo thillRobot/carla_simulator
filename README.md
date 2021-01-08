@@ -1,5 +1,5 @@
 # carla_simulator
-This README is intended to be a guide to using CARLA. This repository is *not* a distribution of the CARLA package.
+This README is intended to be a guide to using CARLA. This repository is not a distribution or source code of CARLA.
 
 October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
 
