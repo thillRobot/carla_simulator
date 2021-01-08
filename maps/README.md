@@ -237,7 +237,12 @@ This results in a standalone asset package directory in `carl/Dist`.
 I beleive that this package must be exported to be used for distribution. 
 
 
-### adding elevation to the map - first try is shown below
+### adding elevation to the .xodr file - first try is shown below
+
+osm2xodr will accept a digital elevation map as a 16int .png 
+the corners of the image must match the corners of the .osm file
+and the minimum and max elevation must be know 
+
 
 package name: Cookeville01
 
@@ -265,6 +270,7 @@ files were copied and renamed for map ingestion
 
 2108669SW.osm -> TNTECH01.osm
 2108669SW_16.png -> TNTECH.png
+
 
 
 
