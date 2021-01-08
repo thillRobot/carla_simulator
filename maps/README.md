@@ -228,7 +228,6 @@ some stuff here
 ```
 After the map has been imported a standalone asset package can be exported with the following command.
 
-
 ```
 make package ARGS="--packages=Package03"
 
@@ -238,7 +237,50 @@ This results in a standalone asset package directory in `carl/Dist`.
 I beleive that this package must be exported to be used for distribution. 
 
 
+### adding elevation to the map - first try is shown below
+
+package name: Cookeville01
+
+map name: TNTECH01
+
+data sources:
+
+Downloaded Digital Elevation Model from http://www.tngis.org/lidar
+
+DEM tile#: 2108669SW
+shape file: 2108669SW.img
+exported:
+topo file: 2108669SW_16.png
+
+Download OpenStreetMap Data using JOSM or https://www.openstreetmap.org/
+bounding box:
+
+min lat (N): 36.182298693
+max lat (S): 36.171215387
+min lon (W): -85.525670251
+max lon (E): -85.501885697
+osm file: 2108669SW.osm
+
+files were copied and renamed for map ingestion
+
+2108669SW.osm -> TNTECH01.osm
+2108669SW_16.png -> TNTECH.png
+
+
+
+
+
+
+
+
 ### Adding a Map with RoadRunner
 (https://carla.readthedocs.io/en/latest/tuto_A_add_map/#introduction)
 *RoadRunner is the recommended software to create a map due to its simplicity* - CARLA docs
 I have not tried to follow this yet because it requires RoadRunner, but I have requested a trial license from MATHWORKS.
+
+I have a licensed copy running now. Now I am not sure what to do with it. 
+
+
+
+
+
