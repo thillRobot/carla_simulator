@@ -18,8 +18,9 @@ fake-eggs/
 parts/
 dist/
 var/
+videos/
 
 carla*
-osm2*
-OSM2*
+osm*
+OSM*
 .fbx
