@@ -128,6 +128,8 @@ python3 ${CARLA_ROOT}/PythonAPI/util/config.py -x /home/thill/openstreetmap/map2
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
 
 #### Step 4 Option 1 - Add building models with OSM2WORLD
+This option works but it produces a flat map. OSM2WORLD claims to have *fragile* support for importing elevation. Use option 2 to include the terrain. 
+
 For now, this is a two step process. 
 ##### - OSM2WORLD - 
 This Java app can be used to convert a **.osm** file into **.obj** file which contains the buildings and other objects and polygons.
@@ -152,8 +154,8 @@ blender
 ```
 Click import mesh **.obj** and after model loads export it as a **.fbx** file.
 
-#### Step 4 Option 1 - Add building models with blender-osm
-I bought the [premium version](https://gumroad.com/d/e7703715fa18c929097f66c4a6ab9be2) for $17 and it was certainly worth it. Reads the [docs](https://github.com/vvoovv/blender-osm/wiki/Premium-Version) here
+#### Step 4 Option 2 - Add building models with blender-osm
+I bought the [premium version](https://gumroad.com/d/e7703715fa18c929097f66c4a6ab9be2) for $17 and it was certainly worth it. Reads the [docs](https://github.com/vvoovv/blender-osm/wiki/Premium-Version) here. 
 
 Make sure to read a follow the intallation instructions. Most importantly download blender-osm and the assets separately. The install will not work if you download them together. I have test the package add-on in portable versions of blender 2.8 and 2.9 and it works. The ways trees are distributed is better in 2.8.
 
