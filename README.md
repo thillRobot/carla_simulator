@@ -9,8 +9,11 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 ## Useful Resources
 
 - thillRobot docs:
+
 [carla_simlulator](docs/carla_simulator.md)
+
 [PythonAPI](docs/PythonAPI.md)
+
 [maps](docs/maps.md)
 
 - [Official Carla Documentation](https://carla.readthedocs.io/en/latest/)
