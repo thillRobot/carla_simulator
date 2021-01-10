@@ -8,11 +8,11 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 ## Useful Resources
 
-- [carla_simlulator docs](/docs/carla_simulator.md)
+- [carla_simlulator docs](docs/carla_simulator.md)
 
-- [PythonAPI docs](/docs/PythonAPI.md)
+- [PythonAPI docs](docs/PythonAPI.md)
 
-- [maps docs](/docs/maps.md)
+- [maps docs](docs/maps.md)
 
 - [Official Carla Documentation](https://carla.readthedocs.io/en/latest/)
 
