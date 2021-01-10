@@ -10,7 +10,7 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 - thillRobot docs:
 
-    [carla_simlulator](https://github.com/thillRobot/carla_simulator/blob/master/docs/carla_simulator.md)
+    [carla_simlulator](https://github.com/thillRobot/carla_simulator/docs/carla_simulator.md)
 
     [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md)
 
