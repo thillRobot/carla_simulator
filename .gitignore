@@ -9,6 +9,7 @@
 .*.cfg
 *.gz
 
+
 bin/
 build/
 develop-eggs/
@@ -23,4 +24,3 @@ videos/
 carla*
 osm*
 OSM*
-.fbx
