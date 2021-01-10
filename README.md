@@ -8,11 +8,13 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 ## Useful Resources
 
-- [carla_simlulator docs](/docs/carla_simulator.md)
+- thillRobot docs:
 
-- [PythonAPI docs](/docs/PythonAPI.md)
+    [carla_simlulator](https://github.com/thillRobot/carla_simulator/blob/master/docs/carla_simulator.md)
 
-- [maps docs](/docs/maps.md)
+    [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md)
+
+    [maps](https://github.com/thillRobot/carla_simulator/blob/master/docs/maps.md)
 
 - [Official Carla Documentation](https://carla.readthedocs.io/en/latest/)
 
