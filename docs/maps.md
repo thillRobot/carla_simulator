@@ -99,6 +99,20 @@ cd <ROOT PATH>/osm2xodr
 python3 main.py
 ```
 
+#### Step 2 Alternate - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using netconvert from SUMO (traffic sim)
+This appears to be maintained (eclipse) which is good.  Install sumo by adding the repository as shown in the [instructions](https://sumo.dlr.de/docs/Downloads.php).
+
+```
+sudo add-apt-repository ppa:sumo/stable
+sudo apt-get update
+sudo apt-get install sumo sumo-tools sumo-doc
+```
+Now you can use `netconvert` which is a command line tool that comes with SUMO. I am testing elevation from OSM or geotiff currently. 
+
+```
+netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNTECH.xodr --proj.plain-geo --heightmap.geotiff maps/TNTECH04/TNTECH04_16.tif --osm.elevation
+```
+
 #### Step 3 - Import into CARLA
 
 I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
