@@ -12,7 +12,7 @@ Progress so far (steps from tutorial in link above)
 
 #### Step 1 -  Obtain a map with OpenStreetMap
 I have exported two maps of TNTECH campus as `.osm` files from OpenStreetMap named `map.osm` and `map2.osm`. These are located in `carla/openstreetmap`
-This can be done with the web app(openstreetmap.org), or you can get the data directly with the java app `josm` shown below.
+This can be done with the [web app](www.openstreetmap.org), or you can get the data directly with the java app `josm` shown below.
 
 #### Step 2 - Prepare Map with Third Party Tools
 JAVA is required to run these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18.
@@ -62,7 +62,7 @@ java -jar josm.jar
 ```
 
 
-#### Step 2 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
+#### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
 ````
 cd ~/carla_simulator/carla/PythonAPI/carla/
@@ -76,7 +76,7 @@ If you will recieve the error below, this is because you must be in the `carla/P
 ```
 Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try website lookup.
 ```
-#### Step 2 Alternate - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
+#### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
 
 ##### - osm2xodr
 This package can be used convert the **.osm** file to **.xodr** file which can be ingested by carla. [osm2xodr](https://github.com/JHMeusener/osm2xodr)
@@ -99,7 +99,7 @@ cd <ROOT PATH>/osm2xodr
 python3 main.py
 ```
 
-#### Step 2 Alternate - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using netconvert from SUMO (traffic sim)
+#### Step 2 Option 3 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using netconvert from SUMO (traffic sim)
 This appears to be maintained (eclipse) which is good.  Install sumo by adding the repository as shown in the [instructions](https://sumo.dlr.de/docs/Downloads.php).
 
 ```
