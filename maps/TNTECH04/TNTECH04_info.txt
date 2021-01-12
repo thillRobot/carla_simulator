@@ -1,5 +1,5 @@
 
-map name: TNTECH03
+map name: TNTECH04
 
 intended package name: Cookeville03
 
@@ -7,7 +7,8 @@ data sources:
 
 Downloaded Digital Elevation Model from http://www.tngis.org/lidar
 
-TNTECH03 is a subset of DEM tile#: 2108669SW
+TNTECH03 is an even samller subset of DEM tile#: 2108669SW
+centered around the engineering quad
 
 DEM tile#: 2108669SW
 shape file: 2108669SWW.img
@@ -30,16 +31,12 @@ CRS: [EPSG:4326]
 clipping from layer 2108669SW_16
 -85.512211044,-85.505076252,36.171442991,36.177250144 [EPSG:4326]
 
-extent from png export
-S: 36.171413661
-N: 36.177280122
-W:-85.512252862
-E:-85.505042475
+map extent from png export
 
-S: 36.1714
-N: 36.1772
-W:-85.5122
-E:-85.5050
+S: 36.165099629
+N: 36.180501572
+W: -85.515045029
+E: -85.503851936
 
 exported 16bit integer format as TNTECH03.png
 
