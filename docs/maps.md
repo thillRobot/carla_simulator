@@ -296,20 +296,25 @@ files were copied and renamed for map ingestion
 2108669SW.osm -> TNTECH01.osm
 2108669SW_16.png -> TNTECH.png
 
+### Adding Elevation Data and Terrain from GIS data
+
+Managing spatial data is all about frame of reference. In GIS this is called CRS (coordinate reference system) and it is all handled automatically as long as you know the proper CRS for each file. Use QGIS (3.16 Hannover in Ubuntu 18.04) to prepare files for Tennessee [here](http://www.tngis.org/lidar.htm). These files will have a custom CRS, and in general we want all GIS or spatial images to use a geographic coordinate system with lattitude and longitude known as WGS 84. (CRS EPSG: 4326) There is also a projected coordinate system known as WGS 84 (CRS EPSG: 4978). 
+
+This needs docomentation.
 
 
+### Adding Elevation Data and Terrain from OSM data
 
-
-
-
+You can use the `blender-osm` add on to create terrain from osm data. The add on can import the osm data from the web.
 
 
 ### Adding a Map with RoadRunner
 (https://carla.readthedocs.io/en/latest/tuto_A_add_map/#introduction)
 *RoadRunner is the recommended software to create a map due to its simplicity* - CARLA docs
-I have not tried to follow this yet because it requires RoadRunner, but I have requested a trial license from MATHWORKS.
 
-I have a licensed copy running now. Now I am not sure what to do with it.
+I have a licensed copy running now. 
+
+Roadrunner seems to work to add elevation data to the roads and can export an .xodr. The UI is terrible.
 
 
 
