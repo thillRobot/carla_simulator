@@ -20,7 +20,9 @@ parts/
 dist/
 var/
 videos/
+*env/
 
 carla*
 osm*
 OSM*
+
