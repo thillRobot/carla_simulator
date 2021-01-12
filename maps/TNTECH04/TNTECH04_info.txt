@@ -1,0 +1,69 @@
+
+map name: TNTECH03
+
+intended package name: Cookeville03
+
+data sources:
+
+Downloaded Digital Elevation Model from http://www.tngis.org/lidar
+
+TNTECH03 is a subset of DEM tile#: 2108669SW
+
+DEM tile#: 2108669SW
+shape file: 2108669SWW.img
+exported:
+topo file: 2108669SWW_16.png
+
+minimumHeight=  1106 ft -> 337.11 m
+maximumHeight=  1152 ft -> 351.13 m
+
+Download OpenStreetMap Data using JOSM or https://www.openstreetmap.org/
+bounding box:
+
+min lat (S):
+max lat (N):
+min lon (W):
+max lon (E):
+
+## QGIS
+CRS: [EPSG:4326]
+clipping from layer 2108669SW_16
+-85.512211044,-85.505076252,36.171442991,36.177250144 [EPSG:4326]
+
+extent from png export
+S: 36.171413661
+N: 36.177280122
+W:-85.512252862
+E:-85.505042475
+
+S: 36.1714
+N: 36.1772
+W:-85.5122
+E:-85.5050
+
+exported 16bit integer format as TNTECH03.png
+
+
+osm file: 2108669SWW.osm
+
+files were copied and renamed for map ingestion
+
+2108669SW.osm -> TNTECH01.osm
+2108669SW_16.png -> TNTECH.png
+
+
+use blender-osm to generate .fbx with terrain
+
+2108669SW.blend
+exported to
+2108669SW_16.fbx -> TNTECH.png
+
+mapbox key
+
+pk.eyJ1IjoidGhpbGxyb2JvdCIsImEiOiJja2pvZWU3YWkwNGk2MzBuNTVncmhlOHZnIn0.jkkc4YKe1QL_tZPpEhulRw
+
+xodr header
+
+<header revMajor="1" revMinor="4" name="" version="1" date="2019-02-18T13:36:12" north="36.182298693" south="36.171215387" east="-85.501885697" west="-85.525670251">
+    <geoReference><![CDATA[+lat_0=36.171215387 +lon_0=-85.525670251]]></geoReference>
+</header>
