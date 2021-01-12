@@ -28,11 +28,14 @@ max lon (E):
 
 ## QGIS
 CRS: [EPSG:4326]
-clipping from layer 2108669SW_16
--85.512211044,-85.505076252,36.171442991,36.177250144 [EPSG:4326]
+clipping from layer 2108669SW_21086691NW
+
+
+-85.509338269,-85.503937853,36.173239676,36.178266479 [EPSG:4326]
 
 map extent from png export
 
+this is the large recatangle containing the terrain (bounds osm)
 S: 36.165099629
 N: 36.180501572
 W: -85.515045029

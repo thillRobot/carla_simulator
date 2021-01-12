@@ -8,7 +8,7 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 ## Useful Resources
 
-- thillRobot docs:
+# thillRobot docs:
 
     [CARLA Server](https://github.com/thillRobot/carla_simulator/blob/master/docs/server.md)
 
@@ -16,12 +16,14 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
     [Custom Maps](https://github.com/thillRobot/carla_simulator/blob/master/docs/maps.md)
 
-- [Official Carla Documentation](https://carla.readthedocs.io/en/latest/)
+# Official CARLA Documentation
+
+- [readthedocs](https://carla.readthedocs.io/en/latest/)
+
+# Other Sources
 
 - [CORSERA](https://usermanual.wiki/Document/CARLASetupGuideUbuntu.271743992/help)
 
 - [COROS + CARLA 0.9.10.1 (ROS with docker)](https://hub.docker.com/r/johannhaselberger/coros)
 
 I am not alone, and this is good.
-
-##
