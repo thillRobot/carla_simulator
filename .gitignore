@@ -21,8 +21,8 @@ dist/
 var/
 videos/
 *env/
+*ignoretifs/
 
 carla*
 osm*
 OSM*
-
