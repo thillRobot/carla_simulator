@@ -1,0 +1,12 @@
+{
+  "maps": [
+    {
+      "name": "TNTECH05",
+      "source": "./TNTECH05/TNTECH05.fbx",
+      "use_carla_materials": true,
+      "xodr": "./TNTECH05/TNTECH05.xodr"
+    }
+  ],
+  "props": [
+  ]
+}
