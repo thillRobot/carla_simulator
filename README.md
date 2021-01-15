@@ -10,11 +10,11 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
 
 # thillRobot docs:
 
-    [CARLA Server](https://github.com/thillRobot/carla_simulator/blob/master/docs/server.md)
+  [CARLA Server](https://github.com/thillRobot/carla_simulator/blob/master/docs/server.md)
 
-    [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md)
+  [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md)
 
-    [Custom Maps](https://github.com/thillRobot/carla_simulator/blob/master/docs/maps.md)
+  [Custom Maps](https://github.com/thillRobot/carla_simulator/blob/master/docs/maps.md)
 
 # Official CARLA Documentation
 
