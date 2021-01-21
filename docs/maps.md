@@ -112,6 +112,8 @@ Now you can use `netconvert` which is a command line tool that comes with SUMO. 
 ```
 netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNTECH.xodr --proj.plain-geo --heightmap.geotiff maps/TNTECH04/TNTECH04_16.tif --osm.elevation
 ```
+#### Step 2 Option 4 - Convert using CARLA and OSM2ODR
+I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp`
 
 #### Step 3 - Import into CARLA
 
