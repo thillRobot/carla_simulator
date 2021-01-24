@@ -8,6 +8,7 @@
 *.EGG-INFO
 .*.cfg
 *.gz
+*.blend*
 
 
 bin/
@@ -20,6 +21,7 @@ parts/
 dist/
 var/
 videos/
+maps_archive/
 *env/
 *ignoretifs/
 
