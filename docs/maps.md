@@ -112,6 +112,8 @@ Now you can use `netconvert` which is a command line tool that comes with SUMO. 
 ```
 netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNTECH.xodr --proj.plain-geo --heightmap.geotiff maps/TNTECH04/TNTECH04_16.tif --osm.elevation
 ```
+#### Step 2 Option 4 - Convert using CARLA and OSM2ODR
+I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp`
 
 #### Step 3 - Import into CARLA
 
@@ -322,3 +324,23 @@ make launch for TNTECH01 - failed - ou tof memory
 
 
 NEW LESSON! First time loading a level, Wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.
+
+
+error when turning on autopilot, makes me thin something is wrong with the opendrive file
+
+```
+No recommended values for 'speed' attribute
+WARNING: attempting to destroy an actor that is already dead: Actor 515 (vehicle.mustang.mustang) 
+Traceback (most recent call last):
+  File "Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor/PythonAPI/examples/manual_control.py", line 1187, in <module>
+    main()
+  File "Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor/PythonAPI/examples/manual_control.py", line 1179, in main
+    game_loop(args)
+  File "Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor/PythonAPI/examples/manual_control.py", line 1103, in game_loop
+    world.tick(clock)
+  File "Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor/PythonAPI/examples/manual_control.py", line 293, in tick
+    self.hud.tick(self, clock)
+  File "Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor/PythonAPI/examples/manual_control.py", line 580, in tick
+    t = world.player.get_transform()
+RuntimeError: trying to operate on a destroyed actor; an actor's function was called, but the actor is already destroyed.
+```
