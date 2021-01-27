@@ -112,9 +112,11 @@ Now you can use `netconvert` which is a command line tool that comes with SUMO. 
 ```
 netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNTECH.xodr --proj.plain-geo --heightmap.geotiff maps/TNTECH04/TNTECH04_16.tif --osm.elevation
 ```
+
 #### Step 2 Option 4 - Convert using CARLA and OSM2ODR
 I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp`
 
+###
 #### Step 3 - Import into CARLA
 
 I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
@@ -143,11 +145,12 @@ python3 ${CARLA_ROOT}/PythonAPI/util/config.py -x /home/thill/openstreetmap/map2
 
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
 
-#### Step 4 Option 1 - Add building models with OSM2WORLD
+#### Step 4 - Adding models (props) to the map
+##### Step 4 Option 1 - Add building and flat terrain models with OSM2WORLD
 This option works but it produces a flat map. OSM2WORLD claims to have *fragile* support for importing elevation. Use option 2 to include the terrain.
 
 For now, this is a two step process.
-##### - OSM2WORLD -
+##### OSM2WORLD -
 This Java app can be used to convert a **.osm** file into **.obj** file which contains the buildings and other objects and polygons.
 Download the package [here](http://osm2world.org/download/) and extract it somewhere reasonable.
 ```
@@ -159,8 +162,8 @@ java -jar OSM2World.jar
 ```
 Open a .osm file and save as a .obj file
 
-##### - Blender
-This app can be used to convert a **.obj** file into a **.fbx** file which hopefully can be ingested by carla.
+##### Blender - a powerful tool for modifying and creating meshes
+This app can be used to convert a **.obj** file into a **.fbx** file which can be ingested by carla.
 ```
 sudo apt install blender
 ```
@@ -168,28 +171,38 @@ Run the app.
 ```
 blender
 ```
-Click import mesh **.obj** and after model loads export it as a **.fbx** file.
 
-#### Step 4 Option 2 - Add building models with blender-osm
-I bought the [premium version](https://gumroad.com/d/e7703715fa18c929097f66c4a6ab9be2) for $17 and it was certainly worth it. Reads the [docs](https://github.com/vvoovv/blender-osm/wiki/Premium-Version) here.
+Alternatively you can download a portable version of blender. I like this option better, and I am currently using `blender-2.83.10-linux64`
 
-Make sure to read a follow the intallation instructions. Most importantly download blender-osm and the assets separately. The install will not work if you download them together. I have test the package add-on in portable versions of blender 2.8 and 2.9 and it works. The ways trees are distributed is better in 2.8.
+I think you could spend quite a while learning to use blender...
+
+Import models such as **.obj** or **.fbx**, and mdify the models to your liking. Export a single **.fbx** file to be imported into Carla as the physical world.
+
+
+##### Step 4 Option 2 - Add building models and 3D terrain with blender-osm
+I bought the [premium version](https://gumroad.com/d/e7703715fa18c929097f66c4a6ab9be2) for $17 and it was certainly worth it. Reads the [docs](https://github.com/vvoovv/blender-osm/wiki/Premium-Version) here. 
+
+Note: Make sure to read a follow the intallation instructions. Most importantly download blender-osm and the assets separately. The install will not work if you download them together. I have test the package add-on in portable versions of blender 2.8 and 2.9 and it works. The ways trees are distributed is better in 2.8.
+
+Now that I have worked on this some more, I realize that I could get the buildings from OSM2WORLD and move them in the Z manually. 
+
+This option allows you to download a terrin model into blender. This looks really nice but is heavy to render. I am currently only using the terrain from road runner which based on the DEM, but it is not nearly as smooth.
 
 Use the osm imported to first import the terrain. Then import the building models and trees onto the terrain.
 
-Export the model as an **.fbx** file to be ingested.
+Export the model as an **.fbx** file to be ingested. There is some talk about how the **normal smoothing** should be set in the export, and I am not sure what is correct. I think this is related to the *near zero binomial* warning that appears when compiling the map.
 
 #### Step 5 - Compile CARLA for Map ingestion
-A compiled versiuon of carla is required for map ingestion and some other tools. There are two options shown below for compiling CARLA.
+A compiled versiuon of carla is required for map ingestion and some other tools. There are some options shown below for using docker instead of compiling from source. Currently, I am compiling using the default python3 installation in Ubuntu18. `python3 --version Python 3.6.9`. I used the dependcies install as they are shown in the official CARLA docs. I have tried to compile in a venv, but I ran into some problems (figure this out!).
 
-
-
-
+#### Step 6 - Map Ingestion into CARLA 
 ##### Prepare Files for Map Ingestion
 Preparation of the files is [here](https://carla.readthedocs.io/en/latest/tuto_A_add_map/) in a separate page of the carla docs.
 One **.xodr** file and one **.fbx** file are required for each map along with one **.json** file for each map asset package.  I wrote the **.json** file manually, but the carla documents claim that this can be generated automatically. The directory structure of these files is described in the docs.   
 
 Move the files to be ingested into `carla/Import/` of the compiled CARLA package which will generate the assets package.
+
+Apparently, the .json file and the directory structo re is not needed anymore because roadrunnner generates an XML file instead (look into this). I am still doing though because I am stubborn.
 
 ```
 +-- Import
@@ -201,7 +214,6 @@ Move the files to be ingested into `carla/Import/` of the compiled CARLA package
 |    +-- README.md
 ```
 
-#### Step 4 - Perform Map Ingestion
 ##### Map Ingestion Option 1: use `make`
 This is option is for ingesting maps into a compiled from source CARLA package.
 
@@ -210,61 +222,61 @@ cd <CARLA ROOT>
 
 make import
 ```
-If the ingestion was successful you should see the asset packages under `<CARLA ROOT>/CarlaUE4/content/`  or `<CARLA ROOT>/Unreal/CarlaUE4/content/`
-With the simulator running, change to a newly imported map.
+If the ingestion was successful you should see the asset packages under `<CARLA ROOT>/CarlaUE4/content/`  or `<CARLA ROOT>/Unreal/CarlaUE4/content/`.
+
+Once the map has been ingested into the build from source CARLA package it can be edited in the Unreal Editor. Go the top of the package directory and start the editor.
+
+```
+make launch
+```
+When the Unreal editor loads, go to file > open level and find the level you just ingested. The first time you open a level (the new map) you will have to wait until the shaders compile. Be patient, and do not mess with the mouse (fly around or click on stuff) until it finsihes. You will not get a message to just watch or use `top`. After is compiles the level, you can fly around and check it out. The level will be above you becauase you start at sea level and the map is at the proper height (in meters) of the city you modeled (hopefully). 
+
+When I do this, the items (actors) in the level are all white. They have material names, but it doesnt seem like they have been imported. Can I use the same assests that were used by `blender-osm`? Do I want to? The CARLA materials seems pretty nice. For now, I am manually changing all the materials. TNTECH is all brick so that made things easier, but doing this a large map is no small task. A small map is pretty quick.
+
+Click `build` if prompted to by the editor. Save the level and close the editor when you are finished.
 
 
-##### Map Ingestion Option 2: use `docker-ue4` and `docker_tools.py`
+#### Step 7 - Import Map for Use in CARLA
+
+
+
+After the map has been ingested and cleaned up, a standalone map asset package can be exported with the following command. In CARLA 0.9.11 you must apply the fix described in [issue #3758](https://github.com/carla-simulator/carla/issues/3758) or the compile will fail.
+
+```
+make package ARGS="--packages=Package03"
+
+```
+This results in a standalone asset package directory in `carla/Dist` which can be imported into a CARLA package for use with the simulator.
+
+
+
+##### Map Ingestion + Package Export Option 2: use `docker-ue4` and `docker_tools.py`
 Use this option if you have been using the docker tools primarily or if you do not have a CARLA build environmnent
 ```
 cd <CARLA ROOT>/Util/Docker
 
 ./docker_tools.py --input <CARLA ROOT>/Import --output ~<CARLA ROOT>/Ingested --packages Package03
 ```
-This will generate a compressed file containing the assets package in the specified directory. Example: `Package03_0.9.11-dirty.tar.gz`. This file can be imported into a CARLA package for use.
+Place the package source in the `--input` directory, and carla in docker generate a compressed file containing the assets package in the `--output` directory. Example: `Package03_0.9.11-dirty.tar.gz`. This file can be imported into a CARLA package for use. I do not beleive the map can be edited afterwards with this option, but you should be able to load the map in the simulator.
 
-#### Step 6 - Importing Asset Package into CARLA
+
+#### Step 7 - Importing Map Asset Package into CARLA
 Move the compressed asset package to the `carla/Import` directory of the package in which you will use `PythonAPI/util/config.py` to set the map.
 Import the assets with the script provided.
+
 ```
-./ImportAssets
+./ImportAssets.sh
 ```
 If the import was successful you should see the asset packages under `carla/CarlaUE4/content/`. With the simulator running, change to a newly imported map.
 
-```
-python3 PythonAPI/examples/spawn_npc.py -n 50
-^[[DWARNING: cannot parse georeference: ''. Using default values.
-WARNING: cannot parse georeference: ''. Using default values.
-Nav: failed loading binary
-spawned 50 vehicles and 0 walkers, press Ctrl+C to exit.
-^C
-destroying 50 vehicles
-
-destroying 0 walkers
-```
-
 The import seems to have worked. There is a problem with the location. The spawning locations are not where the town is apparantely. YOU ARE SUPER CLOSE!
+I have solved the location problem with properly georeferenced files. This needs documentation.
 
 
-### text below here is out of place ?
 
-I was able to perform the map ingestion by preparing the files manually as described below and running the following. This process needs to be documented and tested further.
+### adding elevation to the .xodr file - first try is shown below 
 
-```
-some stuff here
-```
-After the map has been imported a standalone asset package can be exported with the following command.
-
-```
-make package ARGS="--packages=Package03"
-
-```
-This results in a standalone asset package directory in `carl/Dist`.
-
-I beleive that this package must be exported to be used for distribution.
-
-
-### adding elevation to the .xodr file - first try is shown below
+Elevation maps work! The workflow needs documentation.
 
 osm2xodr will accept a digital elevation map as a 16int .png
 the corners of the image must match the corners of the .osm file
@@ -343,4 +355,18 @@ Traceback (most recent call last):
   File "Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor/PythonAPI/examples/manual_control.py", line 580, in tick
     t = world.player.get_transform()
 RuntimeError: trying to operate on a destroyed actor; an actor's function was called, but the actor is already destroyed.
+```
+
+Other Issues
+
+```
+python3 PythonAPI/examples/spawn_npc.py -n 50
+^[[DWARNING: cannot parse georeference: ''. Using default values.
+WARNING: cannot parse georeference: ''. Using default values.
+Nav: failed loading binary
+spawned 50 vehicles and 0 walkers, press Ctrl+C to exit.
+^C
+destroying 50 vehicles
+
+destroying 0 walkers
 ```
