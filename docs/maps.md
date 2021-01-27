@@ -219,7 +219,7 @@ Apparently, the .json file and the directory structo re is not needed anymore be
 |    +-- README.md
 ```
 
-##### Map Ingestion Option 1: use `make`
+##### Step 6 Option 1: use `make` 
 This is option is for ingesting maps into a compiled from source CARLA package.
 
 ```
@@ -241,31 +241,19 @@ When I do this, the items (actors) in the level are all white. They have materia
 Click `build` if prompted to by the editor. Save the level and close the editor when you are finished.
 
 
-#### Step 7 - Import Map for Use in CARLA
-
+#### Step 7 - Export Map Asset for Use in CARLA
 
 
 After the map has been ingested and cleaned up, a standalone map asset package can be exported with the following command. In CARLA 0.9.11 you must apply the fix described in [issue #3758](https://github.com/carla-simulator/carla/issues/3758) or the compile will fail.
 
 ```
-make package ARGS="--packages=Package03"
+make package ARGS="--packages=<PACKAGE NAME>"
 
 ```
 This results in a standalone asset package directory in `carla/Dist` which can be imported into a CARLA package for use with the simulator.
 
 
-
-##### Map Ingestion + Package Export Option 2: use `docker-ue4` and `docker_tools.py`
-Use this option if you have been using the docker tools primarily or if you do not have a CARLA build environmnent
-```
-cd <CARLA ROOT>/Util/Docker
-
-./docker_tools.py --input <CARLA ROOT>/Import --output ~<CARLA ROOT>/Ingested --packages Package03
-```
-Place the package source in the `--input` directory, and carla in docker generate a compressed file containing the assets package in the `--output` directory. Example: `Package03_0.9.11-dirty.tar.gz`. This file can be imported into a CARLA package for use. I do not beleive the map can be edited afterwards with this option, but you should be able to load the map in the simulator.
-
-
-#### Step 7 - Importing Map Asset Package into CARLA
+#### Step 8 - Importing Map Asset Package into CARLA
 Move the compressed asset package to the `carla/Import` directory of the package in which you will use `PythonAPI/util/config.py` to set the map.
 Import the assets with the script provided.
 
@@ -274,9 +262,19 @@ Import the assets with the script provided.
 ```
 If the import was successful you should see the asset packages under `carla/CarlaUE4/content/`. With the simulator running, change to a newly imported map.
 
-The import seems to have worked. There is a problem with the location. The spawning locations are not where the town is apparantely. YOU ARE SUPER CLOSE!
-I have solved the location problem with properly georeferenced files. This needs documentation.
+The import seems to have worked. This needs better documentation.
 
+
+#### Docker Option Combines Step 6 and Step 7 
+
+##### Map Ingestion + Package Export Option 2: use `docker-ue4` and `docker_tools.py`
+Use this option if you have been using the docker tools primarily or if you do not have a CARLA build environmnent
+```
+cd <CARLA ROOT>/Util/Docker
+
+./docker_tools.py --input <CARLA ROOT>/Import --output <CARLA ROOT>/Ingested --packages <PACKAGE NAME>
+```
+Place the package source in the `--input` directory, and carla in docker generate a compressed file containing the assets package in the `--output` directory. Example: `Package03_0.9.11-dirty.tar.gz`. This file can be imported into a CARLA package for use. I do not beleive the map can be edited afterwards with this option, but you should be able to load the map in the simulator.
 
 
 ### adding elevation to the .xodr file - first try is shown below 
