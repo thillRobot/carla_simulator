@@ -1,21 +1,14 @@
 # maps
- This README is intended to be a guide for preparing and editing custom maps for the CARLA open source vehilce simulator.
+This README is intended to be a guide for preparing and editing custom maps for the CARLA open source vehilce simulator.
+This follows the CARLA documentation [Generate maps with OpenStreetMap](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/).
 
-## Making Custom Maps for CARLA
+## Generating Custom Maps with for CARLA from OpenStreetMap 
 
-### Generating Custom Maps with OpenStreetMap (Generate maps with OpenStreetMap)
-I started trying to build a custom town. This is one of my big goals for this project. I want to run CARLA in a virtual TNTECH Campus.
+#### Requirements
 
-I have tried to follow this CARLA tutorial [here](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/), but I am stuck.
+This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the editor.   
 
-Progress so far (steps from tutorial in link above)
-
-#### Step 1 -  Obtain a map with OpenStreetMap
-I have exported two maps of TNTECH campus as `.osm` files from OpenStreetMap named `map.osm` and `map2.osm`. These are located in `carla/openstreetmap`
-This can be done with the [web app](www.openstreetmap.org), or you can get the data directly with the java app `josm` shown below.
-
-#### Step 2 - Prepare Map with Third Party Tools
-JAVA is required to run these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18.
+JAVA is required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18.
 ```
 sudo apt-get install openjdk-8-jre
 ```
@@ -30,7 +23,12 @@ conda install -c cidermole jdk8
 ```
 
 
-##### - JOSM - Extensible Editor for OpenStreetMap(.osm)
+#### Step 1 -  Obtain a map from OpenStreetMap
+I have exported two maps of TNTECH campus as `.osm` files from OpenStreetMap named `map.osm` and `map2.osm`. These are located in `carla/openstreetmap`
+This can be done with the [web app](www.openstreetmap.org), or you can get the data directly with the java app `josm` shown below.
+
+Alternatively, you can import the data directly from OpenStreetMap using `josm`.
+#### - JOSM - Extensible Editor for OpenStreetMap(.osm)
 This JAVA app can be used to download maps from OpenStreetMap end edit **.osm** files. Read more on the [josm Github](https://josm.openstreetmap.de/). Install the packge with with apt following the instructions [here](https://josm.openstreetmap.de/wiki/Download#Ubuntu)
 
 Setup sources and download keys
@@ -62,7 +60,8 @@ java -jar josm.jar
 ```
 
 
-#### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
+#### Step 2 - obtain or generate OpenDrive (.xodr) description if roads
+##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
 ````
 cd ~/carla_simulator/carla/PythonAPI/carla/
@@ -76,9 +75,10 @@ If you will recieve the error below, this is because you must be in the `carla/P
 ```
 Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try website lookup.
 ```
-#### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
 
-##### - osm2xodr
+##### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
+
+###### sm2xodr
 This package can be used convert the **.osm** file to **.xodr** file which can be ingested by carla. [osm2xodr](https://github.com/JHMeusener/osm2xodr)
 This is a custom script that I made from the example that came with the package.
 **PyProj** and **osmread** are required to for **osm2xodr**. I installed them in the conda environment as shown below.
@@ -99,7 +99,7 @@ cd <ROOT PATH>/osm2xodr
 python3 main.py
 ```
 
-#### Step 2 Option 3 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using netconvert from SUMO (traffic sim)
+##### Step 2 Option 3 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using netconvert from SUMO (traffic sim)
 This appears to be maintained (eclipse) which is good.  Install sumo by adding the repository as shown in the [instructions](https://sumo.dlr.de/docs/Downloads.php).
 
 ```
@@ -113,11 +113,12 @@ Now you can use `netconvert` which is a command line tool that comes with SUMO. 
 netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNTECH.xodr --proj.plain-geo --heightmap.geotiff maps/TNTECH04/TNTECH04_16.tif --osm.elevation
 ```
 
-#### Step 2 Option 4 - Convert using CARLA and OSM2ODR
-I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp`
+##### Step 2 Option 4 - Convert using CARLA and OSM2ODR
+I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp` 
+I might be confused...This might just be the source for Step 2 Option 1
 
-###
-#### Step 3 - Import into CARLA
+
+#### Step 3 - Import OpenDrive into CARLA (Standalone mode)
 
 I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
 ```
@@ -145,7 +146,7 @@ python3 ${CARLA_ROOT}/PythonAPI/util/config.py -x /home/thill/openstreetmap/map2
 
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
 
-#### Step 4 - Adding models (props) to the map
+#### Step 4 - Adding models (props) to the map (not Standalone mode)
 ##### Step 4 Option 1 - Add building and flat terrain models with OSM2WORLD
 This option works but it produces a flat map. OSM2WORLD claims to have *fragile* support for importing elevation. Use option 2 to include the terrain.
 
