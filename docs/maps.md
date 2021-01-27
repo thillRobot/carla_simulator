@@ -8,7 +8,7 @@ This follows the CARLA documentation [Generate maps with OpenStreetMap](https://
 
 This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the editor.   
 
-JAVA is required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18.
+(CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18.
 ```
 sudo apt-get install openjdk-8-jre
 ```
