@@ -59,6 +59,10 @@ cd ~/openstreetmap/josm
 java -jar josm.jar
 ```
 
+Regardless of the method you use. Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.xodr** file. 
+
+
+
 
 #### Step 2 - obtain or generate OpenDrive (.xodr) description if roads
 ##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
