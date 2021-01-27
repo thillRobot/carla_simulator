@@ -24,9 +24,8 @@ conda install -c cidermole jdk8
 
 
 #### Step 1 -  Obtain a map from OpenStreetMap
-##### Step 1 Option 2 OpenStreetMap 
-Export a .osm file using with the [web app](www.openstreetmap.org), 
-I have exported two maps of TNTECH campus as `.osm` files from OpenStreetMap named `map.osm` and `map2.osm`. These are located in `carla/openstreetmap`
+##### Step 1 Option 2 OpenStreetMap [web app](www.openstreetmap.org)
+Export a .osm file using with the [web app](www.openstreetmap.org). Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.osm** file. I have exported two maps of TNTECH campus as `.osm` files from OpenStreetMap named `map.osm` and `map2.osm`. These are located in `carla/openstreetmap`, and the is infomation each map in a file called `<map_name>_info.txt`
 
 ##### Step 1 Option 2 JOSM - Extensible Editor for OpenStreetMap(.osm)
 Alternatively, you can import the data directly from OpenStreetMap using the Java app `josm`.
@@ -60,7 +59,7 @@ cd ~/openstreetmap/josm
 java -jar josm.jar
 ```
 
-Regardless of the method you use. Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.xodr** file. 
+Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.osm** file. 
 
 
 
