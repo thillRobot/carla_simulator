@@ -24,11 +24,12 @@ conda install -c cidermole jdk8
 
 
 #### Step 1 -  Obtain a map from OpenStreetMap
+##### Step 1 Option 2 OpenStreetMap 
 I have exported two maps of TNTECH campus as `.osm` files from OpenStreetMap named `map.osm` and `map2.osm`. These are located in `carla/openstreetmap`
 This can be done with the [web app](www.openstreetmap.org), or you can get the data directly with the java app `josm` shown below.
 
+##### Step 1 Option 2 JOSM - Extensible Editor for OpenStreetMap(.osm)
 Alternatively, you can import the data directly from OpenStreetMap using `josm`.
-#### - JOSM - Extensible Editor for OpenStreetMap(.osm)
 This JAVA app can be used to download maps from OpenStreetMap end edit **.osm** files. Read more on the [josm Github](https://josm.openstreetmap.de/). Install the packge with with apt following the instructions [here](https://josm.openstreetmap.de/wiki/Download#Ubuntu)
 
 Setup sources and download keys
