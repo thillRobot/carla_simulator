@@ -219,7 +219,7 @@ Apparently, the .json file and the directory structo re is not needed anymore be
 |    +-- README.md
 ```
 
-##### Step 6 Option 1: use `make` 
+##### Step 6 Option 1 - use `make import` 
 This is option is for ingesting maps into a compiled from source CARLA package.
 
 ```
@@ -275,6 +275,8 @@ cd <CARLA ROOT>/Util/Docker
 ./docker_tools.py --input <CARLA ROOT>/Import --output <CARLA ROOT>/Ingested --packages <PACKAGE NAME>
 ```
 Place the package source in the `--input` directory, and carla in docker generate a compressed file containing the assets package in the `--output` directory. Example: `Package03_0.9.11-dirty.tar.gz`. This file can be imported into a CARLA package for use. I do not beleive the map can be edited afterwards with this option, but you should be able to load the map in the simulator.
+
+Now complete **Step 8** for the docker option.
 
 
 ### adding elevation to the .xodr file - first try is shown below 
