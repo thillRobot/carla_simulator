@@ -398,6 +398,12 @@ You can start the server from inside the container. I am not sure why you woulRE
 
 `SDL_VIDEODRIVER=x11 ./CarlaUE4.sh -opengl`
 
+
+#### importing an asset package into the package in a docker container - This works! - Go to bed
+thill@ubuntu18-ryzen7:~/carla_simulator/carla/Dist/CARLA_Shipping_0.9.11-dirty/LinuxNoEditor$docker run --name carlabash --rm --gpus all -it --net=host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v "$(pwd)"/Import:/home/carla/Import -it carlasim/carla:0.9.11 bash
+carla@ubuntu18-ryzen7:~$ ./ImportAssets.sh 
+carla@ubuntu18-ryzen7:~$ SDL_VIDEODRIVER=x11 ./CarlaUE4.sh -opengl
+
 #### Closing the Server
 In version 0.9.10 you can ctrl-c to close the server, but I want to check that this is ok, i think the container is removed so it should be fine
 unless you want to run that same container again with docker start or restart. For now, you have to remove the container before you can start it again. This should be fixed but it is not at the moment.
