@@ -67,18 +67,33 @@ Choose a bounding box (lattitude, longitude) and record these values. You may ne
 #### Step 2 - obtain or generate OpenDrive (.xodr) description of roads
 ##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
+
+I know the paths look funny. This is also reflected in the python script convert_map.py. 
+
+```
+cd ~/carla_simulator/carla/PythonAPI/carla
+python3 ../util/convert_map.py
+```
+
+If you do this this way below which seems more intutive, you will have the `local schema` error shown.
+
 ````
 cd ~/carla_simulator/carla
 python3 PythonAPI/util/convert_map.py
 ````
-###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
-The conversion runs but the resulting map is distorted in an angular sense (~20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a [osm2xodr](https://github.com/JHMeusener/osm2xodr) instead of CARLA to convert from **.osm** to **.xodr**.
 
 ###### Cannot read local schema
-If you will recieve the error below, this is because you must be in the `carla/PythonAPI/carla/` directory to run this script. I assume this is just a path issue that can be addressed. For now, use `cd` as shown above. I found this here (insert link - go find post)
+You must be in the `carla/PythonAPI/carla/` directory to run this script. I assume this is just a path issue that can be addressed. For now, use `cd` as shown above. I found this here (insert link - go find post)
 ```
 Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try website lookup.
 ```
+
+###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
+The conversion runs but the resulting map is distorted in an angular sense (~20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a [osm2xodr](https://github.com/JHMeusener/osm2xodr) instead of CARLA to convert from **.osm** to **.xodr**.
+
+@Axel1092 has a suggestion for properly handling the georefencing.  https://github.com/carla-simulator/carla/issues/3009
+
+
 
 ##### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
 
