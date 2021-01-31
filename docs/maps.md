@@ -145,7 +145,7 @@ I commented on this Github post here (https://github.com/carla-simulator/carla/i
 
 The solution is to run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right?
 ```
-python3 ${CARLA_ROOT}/PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
+python3 $PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
 ```
 
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
