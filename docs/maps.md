@@ -69,7 +69,7 @@ Choose a bounding box (lattitude, longitude) and record these values. You may ne
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
 ````
 cd ~/carla_simulator/carla/PythonAPI/carla/
-python3 ${CARLA_ROOT}/PythonAPI/util/convert_map.py
+python3 PythonAPI/util/convert_map.py
 ````
 ###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
 The conversion runs but the resulting map is distorted in an angular sense (~20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a [osm2xodr](https://github.com/JHMeusener/osm2xodr) instead of CARLA to convert from **.osm** to **.xodr**.
@@ -126,17 +126,17 @@ I might be confused...This might just be the source for Step 2 Option 1
 
 I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
 ```
-cp ${CARLA_ROOT}/PythonAPI/util/condif.py ${CARLA_ROOT}/PythonAPI/util/import_map.py
+cp PythonAPI/util/config.py PythonAPI/util/import_map.py
 ```
 With the simulator running, execute the python script to load the new map. There are no errors, but nothing happens except `No nodes loaded.` is shown.
 ```
-python3 ${CARLA_ROOT}/PythonAPI/util/import_map.py --osm-path=/home/thill/openstreetmap/map2.xodr
+python3 PythonAPI/util/import_map.py --osm-path=/home/thill/openstreetmap/map2.xodr
 Converting OSM data to opendrive
 No nodes loaded.
 ```
 I also tried method **b)** from the tutorial and nothing happens. This method is effectively the same as **a)**, and the results are the same. The command and the outout are shown below. Once again, `No nodes loaded.` is shown.
 ```
-python3 ${CARLA_ROOT}/PythonAPI/util/config.py --osm-path=/home/thill/openstreetmap/map2.xodr
+python3 PythonAPI/util/config.py --osm-path=/home/thill/openstreetmap/map2.xodr
 Converting OSM data to opendrive
 No nodes loaded.
 ```
@@ -145,7 +145,7 @@ I commented on this Github post here (https://github.com/carla-simulator/carla/i
 
 The solution is to run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right?
 ```
-python3 $PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
+python3 PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
 ```
 
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
