@@ -68,7 +68,7 @@ Choose a bounding box (lattitude, longitude) and record these values. You may ne
 ##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
 ````
-cd ~/carla_simulator/carla/PythonAPI/carla/
+cd ~/carla_simulator/carla
 python3 PythonAPI/util/convert_map.py
 ````
 ###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
