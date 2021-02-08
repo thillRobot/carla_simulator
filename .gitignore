@@ -10,7 +10,6 @@
 *.gz
 *.blend*
 
-
 bin/
 build/
 develop-eggs/
@@ -26,5 +25,6 @@ maps_archive/
 *ignoretifs/
 
 carla*
+CARLA*
 osm*
 OSM*
