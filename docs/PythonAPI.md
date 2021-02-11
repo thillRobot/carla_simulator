@@ -1,5 +1,5 @@
 # PythonAPI
-This is intended to be a guide to using the PythonAPI to interact with CARLA. This is not a distribution or source code of the PythonAPI. 
+This is intended to be a guide to using the PythonAPI to interact with CARLA. This is not a distribution or source code of the PythonAPI.
 
 ## Installing Python Dependencies
 At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage the (Python?) dependencies.
@@ -91,6 +91,11 @@ For example:
 `
 export PYTHONPATH=$PYTHONPATH:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla
 `
+Currently I am using this below. Notice there is no `agents/` or `carla/` anymore. It seems to work with just the **.egg** file. The distribution of carla used below`carla/Dist/CARLA_Shipping_0.9.11-dirty` was packaged by a carla from source and renamed `carla_shipping`.
+
+```
+export PYTHONPATH=$PYTHONPATH:/home/thill/carla_simulator/carla_shipping/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
+```
 
 You can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
 
