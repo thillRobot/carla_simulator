@@ -1,0 +1,12 @@
+{
+  "maps": [
+    {
+      "name": "CoE03",
+      "source": "./CoE03/CoE03.fbx",
+      "use_carla_materials": true,
+      "xodr": "./CoE03/CoE03.xodr"
+    }
+  ],
+  "props": [
+  ]
+}

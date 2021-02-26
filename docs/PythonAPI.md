@@ -110,7 +110,11 @@ the API is located in the carla directory `/carla/PythonAPI`
 
 #### Spawn NPC Vehicles and Pedestrians
 
-`python3 PythonAPI/examples/spawn_npc.py -n 20`
+`python3 PythonAPI/examples/spawn_npc.py -n 20 -w 20`
+
+Alternatively, use the modified script to spawn NPCs without the female character 0-8. Certain 2 wheel vehicles are also banned. 
+
+`python3 PythonAPI/examples/spawn_custom.py -n 20 -w 20`
 
 #### Start a CARLA Client - The client is a vehicle driving in the world server
 
