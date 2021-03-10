@@ -1,5 +1,5 @@
 # carla_simulator
-This README is intended to be a guide to using CARLA. This repository is not a fork of CARLA.
+This README is a personal guide to using CARLA. This repository is not a fork of CARLA. Use at your own risk.  
 
 October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
 
