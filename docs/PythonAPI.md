@@ -42,7 +42,7 @@ conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonA
 Or:
 
 `
-conda env config vars set PYTHONPATH=$PYTHONPATH:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla
+conda env config vars set PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla
 `
 
 re-actitvate the environment after setting environment variables
@@ -89,12 +89,12 @@ export PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>:<CA
 
 For example:
 `
-export PYTHONPATH=$PYTHONPATH:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/thill/carla_simulator/carla_0911_dirty/PythonAPI/carla
+export PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla
 `
 Currently I am using this below. Notice there is no `agents/` or `carla/` anymore. It seems to work with just the **.egg** file. The distribution of carla used below`carla/Dist/CARLA_Shipping_0.9.11-dirty` was packaged by a carla from source and renamed `carla_shipping`.
 
 ```
-export PYTHONPATH=$PYTHONPATH:/home/thill/carla_simulator/carla_shipping/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/carla_shipping/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
 ```
 
 You can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
@@ -160,13 +160,13 @@ Sometimes running the PythonAPI remote throws an error like this.
 ```
 'No recommended values for 'speed' attribute
 Traceback (most recent call last):
-  File "/home/thill/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 1137, in <module>
+  File "/home/<USER>/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 1137, in <module>
     main()
-  File "/home/thill/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 1129, in main
+  File "/home/<USER>/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 1129, in main
     game_loop(args)
-  File "/home/thill/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 1046, in game_loop
+  File "/home/<USER>/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 1046, in game_loop
     controller = KeyboardControl(world, args.autopilot)
-  File "/home/thill/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 292, in __init__
+  File "/home/<USER>/carla_simulator/carla_0910//PythonAPI/examples/manual_control.py", line 292, in __init__
     world.player.set_autopilot(self._autopilot_enabled)
 RuntimeError: time-out of 2000ms while waiting for the simulator, make sure the simulator is ready and connected to 127.0.0.1:2000'
 ```
