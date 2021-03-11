@@ -15,6 +15,8 @@ You can see some demonstration videos on [Youtube](https://www.youtube.com/chann
   [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md)
 
   [Custom Maps](https://github.com/thillRobot/carla_simulator/blob/master/docs/maps.md)
+  
+  [CARLA ROS Bridge](https://github.com/thillRobot/carla_simulator/blob/master/docs/ros_bridge.md)
 
 # Official CARLA Documentation
 
