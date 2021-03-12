@@ -348,13 +348,27 @@ Roadrunner seems to work to add elevation data to the roads and can export an .x
 
 
 
-make launch for TNTECH01 - failed - ou tof memory
-
-**Imporotant!** The first time you load a new level, wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.
 
 
 
-### Issues
+
+
+## Issues
+
+- **OOM Death During Build**
+  Out of memory crash during ` make launch ` for TNTECH01 - failed - out of memory - This has been solved my increasing the swap partition size significantly. You can read about this in issue ()[https://github.com/carla-simulator/carla/issues/3590]
+
+```
+...
+CommandUtils.Run: Took 1641.562567s to run UE4Editor, ExitCode=137
+...
+Log.WriteException: ERROR: Cook failed.
+...
+```
+
+- **Editor Crashes while Building Mesh Fields or Compliling Shaders**
+The first time you load a new level, wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.
+
 - **.osm to xodr angular distortion issue** 
 
 - **broken junctions in xodr file**
@@ -380,8 +394,7 @@ Traceback (most recent call last):
     t = world.player.get_transform()
 RuntimeError: trying to operate on a destroyed actor; an actor's function was called, but the actor is already destroyed.
 ```
-
-Other Issues
+- **WARNING: cannot parse georeference**
 
 ```
 python3 PythonAPI/examples/spawn_npc.py -n 50
@@ -394,3 +407,6 @@ destroying 50 vehicles
 
 destroying 0 walkers
 ```
+
+- **Car cannot drive up steep hills!**
+Avoid added very steep hills on the road because if they are too steep then the cars will not be able to drive up them and this will cause a traffic jam!
