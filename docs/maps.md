@@ -1,5 +1,6 @@
 # maps
-This README is intended to be a personal guide for preparing and editing custom maps for the CARLA open source vehilce simulator. *Use at your own risk*. This follows the CARLA documentation [Generate maps with OpenStreetMap](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/).
+This README is intended to be a personal guide for preparing and editing custom maps for the CARLA open source vehilce simulator. 
+*Use at your own risk*. This follows the CARLA documentation [Generate maps with OpenStreetMap](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/).
 
 ## Generating Custom Maps with for CARLA from OpenStreetMap 
 
