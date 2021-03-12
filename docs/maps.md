@@ -1,19 +1,18 @@
 # maps
-This README is intended to be a guide for preparing and editing custom maps for the CARLA open source vehilce simulator.
-This follows the CARLA documentation [Generate maps with OpenStreetMap](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/).
+This README is intended to be a personal guide for preparing and editing custom maps for the CARLA open source vehilce simulator. *Use at your own risk*. This follows the CARLA documentation [Generate maps with OpenStreetMap](https://carla.readthedocs.io/en/latest/tuto_G_openstreetmap/).
 
 ## Generating Custom Maps with for CARLA from OpenStreetMap 
 
 #### Requirements
 
-This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the editor.   
+This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the editor. I am sure there is a way to use the Unreal Editor without a build from source CARLA, but I have not looked into this yet. 
 
-(CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18.
+(CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18 (jdk11 I think).
 ```
 sudo apt-get install openjdk-8-jre
 ```
 
-Alternatively you can use install `jdk8` with conda which is nice, but we have to use the Borg...
+Alternatively you can use install `jdk8` with conda which is nice, but we have to use the Borg...*RESISTANCE IS FUTILE!*
 
 ```
 conda activate carla
@@ -21,7 +20,6 @@ conda activate carla
 ```
 conda install -c cidermole jdk8
 ```
-
 
 #### Step 1 -  Obtain a map from OpenStreetMap
 ##### Step 1 Option 2 OpenStreetMap [web app](www.openstreetmap.org)
@@ -61,9 +59,6 @@ java -jar josm.jar
 
 Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.osm** file. 
 
-
-
-
 #### Step 2 - obtain or generate OpenDrive (.xodr) description of roads
 ##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
 CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
@@ -91,13 +86,16 @@ Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try w
 ###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
 The conversion runs but the resulting map is distorted in an angular sense (~20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a [osm2xodr](https://github.com/JHMeusener/osm2xodr) instead of CARLA to convert from **.osm** to **.xodr**.
 
-@Axel1092 has a suggestion for properly handling the georefencing.  https://github.com/carla-simulator/carla/issues/3009
+@Axel1092 has a suggestion for properly handling the georefencing in issue (3009)[https://github.com/carla-simulator/carla/issues/3009] and he implies that the problem has been solved. However several people are still having the issue. I assume we are not correctly setting the geoferencing for the xodr file.  
 
+@JHMeusener has provided a fix (here)[https://github.com/JHMeusener/CarlaSimpleXODRProjectionWorkaround] and mentioned in issue (3686)[https://github.com/carla-simulator/carla/issues/3686#issuecomment-789629967]. I have not tried this yet. He mentions that it might only work in Europe. 
+
+I thought that the issue was fixed in CARLA, but since Jim's post there has been some related activity from the CARLA team. I guess they are working on a fix (here)[https://github.com/carla-simulator/carla/pull/3901], but I am not sure yet. 
 
 
 ##### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
 
-###### sm2xodr
+###### osm2xodr
 This package can be used convert the **.osm** file to **.xodr** file which can be ingested by carla. [osm2xodr](https://github.com/JHMeusener/osm2xodr)
 This is a custom script that I made from the example that came with the package.
 **PyProj** and **osmread** are required to for **osm2xodr**. I installed them in the conda environment as shown below.
@@ -136,7 +134,6 @@ netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNT
 I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp` 
 I might be confused...This might just be the source for Step 2 Option 1
 
-
 #### Step 3 - Import OpenDrive into CARLA (Standalone mode)
 
 I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
@@ -155,8 +152,7 @@ python3 PythonAPI/util/config.py --osm-path=/home/thill/openstreetmap/map2.xodr
 Converting OSM data to opendrive
 No nodes loaded.
 ```
-
-I commented on this Github post here (https://github.com/carla-simulator/carla/issues/3009), but I have not heard anything back yet. Now I feel dumb, but at least I solved my own problem. I may have been reading the tutorials wrong, or they were misleading.
+There is some information about this in issue(3009)[https://github.com/carla-simulator/carla/issues/3009]
 
 The solution is to run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right?
 ```
@@ -354,11 +350,19 @@ Roadrunner seems to work to add elevation data to the roads and can export an .x
 
 make launch for TNTECH01 - failed - ou tof memory
 
+**Imporotant!** The first time you load a new level, wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.
 
-NEW LESSON! First time loading a level, Wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.
 
 
-error when turning on autopilot, makes me thin something is wrong with the opendrive file
+### Issues
+- **.osm to xodr angular distortion issue** 
+
+- **broken junctions in xodr file**
+If an NPC car drives through a broken junction, then it will dissappear. If the player car drives through a broken junction the simulator will crash. 
+
+The junctions can be fixed manually in RoadRunner, but it is a pain to do. 
+
+error when turning on autopilot, makes me think something is wrong with the opendrive file
 
 ```
 No recommended values for 'speed' attribute
