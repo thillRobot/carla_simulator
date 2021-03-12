@@ -192,7 +192,7 @@ Run the app.
 blender
 ```
 
-Alternatively you can download a portable version of blender. I like this option better, and I am currently using `blender-2.83.10-linux64`
+**Alternatively you can download a portable version of blender. I like this option better, and I am currently using `blender-2.83.10-linux64`**
 
 I think you could spend quite a while learning to use blender...
 
