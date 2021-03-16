@@ -569,7 +569,7 @@ This is the **stable** version. Breif testing of this version is shown at the bo
 - [ ] use RVIZ to visualize the data from carla
 
 - [x] figure out logitech steering wheel and pedal controls for demo - testdrive an autonomous car - Jon Hayes has done this
-- [ ] document how to use logitech steering wheel and pedals for controls - edits in PythonAPI - **out of place** 
+- [ ] document how to use logitech steering wheel and pedals for controls - edits in PythonAPI 
 
 - [ ] develope and record a *driving metric* for Dr. Canfield
 
@@ -581,6 +581,8 @@ This is the **stable** version. Breif testing of this version is shown at the bo
 - [x] learn more about virutal environments for CARLA - CONDA or PYENV ?
 
 - [x] test ros_bridge with COROS - this is not exactaly what I was looking for  
+- [ ] split to do list across READMEs?
+
 
 
 This is a work in progress, and I am open to comments and/or suggestions.
