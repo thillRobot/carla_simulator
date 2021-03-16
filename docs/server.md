@@ -578,11 +578,7 @@ This is the **stable** version. Breif testing of this version is shown at the bo
 
 - [ ] implement the new fix(es) for the OSM to XODR conversion process 
 
-- [x] learn to use CONDA for python client - this will help with testing - done - big improvement
-- [x] start the server in a different town, HDMaps/Town02.pcd  
-- [x] change the town from the client side, HDMaps/Town02.pcd
-- [ ] document and test basic use of CARLA - not in a docker container
-- [ ] clean up this document, it is a huge mess - it is a little better
+- [x] learn more about virutal environments for CARLA - CONDA or PYENV ?
 
 - [x] test ros_bridge with COROS - this is not exactaly what I was looking for  
 
