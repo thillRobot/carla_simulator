@@ -559,22 +559,24 @@ This is the **stable** version. Breif testing of this version is shown at the bo
 
 
 ## Changelog
-## Goals/Things to Do
+## Goals/Things to Do - Covers all READMEs for now
 
-- [x] split this README into multple pages - it has become a montser
+- [ ] learn how to use carla settings file
 
-- [ ] figure out how to use carla settings file
 - [x] install and test ROS_BRIDGE in ros melodic
+- [ ] install and thoroughy test ROS_BRIDGE in ros melodic
 - [ ] install and test ROS_BRIDGE in ros noetic (this is not clearly supported yet)
-
-- [x] build carla from source and test
-- [x] build carla with docker and test
-
-- [ ] figure out steering wheel and pedal controls for demo - testdrive an autonomous car
-- [ ] record a *metric* for Dr. Canfield
 - [ ] use RVIZ to visualize the data from carla
-- [ ] make a custom map with open street map and carla tools - i am getting much closer
-- [ ] get access to RoadRunner and make custom town - i have talked to Mike and ken about this.
+
+- [x] figure out logitech steering wheel and pedal controls for demo - testdrive an autonomous car - Jon Hayes has done this
+- [ ] document how to use logitech steering wheel and pedals for controls - edits in PythonAPI - **out of place** 
+
+- [ ] develope and record a *driving metric* for Dr. Canfield
+
+- [ ] continue progress custom map with open street map and carla tools - i am getting much closer
+- [ ] learn more about RoadRunner and editing maps 
+
+- [ ] implement the new fix(es) for the OSM to XODR conversion process 
 
 - [x] learn to use CONDA for python client - this will help with testing - done - big improvement
 - [x] start the server in a different town, HDMaps/Town02.pcd  
@@ -582,12 +584,7 @@ This is the **stable** version. Breif testing of this version is shown at the bo
 - [ ] document and test basic use of CARLA - not in a docker container
 - [ ] clean up this document, it is a huge mess - it is a little better
 
-- [x] test client on local machine - not in docker - Done - Working
-- [x] test client on remote machine - not in docker - Done - Working
-- [x] test client on local machine - in a docker   - DONE - not working
-- [x] test server on local machine - in a docker - DONE - Working
-- [ ] test server on local machine - not in a docker - NOT DONE
-- [ ] test ros_bridge with COROS  
+- [x] test ros_bridge with COROS - this is not exactaly what I was looking for  
 
 
 This is a work in progress, and I am open to comments and/or suggestions.
