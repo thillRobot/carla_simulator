@@ -295,7 +295,7 @@ cd <CARLA ROOT>
 ```
 A window will open showing CARLA Town01 from the observer view. You can fly around using the mouse and arrrow keys. Add actors to the world with the `PythonAPI` as described below.
 
-If you see grahics artifacts or other strange behavior similar to this image, then run the simlator with `opengl` instead of `vulkan`. The CARLA team says `vulkan` is not preffered. I have only run into the problem with a Ryzen7 + RTX3070 setup. 
+If you see grahics artifacts or other strange behavior similar to this image, then run the simlator with `opengl` instead of `vulkan`. The CARLA team says `vulkan` is preffered over `opengl` because it is faster. I have only run into this problem with a Ryzen7 + RTX3070 setup. 
 
 <img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/artifacts_01.png" alt="drawing" width="400"/>
 <!-- <img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/noartifacts_01.png" alt="drawing" width="400"/> -->
