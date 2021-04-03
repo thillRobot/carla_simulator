@@ -359,6 +359,8 @@ Roadrunner seems to work to add elevation data to the roads and can export an .x
 - **OOM Death During Build**
   Out of memory crash during ` make launch ` for TNTECH01 - failed - out of memory - This has been solved my increasing the swap partition size significantly. You can read about this in issue ()[https://github.com/carla-simulator/carla/issues/3590]
 
+  Theere are instructions for increasing the swap size here in this (blog)[https://sleeplessbeastie.eu/2020/07/29/how-to-expand-swap-partition-after-system-installation/]
+
 ```
 ...
 CommandUtils.Run: Took 1641.562567s to run UE4Editor, ExitCode=137
@@ -366,6 +368,29 @@ CommandUtils.Run: Took 1641.562567s to run UE4Editor, ExitCode=137
 Log.WriteException: ERROR: Cook failed.
 ...
 ```
+ Ahhh!! I thought that having faster RAM had solved the problem, nope! OOM death on a basically fresh system with 32Gb(3200Mhz) RAM + ~1Gb(automicatic) Swap LVM. This is just not enough swap space! 
+
+```
+  ...
+  LogShaderCompilers: Display: Worker (9/13): shaders left to compile 7944
+  LogTexture: Display: Building textures: T_v3Skin_n (BC5, 8192X8192)
+  LogShaderCompilers: Display: Worker (12/13): shaders left to compile 7934
+  LogShaderCompilers: Display: Worker (10/13): shaders left to compile 7924
+  LogTexture: Display: Building textures: T_fjacktVn_orm (AutoDXT, 4096X4096)
+  LogShaderCompilers: Display: Worker (4/13): shaders left to compile 7914
+  LogTexture: Display: Building textures: T_fjacktVn_n (BC5, 4096X4096)
+  LogShaderCompilers: Display: Worker (3/13): shaders left to compile 7904
+Took 248.971566s to run UE4Editor, ExitCode=137
+ERROR: Cook failed.
+       (see /home/thill/Library/Logs/Unreal Engine/LocalBuildLogs/Log.txt for full exception trace)
+AutomationTool exiting with ExitCode=25 (Error_UnknownCookFailure)
+RunUAT ERROR: AutomationTool was unable to run successfully.
+Util/BuildTools/Linux.mk:16: recipe for target 'package' failed
+make: *** [package] Error 25
+
+```
+
+
 
 - **Editor Crashes while Building Mesh Fields or Compliling Shaders**
 The first time you load a new level, wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.

@@ -9,6 +9,7 @@
 .*.cfg
 *.gz
 *.blend*
+*.zip
 
 bin/
 build/
