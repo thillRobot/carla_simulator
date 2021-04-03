@@ -67,7 +67,7 @@ cd <CARLA ROOT>
 ./ImportAssets.sh
 ```
 If you see grahics artifacts or other strange behavior similar to this image, then run the simlator with `opengl` instead of `vulkan`. The CARLA team says `vulkan` is not preffered. I have only run into the problem with a Ryzen7 + RTX3070 setup. 
-![alt text](https://github.com/thillRobot/carla_simulator/blob/master/png_images/artifacts_01.png?raw=true width=200)
+![alt text](https://github.com/thillRobot/carla_simulator/blob/master/png_images/artifacts_01.png? =200x)
 
 ###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
 
