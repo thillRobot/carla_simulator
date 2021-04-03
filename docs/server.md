@@ -67,10 +67,6 @@ cd <CARLA ROOT>
 ./ImportAssets.sh
 ```
 
-
-I assume this issue is a driver issue or a `vulkan` thing, but I am not sure. I am very interested to know more, but this seems like a good fix for now.
-
-
 ###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
 
 ### Installing CARLA Option 2: - Build from Source
@@ -309,6 +305,7 @@ cd <CARLA ROOT>
 ./CarlaUE4.sh -opengl
 ```
 
+I assume this issue is a driver issue or a `vulkan` thing, but I am not sure. I am very interested to know more, but this seems like a good fix for now.
 
 ### Using CARLA Option 2: Build from Source
 *This option is for CARLA development and map generation. Building requires ~30G of storage and significant memory.*
