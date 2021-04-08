@@ -6,18 +6,19 @@ This README is intended to be a personal guide for preparing and editing custom 
 
 #### Requirements
 
-This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the editor. I am sure there is a way to use the Unreal Editor without a build from source CARLA, but I have not looked into this yet. 
+This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the Unreal Editor. I am sure there is a way to use the editor without a build from source CARLA, but I have not looked into this yet. 
 
 (CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18 (jdk11 I think).
 ```
 sudo apt-get install openjdk-8-jre
 ```
 
-Alternatively you can use install `jdk8` with conda which is nice, but we have to use the Borg...*RESISTANCE IS FUTILE!*
+Alternatively you can use `jdk8` inside conda which is nice, but we have to use the Borg...*RESISTANCE IS FUTILE!*
 
 ```
-conda activate carla
+conda activate <env>
 ```
+
 ```
 conda install -c cidermole jdk8
 ```
@@ -85,7 +86,7 @@ Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try w
 ```
 
 ###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
-The conversion runs but the resulting map is distorted in an angular sense (~20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a [osm2xodr](https://github.com/JHMeusener/osm2xodr) instead of CARLA to convert from **.osm** to **.xodr**.
+The conversion runs but the resulting map is distorted in an angular sense (20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a (osm2xodr)[https://github.com/JHMeusener/osm2xodr] instead of CARLA to convert from **.osm** to **.xodr**.
 
 @Axel1092 has a suggestion for properly handling the georefencing in issue (3009)[https://github.com/carla-simulator/carla/issues/3009] and he implies that the problem has been solved. However several people are still having the issue. I assume we are not correctly setting the geoferencing for the xodr file.  
 
@@ -103,15 +104,16 @@ This is a custom script that I made from the example that came with the package.
 
 ```
 conda activate carla09101
-```
-```
+
 conda install -c conda-forge pyproj -n carla09101
 ```
+
+Here I am using pip3 install inside of conda? I am not sure this makes sense. 
 ```
 pip3 install osmread
 ```
 
-Run the cscript to convert the files. For now the filenames are hardcoded in the python script, but I would like to add command line arguments for the filenames.
+Run the script to convert the files. For now the filenames are hardcoded in the python script, but I would like to add command line arguments for the filenames.
 ```
 cd <ROOT PATH>/osm2xodr
 python3 main.py
@@ -130,6 +132,8 @@ Now you can use `netconvert` which is a command line tool that comes with SUMO. 
 ```
 netconvert --osm maps/TNTECH04/TNTECH04.osm --opendrive-output maps/TNTECH04/TNTECH.xodr --proj.plain-geo --heightmap.geotiff maps/TNTECH04/TNTECH04_16.tif --osm.elevation
 ```
+
+This process work **but** there is a problem with the junctions in the resulting .xodr file. This can be corrected in Roadrunner, but it takes a long time. Also, the resulting juctions are different than the real junctions. This is not an ideal solution. Solving the angular distortion issue mentioned above (or learning the right way) should make this problem irrelevant. You can read about the corrupt junction in issue (#3009)[https://github.com/carla-simulator/carla/issues/3009] and others. See more discussion in issues section below. 
 
 ##### Step 2 Option 4 - Convert using CARLA and OSM2ODR
 I need to test this. Look at `carla/Util/OSM2ODR/src/OSM2ODR.cpp` 
@@ -174,6 +178,7 @@ Download the package [here](http://osm2world.org/download/) and extract it somew
 cd ~/carla_simulator/OSM2World/latest
 java -jar OSM2World.jar
 ```
+
 ```
 ./osm2world.sh --gui
 ```
@@ -190,6 +195,14 @@ blender
 ```
 
 **Alternatively you can download a portable version of blender. I like this option better, and I am currently using `blender-2.83.10-linux64`**
+
+Download and extract the appropriate file from the blender website (here)[https://www.blender.org/download].
+
+```
+cd blender-2.83.10-linux64
+./blender
+```
+
 
 I think you could spend quite a while learning to use blender...
 
@@ -348,13 +361,9 @@ I have a licensed copy running now.
 Roadrunner seems to work to add elevation data to the roads and can export an .xodr. The UI is terrible.
 
 
-
-
-
-
-
-
 ## Issues
+
+Discussions of issues are scattered througout the READMEs also. Should they all come here? I am not sure. 
 
 - **OOM Death During Build**
   Out of memory crash during ` make launch ` for TNTECH01 - failed - out of memory - This has been solved my increasing the swap partition size significantly. You can read about this in issue ()[https://github.com/carla-simulator/carla/issues/3590]
@@ -368,7 +377,7 @@ CommandUtils.Run: Took 1641.562567s to run UE4Editor, ExitCode=137
 Log.WriteException: ERROR: Cook failed.
 ...
 ```
- Ahhh!! I thought that having faster RAM had solved the problem, nope! OOM death on a basically fresh system with 32Gb(3200Mhz) RAM + ~1Gb(automicatic) Swap LVM. This is just not enough swap space! 
+ Ahhh!! I thought that having faster RAM had solved the problem, nope! OOM death on a basically fresh system with 32Gb(3200Mhz) RAM + 1Gb(automicatic) Swap LVM. This is just not enough swap space! 
 
 ```
   ...
@@ -389,8 +398,6 @@ Util/BuildTools/Linux.mk:16: recipe for target 'package' failed
 make: *** [package] Error 25
 
 ```
-
-
 
 - **Editor Crashes while Building Mesh Fields or Compliling Shaders**
 The first time you load a new level, wait for the level to compile the distance feilds before you click anything. Avoid crashing during first load of a level or the level may become corrupted and unusble.
@@ -435,4 +442,5 @@ destroying 0 walkers
 ```
 
 - **Car cannot drive up steep hills!**
-Avoid added very steep hills on the road because if they are too steep then the cars will not be able to drive up them and this will cause a traffic jam!
+Avoid added very steep hills on the road because if they are too steep then the cars will not be able to drive up them and this will cause a traffic jam! 
+
