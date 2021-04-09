@@ -308,37 +308,19 @@ Now complete **Step 8** for the docker option.
 
 Elevation maps work! The workflow needs documentation.
 
-osm2xodr will accept a digital elevation map as a 16int .png
+osm2xodr should accept a digital elevation map as a 16int .png
 the corners of the image must match the corners of the .osm file
-and the minimum and max elevation must be know
-
-
-package name: Cookeville01
-
-map name: TNTECH01
+and the minimum and max elevation must be known
 
 data sources:
 
 Downloaded Digital Elevation Model from http://www.tngis.org/lidar
 
-DEM tile#: 2108669SW
-shape file: 2108669SW.img
-exported:
-topo file: 2108669SW_16.png
-
 Download OpenStreetMap Data using JOSM or https://www.openstreetmap.org/
 bounding box:
 
-min lat (N): 36.182298693
-max lat (S): 36.171215387
-min lon (W): -85.525670251
-max lon (E): -85.501885697
-osm file: 2108669SW.osm
-
 files were copied and renamed for map ingestion
 
-2108669SW.osm -> TNTECH01.osm
-2108669SW_16.png -> TNTECH.png
 
 ### Adding Elevation Data and Terrain from GIS data
 
@@ -360,6 +342,29 @@ I have a licensed copy running now.
 
 Roadrunner seems to work to add elevation data to the roads and can export an .xodr. The UI is terrible.
 
+#### Installing RoadRunner from Mathworks 
+
+Go to Mathworks.com and sign in. Then find My Account and you should see My Software. If you have the license it should be in the list. ITS helped me set that up, but Roadrunner came with our university MATLAB installation. It is worth checking because you might have access too. I know you do if you are at Tennessee Tech.
+
+Follow these instructions on the Mathworks (website)[ https://www.mathworks.com/help/roadrunner/ug/install-and-activate-roadrunner.html#:~:text=Go%20to%20the%20License%20Center,tab%2C%20click%20Activate%20a%20Computer ]
+
+The Roadrunner download is in a weird place. You have to act like you are going to download MATLAB, even if you just want RoadRunner. Also, the versions are tied together. However, you *can* download and run RoadRunner without having MATLAB installed. 
+
+I have tested 2020b, but now 2021a is out. In general the 2020b version seemed a little buggy, therefore I am inclined to download and install the new version. I still have MATLAB 2020b installed, but I do not think it matters. My guess is that the versions need to be the same if you want some integration between the two programs, but for now I am using RoadRunner standalone. 
+
+
+## Testing the Custom Map
+
+Start the simulator, then use the `PythonAPI` to change the map to the newly created custom map. 
+
+```
+cd <CARLA ROOT>
+./CarlaUE4.sh -opengl
+```
+
+```
+python3 PythonAPI/util/config.py --map <map_name>
+```
 
 ## Issues
 
@@ -444,3 +449,59 @@ destroying 0 walkers
 - **Car cannot drive up steep hills!**
 Avoid added very steep hills on the road because if they are too steep then the cars will not be able to drive up them and this will cause a traffic jam! 
 
+
+
+
+
+## setting up QGIS - I do not think this goes here...
+
+to begin, i have run into the partial upgrade issue again
+
+<USER>@<COMPUTER>:~$ sudo apt update
+[sudo] password for thill: 
+Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease
+Hit:2 https://download.sublimetext.com apt/stable/ InRelease                                                                               
+Hit:3 http://us.archive.ubuntu.com/ubuntu bionic InRelease                                                                                 
+Get:4 http://us.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]                                                               
+Hit:6 http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic InRelease                                                             
+Get:7 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]                                
+Hit:8 http://packages.ros.org/ros/ubuntu bionic InRelease                                                           
+Get:9 http://us.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]                                      
+Get:10 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 DEP-11 Metadata [295 kB]    
+Get:11 http://us.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 DEP-11 Metadata [290 kB]                                     
+Get:12 http://us.archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 DEP-11 Metadata [2,468 B]                                       
+Get:13 http://us.archive.ubuntu.com/ubuntu bionic-backports/universe amd64 DEP-11 Metadata [9,292 B]                      
+Get:14 http://security.ubuntu.com/ubuntu bionic-security/main amd64 DEP-11 Metadata [49.0 kB]                                              
+Hit:5 https://apt.llvm.org/xenial llvm-toolchain-xenial-8 InRelease                                                     
+Get:15 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 DEP-11 Metadata [60.3 kB]
+Get:16 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 DEP-11 Metadata [2,464 B]
+Fetched 960 kB in 1s (829 kB/s)                                               
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+All packages are up to date.
+
+<USER>@<COMPUTER>:~$ sudo apt install gnupg software-properties-common
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+gnupg is already the newest version (2.2.4-1ubuntu1.4).
+gnupg set to manually installed.
+software-properties-common is already the newest version (0.96.24.32.14).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+<USER>@<COMPUTER>:~$ wget -qO - https://qgis.org/downloads/qgis-2020.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
+gpg: WARNING: unsafe ownership on homedir '/home/thill/.gnupg'
+gpg: keyring '/etc/apt/trusted.gpg.d/qgis-archive.gpg' created
+
+gpg: key F7E06F06199EF2F2: 1 signature not checked due to a missing key
+gpg: key F7E06F06199EF2F2: public key "QGIS Archive Automatic Signing Key (2020) <qgis-developer@lists.osgeo.org>" imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+gpg: no ultimately trusted keys found
+
+<USER>@<COMPUTER>:~$ sudo chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg
+
+
+this keys issue seems weird to me, because I do not remember seeing it the first time I did the same install...hmmm...
+either way QGIS seems to work fine

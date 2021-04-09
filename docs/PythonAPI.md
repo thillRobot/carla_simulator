@@ -35,31 +35,39 @@ conda env config vars set PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/di
 To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. The python version of you are using should match the *.egg* file name.
 For Example:
 
-`
+````
 conda env config vars set PYTHONPATH=$PYTHONPATH:~/carla_simulator/carla/PythonAPI/carla/dist/carla-0.9.11-py3.7-linux-x86_64.egg:~/carla_simulator/carla/PythonAPI/carla/agents:~/carla_simulator/carla/PythonAPI/carla
-`
+````
 
 Or:
 
-`
+````
 conda env config vars set PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla
-`
+````
 
 re-actitvate the environment after setting environment variables
-`conda activate carla`
+```
+conda activate carla
+```
 
 #### Install Python Dependencies
 You need to have `numpy` and `pygame` installed. The CARLA website reccomends doing like this.
 
-`pip3 install --user numpy pygame`
+```
+pip3 install --user numpy pygame
+```
 
 Alternatively,you can also install them with pip and the `requirements.txt` file. I am not sure which is better. The `requirements.txt` file installs more dependencies.
 
-`pip3 install -r <CARLA PATH>/PythonAPI/examples/requirements.txt`
+```
+pip3 install -r <CARLA PATH>/PythonAPI/examples/requirements.txt`
+```
 
 `automatic_control.py` requires the networkx module to be install - i used conda to install it (the env most still be active of course)
 
-`conda install networkx`
+```
+conda install networkx
+```
 
 Now you can test the different features included in the API.
 
@@ -75,26 +83,30 @@ Do I need the `--user` option ? What does that even do? I think I know. FIGURE T
 
 If you are using **Python2.7**:
 
-`pip install --user pygame numpy`
+```
+pip install --user pygame numpy
+```
 
 **or**, if you are using **Python3.7**:
 
-`pip3 install --user pygame numpy`
+```
+pip3 install --user pygame numpy
+```
 
 To run the server you must include the path to the *.egg* file in `PYTHONPATH`. Replace `<CARLA ROOT>` with the absolute path to the CARLA package directory, and replace `<CARLA DIST>` with the distribution name of the package. Choose the appropriate version of Python.
 
-`
+```
 export PYTHONPATH=$PYTHONPATH:<CARLA ROOT>/PythonAPI/carla/dist/<CARLA DIST>:<CARLA ROOT>/PythonAPI/carla/agents:<CARLA ROOT>/PythonAPI/carla
-`
+```
 
 For example:
-`
+```
 export PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla/agents:/home/<USER>/carla_simulator/carla_0911_dirty/PythonAPI/carla
-`
+```
 Currently I am using this below. Notice there is no `agents/` or `carla/` anymore. It seems to work with just the **.egg** file. The distribution of carla used below`carla/Dist/CARLA_Shipping_0.9.11-dirty` was packaged by a carla from source and renamed `carla_shipping`.
 
 ```
-export PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/carla_shipping/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:/home/<USER>/carla_simulator/dist/CARLA_Shipping_0.9.11/LinuxNoEditor/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
 ```
 
 You can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts tend to fail. I assume this is because there are missing dependencies. These appear to be installed with `requirements.txt`. Option 1 is preffered.
@@ -110,11 +122,15 @@ the API is located in the carla directory `/carla/PythonAPI`
 
 #### Spawn NPC Vehicles and Pedestrians
 
-`python3 PythonAPI/examples/spawn_npc.py -n 20 -w 20`
+```
+python3 PythonAPI/examples/spawn_npc.py -n 20 -w 20
+```
 
 Alternatively, use the modified script to spawn NPCs without the female character 0-8. Certain 2 wheel vehicles are also banned. 
 
-`python3 PythonAPI/examples/spawn_custom.py -n 20 -w 20`
+```
+python3 PythonAPI/examples/spawn_custom.py -n 20 -w 20
+```
 
 #### Start a CARLA Client - The client is a vehicle driving in the world server
 
@@ -127,6 +143,7 @@ i had to set the PYTHONPATH for the carla module to work. Basically the `PYTHONP
 #### Run the client on the local (server) machine
 
 Activate the CONDA environment and move to the top of the CARLA packge your are using.  
+
 ```
 conda activate carla
 cd <CARLA ROOT>
@@ -134,26 +151,36 @@ cd <CARLA ROOT>
 
 Start a client. You are the driver of a single car which you control through the pygame window. These scripts can be easily to modified.
 
-`python3 PythonAPI/examples/manual_control.py`
+```
+python3 PythonAPI/examples/manual_control.py
+```
 
 If the client is remote then you have to inlcude the IP address of the host.
 
-`python3 PythonAPI/examples/manual_control.py --host 192.168.254.45`
+```
+python3 PythonAPI/examples/manual_control.py --host 192.168.254.45
+```
 
 #### Configuring the CARLA server with PythonAPI
 Many useful features are inlcuded in `/PythonAPI/utils/config.py`. This script is used to configure a running CARLA server. You can change the town map and other parameters.
 
 The command below changes the CARLA map and environment.
 
-`python3 PythonAPI/util/config.py --map Town04`
+```
+python3 PythonAPI/util/config.py --map <map_name>
+```
 
 And this line changes the weather.
 
-`python3 PythonAPI/util/config.py --weather HardRainNoon`
+```
+python3 PythonAPI/util/config.py --weather HardRainNoon`
+```
 
 This sets the simulation fixed frame (frames per second). This does not affect the framerate displayed in server or client windows.
 
-`python3 PythonAPI/util/config.py --fps 10`
+```
+python3 PythonAPI/util/config.py --fps 10
+```
 
 #### Timeout Error with remote use of PythonAPI
 Sometimes running the PythonAPI remote throws an error like this.

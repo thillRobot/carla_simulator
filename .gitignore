@@ -24,6 +24,7 @@ videos/
 maps_archive/
 *env/
 *ignoretifs/
+*/dist/
 
 carla*
 CARLA*
