@@ -1,0 +1,179 @@
+
+map name: Campus01
+this map covers the entire TNTECH campus
+
+intended package name: TNTECH03
+
+data sources:
+
+
+Map Bounding Box Latitude and Longitude(This needs to be verified for Campus01)
+
+min lat (S): 36.1700
+max lat (N): 36.1800
+min lon (W):-85.5120
+max lon (E):-85.4980
+
+origin:
+
+Download OpenStreetMap Data using  https://www.openstreetmap.org/
+
+
+save single layer as Campus01.osm
+conveted with netconvert (from sumo)
+
+```
+$ netconvert --osm maps/Campus01/Campus01.osm --opendrive-output maps/Campus01/Campus01.xodr --proj.plain-geo --osm.elevation
+
+Warning: Environment variable SUMO_HOME is not set, using built in type maps.
+Warning: Environment variable SUMO_HOME is not set, schema resolution will use slow website lookups.
+Warning: Discarding unusable type 'waterway.drain' (first occurence for edge '471891054').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687#0').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687#0').
+Warning: Ambiguity in turnarounds computation at junction '4900047672'.
+Warning: Ambiguity in turnarounds computation at junction '4900047687'.
+Warning: Ambiguity in turnarounds computation at junction '5575832740'.
+Warning: Ambiguity in turnarounds computation at junction '5575832741'.
+Warning: Ambiguity in turnarounds computation at junction '5575832742'.
+Warning: Ambiguity in turnarounds computation at junction '5575832743'.
+Warning: Ambiguity in turnarounds computation at junction '5575832745'.
+Warning: Ambiguity in turnarounds computation at junction '5575832749'.
+Warning: Ambiguity in turnarounds computation at junction '5575832750'.
+Warning: Ambiguity in turnarounds computation at junction '5575843562'.
+Warning: Ambiguity in turnarounds computation at junction '5717705354'.
+Warning: Ambiguity in turnarounds computation at junction '5717705358'.
+Warning: Ambiguity in turnarounds computation at junction '5717705363'.
+Warning: Ambiguity in turnarounds computation at junction '5717709533'.
+Warning: Found sharp turn with radius 5.08 at the start of edge '-543974955#2'.
+Warning: Found sharp turn with radius 8.63 at the start of edge '-550010100#1'.
+Warning: Found angle of 99.78 degrees at edge '-607061923#0', segment 14
+Warning: Found sharp turn with radius 2.10 at the start of edge '-607064334#3'.
+Warning: Found sharp turn with radius 4.65 at the start of edge '293080618'.
+Warning: Found sharp turn with radius 4.77 at the start of edge '293080629#3'.
+Warning: Found sharp turn with radius 6.54 at the start of edge '293102522#0'.
+Warning: Found sharp turn with radius 0.68 at the start of edge '518680571#3'.
+Warning: Found sharp turn with radius 8.30 at the start of edge '518680603#2'.
+Warning: Found sharp turn with radius 6.32 at the end of edge '518680610'.
+Warning: Found sharp turn with radius 6.70 at the start of edge '518680613#2'.
+Warning: Found sharp turn with radius 5.93 at the end of edge '518680613#2'.
+Warning: Found sharp turn with radius 2.86 at the start of edge '518680624'.
+Warning: Found sharp turn with radius 2.53 at the start of edge '518680626#1'.
+Warning: Found sharp turn with radius 1.44 at the start of edge '518680627'.
+Warning: Found sharp turn with radius 7.20 at the start of edge '519455326'.
+Warning: Found sharp turn with radius 8.25 at the end of edge '519457948'.
+Warning: Found angle of 109.68 degrees at edge '543974944#1', segment 1
+Warning: Found sharp turn with radius 8.80 at the start of edge '543974954'.
+Warning: Found sharp turn with radius 5.08 at the end of edge '543974955#2'.
+Warning: Found sharp turn with radius 8.39 at the end of edge '549665605#9'.
+Warning: Found sharp turn with radius 4.66 at the start of edge '550007610#2'.
+Warning: Found sharp turn with radius 6.59 at the end of edge '550010076#0'.
+Warning: Found sharp turn with radius 6.80 at the start of edge '550010076#1'.
+Warning: Found sharp turn with radius 6.79 at the end of edge '550010076#1'.
+Warning: Found sharp turn with radius 6.47 at the start of edge '550010076#2'.
+Warning: Found sharp turn with radius 8.63 at the end of edge '550010100#1'.
+Warning: Found sharp turn with radius 6.35 at the start of edge '550649468'.
+Warning: Found sharp turn with radius 7.67 at the start of edge '550698274#2'.
+Warning: Found sharp turn with radius 2.68 at the end of edge '550698274#2'.
+Warning: Found sharp turn with radius 3.09 at the start of edge '550698278#1'.
+Warning: Found sharp turn with radius 3.44 at the end of edge '550698278#1'.
+Warning: Found sharp turn with radius 6.43 at the start of edge '552400979#0'.
+Warning: Found sharp turn with radius 6.48 at the end of edge '552400979#0'.
+Warning: Found sharp turn with radius 6.60 at the start of edge '552400979#1'.
+Warning: Found sharp turn with radius 6.69 at the end of edge '552400979#1'.
+Warning: Found sharp turn with radius 6.57 at the start of edge '552400979#2'.
+Warning: Found sharp turn with radius 6.35 at the end of edge '552400979#2'.
+Warning: Found sharp turn with radius 1.95 at the start of edge '556045097'.
+Warning: Found sharp turn with radius 6.69 at the start of edge '574210689#1'.
+Warning: Found sharp turn with radius 3.18 at the end of edge '574210689#1'.
+Warning: Found sharp turn with radius 5.49 at the start of edge '574500401#0'.
+Warning: Found angle of 99.78 degrees at edge '607061923#0', segment 8
+Warning: Found sharp turn with radius 2.10 at the end of edge '607064334#3'.
+Warning: Could not compute smooth shape for edge '-550640109'.
+Warning: Could not compute smooth shape for edge '519457931#1'.
+Warning: Could not compute smooth shape for edge '519457948'.
+Warning: Could not compute smooth shape for edge '550640109'.
+Warning: Could not compute smooth shape for edge '607061923#0'.
+Warning: Could not compute smooth shape from lane '188778990_0' to lane '188778988_0'. Use option 'junctions.scurve-stretch' or increase radius of junction '1994055100' to fix this.
+Warning: Could not compute smooth shape from lane '188778988_0' to lane '-528255675#16_0'. Use option 'junctions.scurve-stretch' or increase radius of junction '2012614921' to fix this.
+Warning: Could not compute smooth shape from lane '-550010117_0' to lane '550010116_0'. Use option 'junctions.scurve-stretch' or increase radius of junction '5312847082' to fix this.
+Warning: Could not compute smooth shape from lane '19589438_0' to lane '556046628#1_0'. Use option 'junctions.scurve-stretch' or increase radius of junction '5364014954' to fix this.
+Warning: Could not compute smooth shape from lane '574210689#1_0' to lane '574210691_0'. Use option 'junctions.scurve-stretch' or increase radius of junction '5512522054' to fix this.
+Warning: Could not compute smooth shape from lane '574610664_0' to lane '574610665#0_0'. Use option 'junctions.scurve-stretch' or increase radius of junction '5515129401' to fix this.
+Success.
+```
+
+Downloaded Digital Elevation Model from http://www.tngis.org/lidar
+
+Campus01 spans DEM tiles#: 2108661NW 2108661NE 2108669SW 2108661SE
+
+these dem tiles have been combined into a single QGIS project putnam_dem_2108669_2108661_2108653.qgz 
+
+converted data to meters (this is not shown in geo-referencing CRS)
+
+merged and clipped into: 
+
+
+minimumHeight=  m
+maximumHeight=  
+
+
+-85.52560, 36.18229
+-85.47831, 36.16013
+
+
+## QGIS
+
+Coordinate Reference Systems
+
+Geographics Coordinate CRS [EPSG:4326]: 
+
+WGS 84
+WKT
+GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]]
+Proj4
++proj=longlat +datum=WGS84 +no_defs
+Extent
+-180.00, -90.00, 180.00, 90.00
+
+Custom CRS:
+
+WKT
+PROJCS["unnamed",GEOGCS["GRS 1980(IUGG, 1980)",DATUM["unknown",SPHEROID["GRS80",6378137,298.257222101],TOWGS84[0,0,0,0,0,0,0]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433]],PROJECTION["Lambert_Conformal_Conic_2SP"],PARAMETER["standard_parallel_1",35.25],PARAMETER["standard_parallel_2",36.41666666666666],PARAMETER["latitude_of_origin",34.33333333333334],PARAMETER["central_meridian",-86],PARAMETER["false_easting",1968500],PARAMETER["false_northing",0],UNIT["Foot_US",0.3048006096012192]]
+Proj4
++proj=lcc +lat_1=35.25 +lat_2=36.41666666666666 +lat_0=34.33333333333334 +lon_0=-86 +x_0=600000 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs
+Extent
+Extent not known
+
+
+
+
+
+
+
+road runner projection settings:
+
+World:
+COMPD_CS["CompoundCS",PROJCS["unnamed",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",36.163],PARAMETER["central_meridian",-85.502],PARAMETER["scale_factor",1],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1]],VERT_CS["EGM96 geoid height",VERT_DATUM["EGM96 geoid",2005,EXTENSION["PROJ4_GRIDS","egm96_15.gtx"],AUTHORITY["EPSG","5171"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Up",UP],AUTHORITY["EPSG","5773"]]]
+
+XODR file:
+COMPD_CS["CompoundCS",PROJCS["unnamed",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",36.163],PARAMETER["central_meridian",-85.502],PARAMETER["scale_factor",1],PARAMETER["false_easting",0],PARAMETER["false_northing",0],UNIT["metre",1]],VERT_CS["EGM96 geoid height",VERT_DATUM["EGM96 geoid",2005,EXTENSION["PROJ4_GRIDS","egm96_15.gtx"],AUTHORITY["EPSG","5171"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Up",UP],AUTHORITY["EPSG","5773"]]]
+
+OSM file:
+COMPD_CS["CompoundCS",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0,AUTHORITY["EPSG","8901"]],UNIT["degree",0.0174532925199433,AUTHORITY["EPSG","9122"]],AUTHORITY["EPSG","4326"]],VERT_CS["EGM96 geoid height",VERT_DATUM["EGM96 geoid",2005,EXTENSION["PROJ4_GRIDS","egm96_15.gtx"],AUTHORITY["EPSG","5171"]],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AXIS["Up",UP],AUTHORITY["EPSG","5773"]]]
+
+2108669_2108661_2108653_meters.tif was used for elevation data in roadrunner
+
+XODR -> OSM offset correction. Applied in Road runner
+x:
+y:
+
+
+get buildings from blender-osm
+
+
+files to be ingested into carla
+
+Campus01_buildings_roads.fbx  renamed to Campus01.fbx
+Campus01_rr4carla.xodr  renamed to Campus01.xodr
+Campus01_rr4carla.rrdata.xml  renamed to Campus01.rrdata.xml
+

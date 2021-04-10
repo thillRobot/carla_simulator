@@ -53,7 +53,12 @@ Run the app. Find information in the josm [wiki](https://josm.openstreetmap.de/w
 josm
 ```
 
-Alternatively, you can download and run the *.jar* file. Note: JOSM is not working in a conda env right now. So does it require JDK8? (no JDK11 I think)
+Alternatively, you can download and run the *.jar* file. Note: JOSM is not working in a conda env right now. This require JDK8? (no JDK11 I think)
+
+```
+sudo apt-get install openjdk-8-jre
+```
+
 ```
 cd ~/openstreetmap/josm
 java -jar josm.jar
@@ -346,9 +351,9 @@ Roadrunner seems to work to add elevation data to the roads and can export an .x
 
 Go to Mathworks.com and sign in. Then find My Account and you should see My Software. If you have the license it should be in the list. ITS helped me set that up, but Roadrunner came with our university MATLAB installation. It is worth checking because you might have access too. I know you do if you are at Tennessee Tech.
 
-Follow these instructions on the Mathworks (website)[ https://www.mathworks.com/help/roadrunner/ug/install-and-activate-roadrunner.html#:~:text=Go%20to%20the%20License%20Center,tab%2C%20click%20Activate%20a%20Computer ]
+Follow these instructions on the Mathworks (website)[https://www.mathworks.com/help/roadrunner/ug/install-and-activate-roadrunner.html#:~:text=Go%20to%20the%20License%20Center,tab%2C%20click%20Activate%20a%20Computer]
 
-The Roadrunner download is in a weird place. You have to act like you are going to download MATLAB, even if you just want RoadRunner. Also, the versions are tied together. However, you *can* download and run RoadRunner without having MATLAB installed. 
+The Roadrunner download is in a weird place. You have to act like you are going to download MATLAB, even if you just want RoadRunner. Also, the versions are tied together. However, you can download and run RoadRunner without having MATLAB installed. 
 
 I have tested 2020b, but now 2021a is out. In general the 2020b version seemed a little buggy, therefore I am inclined to download and install the new version. I still have MATLAB 2020b installed, but I do not think it matters. My guess is that the versions need to be the same if you want some integration between the two programs, but for now I am using RoadRunner standalone. 
 
@@ -369,6 +374,12 @@ python3 PythonAPI/util/config.py --map <map_name>
 ## Issues
 
 Discussions of issues are scattered througout the READMEs also. Should they all come here? I am not sure. 
+
+- **Merging DEM (or other) layers in QGIS (3.16)**
+
+	Merging separate layers into has given me trouble twice now. Changing the projection of a layer using 'save as' in the layer tree menu can cause the resulting layer to be not exactly rectangular. You can see the edges are out of square by about one or two pixels. Merge will not work on layers that are not perfectly square because the whitespace introduced in the edges messes up the color scaling terribly. I assume there is a solution to this issue, but I have not figure it out yet. 
+
+	The layers should be perfectly square in their native CRS, so you need to merge them before transforming them. I merged them into one layer for each full DEM tile (four quadrants) and then I merged the three full tiles into one large tile that basically covers the whole city. I want to expand the map to cover more of the county, but that will take some clicking. I am not sure when I want to do all thatm, maybe now! The elevation may be much more noticeable outside of the city. 
 
 - **OOM Death During Build**
   Out of memory crash during ` make launch ` for TNTECH01 - failed - out of memory - This has been solved my increasing the swap partition size significantly. You can read about this in issue ()[https://github.com/carla-simulator/carla/issues/3590]
