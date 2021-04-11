@@ -469,7 +469,7 @@ Avoid added very steep hills on the road because if they are too steep then the 
 to begin, i have run into the partial upgrade issue again
 
 <USER>@<COMPUTER>:~$ sudo apt update
-[sudo] password for thill: 
+[sudo] password for <USER>: 
 Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease
 Hit:2 https://download.sublimetext.com apt/stable/ InRelease                                                                               
 Hit:3 http://us.archive.ubuntu.com/ubuntu bionic InRelease                                                                                 
