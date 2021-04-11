@@ -10,6 +10,7 @@
 *.gz
 *.blend*
 *.zip
+*.tif
 
 bin/
 build/
@@ -22,8 +23,8 @@ dist/
 var/
 videos/
 maps_archive/
-*env/
-*ignoretifs/
+*/env/
+*large_tifs/
 */dist/
 
 carla*
