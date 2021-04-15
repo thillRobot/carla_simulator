@@ -118,6 +118,9 @@ The conversion runs but the resulting map is distorted in an angular sense (20-3
 
 I thought that the issue was fixed in CARLA, but since Jim's post there has been some related activity from the CARLA team. I guess they are working on a fix (here)[https://github.com/carla-simulator/carla/pull/3901], but I am not sure yet. 
 
+I have test again with updated CARLA 0.9.11 using the steps shown above, and the angular distortion issue is still happening. You can clearly see that the map shown in this image is not correct.
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/angular_distorion_01.png" alt="drawing" width="400"/>
+
 
 ##### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
 
@@ -170,10 +173,17 @@ You can test the file you converted with CARLA in standalone mode. There are jus
 First start the simulator. Then, run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right. 
 
 ```
-python3 PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
+cd <CARLA PARENT>
+python3 carla/PythonAPI/util/config.py -x maps/<map name>/<map name>.xodr
 ```
 
+Also, you can load the .osm in to CARLA directly as described in the docs as 'using a new argument'.
+
+
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
+
+The angular distortion issue will be visible in this view if you converted with CARLA.
+
 
 
 
