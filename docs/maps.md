@@ -119,7 +119,7 @@ The conversion runs but the resulting map is distorted in an angular sense (20-3
 I thought that the issue was fixed in CARLA, but since Jim's post there has been some related activity from the CARLA team. I guess they are working on a fix (here)[https://github.com/carla-simulator/carla/pull/3901], but I am not sure yet. 
 
 I have test again with updated CARLA 0.9.11 using the steps shown above, and the angular distortion issue is still happening. You can clearly see that the map shown in this image is not correct.
-<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/angular_distorion_01.png" alt="drawing" width="400"/>
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/angular_distortion_01.png" alt="drawing" width="400"/>
 
 
 ##### Step 2 Option 2 - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
