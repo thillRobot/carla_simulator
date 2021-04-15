@@ -9,6 +9,7 @@ This README is intended to be a personal guide for preparing and editing custom 
 This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the Unreal Editor. I am sure there is a way to use the editor without a build from source CARLA, but I have not looked into this yet. 
 
 (CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18 (jdk11 I think).
+
 ```
 sudo apt-get install openjdk-8-jre
 ```
@@ -16,10 +17,8 @@ sudo apt-get install openjdk-8-jre
 Alternatively you can use `jdk8` inside conda which is nice, but we have to use the Borg...*RESISTANCE IS FUTILE!*
 
 ```
-conda activate <env>
-```
+conda activate <java env>
 
-```
 conda install -c cidermole jdk8
 ```
 
@@ -28,8 +27,18 @@ conda install -c cidermole jdk8
 Export a .osm file using with the [web app](www.openstreetmap.org). Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.osm** file. I suggest saving the additional infomation for each map in a file called `<map_name>_info.md`
 
 ##### Step 1 Option 2 JOSM - Extensible Editor for OpenStreetMap(.osm)
-Alternatively, you can import the data directly from OpenStreetMap using the Java app `josm`.
-This JAVA app can be used to download maps from OpenStreetMap end edit **.osm** files. Read more on the [josm Github](https://josm.openstreetmap.de/). Install the packge with with apt following the instructions [here](https://josm.openstreetmap.de/wiki/Download#Ubuntu)
+Instead of using the web app, you can import the data directly from OpenStreetMap using the Java app `josm`. This tool requires JDK8.
+This JAVA app can be used to download maps from OpenStreetMap end edit **.osm** files. Read more on the [josm Github](https://josm.openstreetmap.de/). 
+
+
+Download the file `josm.jar` or `josm-latest.jar` from the JOSM (downloads page)[https://josm.openstreetmap.de/wiki/Download]. Save the file somewhere called <JOSM ROOT>. Change to this directory, and run the app with the command shown. This is my preferred method.
+
+```
+cd <JOSM ROOT>/josm
+java -jar josm-latest.jar
+```
+
+Alternatively, you can use `apt` to install JOSM as a package for Ubuntu (or other). This seems like overkill, but you will get updates this way. Install the packge follwing the instructions [here](https://josm.openstreetmap.de/wiki/Download#Ubuntu)
 
 Setup sources and download keys
 ```
@@ -53,18 +62,13 @@ Run the app. Find information in the josm [wiki](https://josm.openstreetmap.de/w
 josm
 ```
 
-Alternatively, you can download and run the *.jar* file. Note: JOSM is not working in a conda env right now. This require JDK8? (no JDK11 I think)
+Click the big green download button to oprn the map tool. Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data in this region as a **.osm** file. Note that some roads or other paths will extend outside of the bounding box.
 
-```
-sudo apt-get install openjdk-8-jre
-```
 
-```
-cd ~/openstreetmap/josm
-java -jar josm.jar
-```
 
-Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data as a **.osm** file. 
+
+
+Does JOSM work in a conda env? You have implied that it will above...
 
 #### Step 2 - obtain or generate OpenDrive (.xodr) description of roads
 ##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
@@ -73,7 +77,7 @@ CARLA should be able to do this conversion. I made a script `convert_map.py` to 
 I know the paths look funny. This is also reflected in the python script convert_map.py. 
 
 ```
-cd ~/carla_simulator/carla/PythonAPI/carla
+cd <CARLA ROOT>/PythonAPI/carla
 python3 ../util/convert_map.py
 ```
 
@@ -382,7 +386,7 @@ Discussions of issues are scattered througout the READMEs also. Should they all 
 	The layers should be perfectly square in their native CRS, so you need to merge them before transforming them. I merged them into one layer for each full DEM tile (four quadrants) and then I merged the three full tiles into one large tile that basically covers the whole city. I want to expand the map to cover more of the county, but that will take some clicking. I am not sure when I want to do all thatm, maybe now! The elevation may be much more noticeable outside of the city. 
 
 - **OOM Death During Build**
-  Out of memory crash during ` make launch ` for TNTECH01 - failed - out of memory - This has been solved my increasing the swap partition size significantly. You can read about this in issue ()[https://github.com/carla-simulator/carla/issues/3590]
+  Out of memory crash during ` make launch ` for TNTECH01 - failed - out of memory - This has been solved my increasing the swap partition size significantly. You can read about this in issue (#3590)[https://github.com/carla-simulator/carla/issues/3590]
 
   Theere are instructions for increasing the swap size here in this (blog)[https://sleeplessbeastie.eu/2020/07/29/how-to-expand-swap-partition-after-system-installation/]
 
@@ -467,30 +471,6 @@ Avoid added very steep hills on the road because if they are too steep then the 
 ## setting up QGIS - I do not think this goes here...
 
 to begin, i have run into the partial upgrade issue again
-
-<USER>@<COMPUTER>:~$ sudo apt update
-[sudo] password for thill: 
-Hit:1 http://dl.google.com/linux/chrome/deb stable InRelease
-Hit:2 https://download.sublimetext.com apt/stable/ InRelease                                                                               
-Hit:3 http://us.archive.ubuntu.com/ubuntu bionic InRelease                                                                                 
-Get:4 http://us.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]                                                               
-Hit:6 http://ppa.launchpad.net/ubuntu-toolchain-r/test/ubuntu bionic InRelease                                                             
-Get:7 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]                                
-Hit:8 http://packages.ros.org/ros/ubuntu bionic InRelease                                                           
-Get:9 http://us.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]                                      
-Get:10 http://us.archive.ubuntu.com/ubuntu bionic-updates/main amd64 DEP-11 Metadata [295 kB]    
-Get:11 http://us.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 DEP-11 Metadata [290 kB]                                     
-Get:12 http://us.archive.ubuntu.com/ubuntu bionic-updates/multiverse amd64 DEP-11 Metadata [2,468 B]                                       
-Get:13 http://us.archive.ubuntu.com/ubuntu bionic-backports/universe amd64 DEP-11 Metadata [9,292 B]                      
-Get:14 http://security.ubuntu.com/ubuntu bionic-security/main amd64 DEP-11 Metadata [49.0 kB]                                              
-Hit:5 https://apt.llvm.org/xenial llvm-toolchain-xenial-8 InRelease                                                     
-Get:15 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 DEP-11 Metadata [60.3 kB]
-Get:16 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 DEP-11 Metadata [2,464 B]
-Fetched 960 kB in 1s (829 kB/s)                                               
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-All packages are up to date.
 
 <USER>@<COMPUTER>:~$ sudo apt install gnupg software-properties-common
 Reading package lists... Done
