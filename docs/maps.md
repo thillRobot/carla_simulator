@@ -465,12 +465,12 @@ destroying 0 walkers
 Avoid added very steep hills on the road because if they are too steep then the cars will not be able to drive up them and this will cause a traffic jam! 
 
 
+- Partial Ubuntu Upgrade Issue
+... i have run into the partial upgrade issue again. I suppose this is related to the compilers for CARLA build from source.
 
 
 
 ## setting up QGIS - I do not think this goes here...
-
-to begin, i have run into the partial upgrade issue again
 
 <USER>@<COMPUTER>:~$ sudo apt install gnupg software-properties-common
 Reading package lists... Done
