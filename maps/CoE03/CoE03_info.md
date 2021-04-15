@@ -12,10 +12,10 @@ data sources:
 
 Map Bounding Box Latitude and Longitude:
 
-min lat (S): 36.1700
-max lat (N): 36.1800
-min lon (W):-85.5120
-max lon (E):-85.4980
+min lat (S): 36.17450  # This bounding box covers the CoE and the Library. This is a small map for testing the workflow.
+max lat (N): 36.17750  # this is not the exact bounding box used for CoE03, I have somehow lost that infomation...doh!
+min lon (W):-85.50800
+max lon (E):-85.50500
 
 origin:
 

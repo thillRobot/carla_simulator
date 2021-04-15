@@ -62,26 +62,31 @@ Run the app. Find information in the josm [wiki](https://josm.openstreetmap.de/w
 josm
 ```
 
-Click the big green download button to oprn the map tool. Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data in this region as a **.osm** file. Note that some roads or other paths will extend outside of the bounding box.
-
-
-
-
+Click the big green download button to oprn the map tool. Choose a bounding box (lattitude, longitude) and record these values. You may need them later. Save or export the OpenStreetMap data in this region as a **.osm** file. Note that roads or other paths and buildings will extend outside of the bounding box. It is hard to see, but you can see the bounding box in black in the background.
 
 Does JOSM work in a conda env? You have implied that it will above...
 
 #### Step 2 - obtain or generate OpenDrive (.xodr) description of roads
 ##### Step 2 Option 1 -  Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using CARLA
-CARLA should be able to do this conversion. I made a script `convert_map.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
+CARLA should be able to do this conversion. I made a script `convert_osm_xodr.py` to convert the `.osm` file to a `.xodr` file using the sample code in the carla docs. I used `utils/config.py` as a template mainly for the imports lines. This step appears to work and the output file is produced. The line below runs the script
 
 I know the paths look funny. This is also reflected in the python script convert_map.py. 
 
 ```
 cd <CARLA ROOT>/PythonAPI/carla
-python3 ../util/convert_map.py
+python3 ../util/convert_osm_xodr.py
 ```
 
-If you do this this way below which seems more intutive, you will have the `local schema` error shown.
+The output will vary depending in the size of the footprint, but the output will look similar to what is shown below. 
+```
+$ python3 ../util/convert_osm_xodr.py 
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687').
+Warning: Intersecting left turns at junction '203380404' from lane '19585049#0_0' and lane '-19585049#5_0' (increase junction radius to avoid this).
+Warning: Could not write OpenDRIVE geoReference. Only unshifted Coordinate systems are supported (offset=7684531.66,-4019288.35)
+```
+
+If you do this this way below which seems more intutive, you will have the `local schema` error shown (still happening in updated 0.9.11).
 
 ````
 cd ~/carla_simulator/carla
@@ -92,9 +97,19 @@ python3 PythonAPI/util/convert_map.py
 You must be in the `carla/PythonAPI/carla/` directory to run this script. I assume this is just a path issue that can be addressed. For now, use `cd` as shown above. I found this here (insert link - go find post)
 ```
 Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try website lookup.
-```
+Traceback (most recent call last):
+  File "PythonAPI/util/convert_osm_xodr.py", line 50, in <module>
+    xodr_data = carla.Osm2Odr.convert(osm_data, settings)
+RuntimeError: unsupported protocol in URL
+ In file 'built in type map'
+ At line/column 1/0.
 
-###### Angular Distortion Issue! - CARLA 0.9.11 may have solve this - needs testing
+  The types could not be loaded from 'built in type map'.
+```
+I have no idea why this is happening, but it does not seem to matter. This workaround seems to be just fine.
+
+
+###### Angular Distortion Issue! - CARLA 0.9.11 may have solved this - actually I think it might be me...
 The conversion runs but the resulting map is distorted in an angular sense (20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a (osm2xodr)[https://github.com/JHMeusener/osm2xodr] instead of CARLA to convert from **.osm** to **.xodr**.
 
 @Axel1092 has a suggestion for properly handling the georefencing in issue (3009)[https://github.com/carla-simulator/carla/issues/3009] and he implies that the problem has been solved. However several people are still having the issue. I assume we are not correctly setting the geoferencing for the xodr file.  
@@ -150,30 +165,17 @@ I might be confused...This might just be the source for Step 2 Option 1
 
 #### Step 3 - Import OpenDrive into CARLA (Standalone mode)
 
-I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
-```
-cp PythonAPI/util/config.py PythonAPI/util/import_map.py
-```
-With the simulator running, execute the python script to load the new map. There are no errors, but nothing happens except `No nodes loaded.` is shown.
-```
-python3 PythonAPI/util/import_map.py --osm-path=/home/thill/openstreetmap/map2.xodr
-Converting OSM data to opendrive
-No nodes loaded.
-```
-I also tried method **b)** from the tutorial and nothing happens. This method is effectively the same as **a)**, and the results are the same. The command and the outout are shown below. Once again, `No nodes loaded.` is shown.
-```
-python3 PythonAPI/util/config.py --osm-path=/home/thill/openstreetmap/map2.xodr
-Converting OSM data to opendrive
-No nodes loaded.
-```
-There is some information about this in issue(3009)[https://github.com/carla-simulator/carla/issues/3009]
+You can test the file you converted with CARLA in standalone mode. There are just roads and sidewalks in standalone mode. 
 
-The solution is to run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right?
+First start the simulator. Then, run `config.py` or your custom script with the `-x` option to load the `.xodr` file. This makes sense right. 
+
 ```
 python3 PythonAPI/util/config.py -x /home/thill/openstreetmap/map2.xodr
 ```
 
 The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
+
+
 
 #### Step 4 - Adding models (props) to the map (not Standalone mode)
 ##### Step 4 Option 1 - Add building and flat terrain models with OSM2WORLD
@@ -482,11 +484,11 @@ software-properties-common is already the newest version (0.96.24.32.14).
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 
 <USER>@<COMPUTER>:~$ wget -qO - https://qgis.org/downloads/qgis-2020.gpg.key | sudo gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/qgis-archive.gpg --import
-gpg: WARNING: unsafe ownership on homedir '/home/thill/.gnupg'
+gpg: WARNING: unsafe ownership on homedir '/home/<USER>/.gnupg'
 gpg: keyring '/etc/apt/trusted.gpg.d/qgis-archive.gpg' created
 
-gpg: key F7E06F06199EF2F2: 1 signature not checked due to a missing key
-gpg: key F7E06F06199EF2F2: public key "QGIS Archive Automatic Signing Key (2020) <qgis-developer@lists.osgeo.org>" imported
+gpg: key ****************: 1 signature not checked due to a missing key
+gpg: key ****************: public key "QGIS Archive Automatic Signing Key (2020) <qgis-developer@lists.osgeo.org>" imported
 gpg: Total number processed: 1
 gpg:               imported: 1
 gpg: no ultimately trusted keys found
@@ -496,3 +498,23 @@ gpg: no ultimately trusted keys found
 
 this keys issue seems weird to me, because I do not remember seeing it the first time I did the same install...hmmm...
 either way QGIS seems to work fine
+
+- Using CARLA to convert OSM to XODR - THIS IS THE ISSUE LOL
+
+I have tried **method a)** by making a copy of `config.py` called `import_map.py`. This script should load the **.xodr** file into the simulator as the map allow you to adjust the parameters of the import.
+```
+cp PythonAPI/util/config.py PythonAPI/util/import_map.py
+```
+With the simulator running, execute the python script to load the new map. There are no errors, but nothing happens except `No nodes loaded.` is shown.
+```
+python3 PythonAPI/util/import_map.py --osm-path=/home/<USER>/openstreetmap/map2.xodr
+Converting OSM data to opendrive
+No nodes loaded.
+```
+I also tried method **b)** from the tutorial and nothing happens. This method is effectively the same as **a)**, and the results are the same. The command and the outout are shown below. Once again, `No nodes loaded.` is shown.
+```
+python3 PythonAPI/util/config.py --osm-path=/home/<USER>/openstreetmap/map2.xodr
+Converting OSM data to opendrive
+No nodes loaded.
+```
+There is some information about this in issue(3009)[https://github.com/carla-simulator/carla/issues/3009]
