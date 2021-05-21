@@ -39,18 +39,31 @@ catkin_make
 ```
 NOTE: using conda conflicts with ROS somehow. I need to figure this out somehow.
 
-#### run the server before testing
+source the rosbridge workspace before testing. Notice that this path is slightly different than shown in the CARLA docs. I moved it one level in.
+```
+source ~/carla_simulator/carla-ros-bridge/catkin_ws/devel/setup.bash
+```
 
-`docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus all -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 ./CarlaUE4.sh -opengl`
+#### run the CARLA server before the ros-bridge
+
+```
+docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus all -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 ./CarlaUE4.sh -opengl
+```
+
+or
+
+```
+cd <CARLA ROOT>
+./CarlaUE4.sh -opengl
+```
 
 #### run the CARLA-ROS-BRIDGE
-NOTE: the `carla-ros-bridge`
 
 `export CARLA_ROOT=~/carla_simulator/carla09101`
 
 `export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
 
-`roslaunch carla_ros_bridge carla_ros_bridge.launch host:=192.168.254.45`
+`roslaunch carla_ros_bridge carla_ros_bridge.launch host:=<HOST_IP>`
 
  or start with an `ego vehicle` instead
 
@@ -68,3 +81,6 @@ You should now be able to see the data from the simulator in ROS, cool.
 I have successfully tested this in Ubuntu18.04 using both intallation methods shown here. `ros-noetic` is not supported yet. You can copmile from source in ubuntu20.04 there is a python version error when you try the launch files. ALso, `apt` cannot find the the package `carla-ros-bridge`. This somewhat confirms that it isnot yet supported in `focal fossa`
 
 This the main reason I am holding onto `Ubuntu18.04`.
+
+
+Note the ros bridge requires the python egg file for carla to match the version of ros. So, if you are running ros melodic you will need to use python 2.7 egg file instead of the 3.6 one. This seems like something that we should be outgrowing now.

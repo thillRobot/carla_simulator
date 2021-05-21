@@ -178,14 +178,25 @@ cd <CARLA PARENT>
 python3 carla/PythonAPI/util/config.py -x maps/<map name>/<map name>.xodr
 ```
 
-Also, you can load the .osm in to CARLA directly as described in the docs as 'using a new argument'.
+Also, you can load the .osm in to CARLA directly as described in the docs as 'using a new argument'. This also has the `cannot read local schema issue`, so the paths look funny again.
 
+```
+cd carla/PythonAPI/CARLA
+python3 ../util/config.py --osm-path=../../../maps/<map name>/<map name>.osm
+```
 
-The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map.
+```
 
-The angular distortion issue will be visible in this view if you converted with CARLA.
+Converting OSM data to opendrive
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687').
+Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687').
+Warning: Intersecting left turns at junction '203380404' from lane '19585049#0_0' and lane '-19585049#5_0' (increase junction radius to avoid this).
+Warning: Could not write OpenDRIVE geoReference. Only unshifted Coordinate systems are supported (offset=7684531.66,-4019288.35)
+load opendrive map.
 
+```
 
+The map loads in the simulator. You may have to fly around to see them, but the roads from imported from OpenStreetMap should be shown in the map. The angular distortion issue is visible with either method if the. This might indicate that there is a problem with the conversion taking place in CARLA, however @Axel says it works fine.  
 
 
 #### Step 4 - Adding models (props) to the map (not Standalone mode)

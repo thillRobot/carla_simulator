@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <OpenDRIVE>
     <header revMajor="1" revMinor="4" name="" version="1.00" date="Wed Apr 14 22:50:02 2021" north="1523.44" south="0.00" east="1458.99" west="0.00"/>
+    <geoReference>
+    +proj=tmerc +lat_0=36.17 +lon_0=-85.850 +k=1 +x_0=0 +y_0=0 +datum=WGS84 +units=m +geoidgrids=egm96_15.gtx +vunits=m +no_defs
+    </geoReference>
     <road name="" length="148.52418167" id="150" junction="-1">
         <link>
             <predecessor elementType="junction" elementId="1"/>
