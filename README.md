@@ -4,7 +4,7 @@ This README is a personal guide to using CARLA. This repository is not a fork of
 October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020 - July 29, 2021 
 
 ## Watch
-The videos have been down, but I am putting them back up now. You can watch on CARLA demos on Youtube (here)[https://youtu.be/e4NEGhGX1po].
+The videos have been down, but I am putting them back up now. You can watch CARLA demos on Youtube [here](https://youtu.be/e4NEGhGX1po).
 
 ## Useful Resources
 
