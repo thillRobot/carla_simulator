@@ -1,10 +1,10 @@
 # server
 This README is intended to be a guide to using CARLA. This repository is not a distribution or source code of CARLA.
 
-October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020
+October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020 - July 29, 2021 
 
 ## Watch
-You can see some demonstration videos on [Youtube](https://www.youtube.com/channel/UCH3bAvnmCLCRjyyorfUJXKg)
+The YouTube channel is down right now, but I am working on putting it back together. It should be up soon under the channel name _thillRobot_.
 
 ## Useful Resources
 
@@ -32,7 +32,6 @@ I am not alone, and this is good.
 * CONDA/ANACONDA (for virtual python emvironments)
 
 ### Hardware
-
 
 
 ## Installing CARLA
@@ -331,6 +330,18 @@ make launch
 ```
 A window will open showing CARLA Town01 from the observer view. You can fly around using the mouse and arrrow keys. Add actors to the world with the `PythonAPI` as described below.
 
+```
+make package
+
+```
+
+A compiled package for distribution will be created in `<CARLA ROOT>/Dist/CARLA_Shipping_0.9.11-4-gfe3cb686/LinuxNoEditor`. Navigate to the new package and start the server with the following commands.
+```
+cd <CARLA ROOT>/Dist/CARLA_Shipping_0.9.11-4-gfe3cb686/LinuxNoEditor
+./CarlaUE4.sh -opengl
+```
+
+Sometimes the word _dirty_ is used in the filename of the compiled package, but I have not learned why.
 
 ### Using CARLA Option 3: Run in Docker
 *This option is for general use, testing, and developement.*
@@ -523,6 +534,14 @@ Run the client. Notice that this script can be easiyl modified. `PythonClient` i
 
 ### Server+Client Computer:
 
+* Computer: Cyberpower Pre-Built (my computer)
+* CPU:      Ryzen7 5800x @ 3800Mhz (max) x 8
+* Graphics: Geforce RTX 3070
+* RAM:      32 GB@3200MHz + 32 GB swap (configured with LVM, see _OOM death_ issue)
+* OS:       Ubuntu18.04
+
+### Server+Client Computer:
+
 * Computer: MSI H87-G43 (caseless miracle)
 * CPU:      i7-4770k @ 3.5 x 8
 * Graphics: Geforce GTX 1650
@@ -594,7 +613,6 @@ This is the **stable** version. Breif testing of this version is shown at the bo
 
 - [x] test ros_bridge with COROS - this is not exactaly what I was looking for  
 - [ ] split to do list across READMEs?
-
 
 
 This is a work in progress, and I am open to comments and/or suggestions.
