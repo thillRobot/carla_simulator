@@ -83,4 +83,4 @@ I have successfully tested this in Ubuntu18.04 using both intallation methods sh
 This the main reason I am holding onto `Ubuntu18.04`.
 
 
-Note the ros bridge requires the python egg file for carla to match the version of ros. So, if you are running ros melodic you will need to use python 2.7 egg file instead of the 3.6 one. This seems like something that we should be outgrowing now.
+Note the ros bridge requires the python egg file for carla to match the version of ros. So, if you are running ros melodic you will need to use python 2.7 egg file instead of the 3.6 one. This seems like something that we should be outgrowing now. 
