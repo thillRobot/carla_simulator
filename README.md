@@ -20,7 +20,7 @@ The YouTube channel is down right now, but I am working on putting it back toget
 
 # Official CARLA Documentation
 
-- [readthedocs](https://carla.readthedocs.io/en/latest/)
+- [readthedocs](https://carla.readthedocs.io/en/stable/)
 
 # Other Sources
 
