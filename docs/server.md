@@ -4,7 +4,7 @@ This README is intended to be a guide to using CARLA. This repository is not a d
 October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020 - July 29, 2021 
 
 ## Watch
-The YouTube channel is down right now, but I am working on putting it back together. It should be up soon under the channel name _thillRobot_.
+The videos have been down, but I am putting them back up now. You can watch CARLA demos on Youtube [here](https://youtu.be/e4NEGhGX1po).
 
 ## Useful Resources
 
