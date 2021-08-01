@@ -1,5 +1,5 @@
 # server
-This README is intended to be a guide to using CARLA. This repository is not a distribution or source code of CARLA.
+This README is intended to be a personal guide to using CARLA. This repository is not a distribution or fork of the CARL package.
 
 October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020 - July 29, 2021 
 
