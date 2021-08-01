@@ -69,18 +69,15 @@ cd <CARLA ROOT>
 ###### After *Installing CARLA*, continue to *Installing Python Dependecies* to complete the installation
 
 ### Installing CARLA Option 2: - Build from Source
-##### Build CARLA from Source
 *This option is for development and map generation. Building requires ~30G of storage and significant memory.*
 
 Build CARLA from source in Ubuntu 18.04 following the docs [here](https://carla.readthedocs.io/en/latest/build_linux/).
-
-
 
 Building CARLA is going to take a long time, and it will require significant memory and potentially significant swap space. See `issues.md` for more infomation. 
 
 The build instructions for Ubuntu 18.04 from the CARLA docs are shown below. See the link above for more details.
 
-First, install the neccessary system dependencies and configur the compiler.
+First, install the neccessary system dependencies and configure the compiler.
 
 ```
 sudo apt-get update &&
@@ -131,7 +128,6 @@ Clone or Download the latest CARLA package from Github [here](https://github.com
 
 ```
 git clone https://github.com/carla-simulator/carla
-
 ```
 
 ```
@@ -166,7 +162,6 @@ To build the entire package run the following command. This would be a good time
 
 ```
 make package
-
 ```
 
 Once the package is built there are many tools available. A compiled package for distribution will be created in `<CARLA ROOT>/Dist/CARLA_Shipping_0.9.11-4-gfe3cb686/LinuxNoEditor`.
