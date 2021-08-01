@@ -58,11 +58,11 @@ There are multiple ways to install and use the CARLA package. Choose the option 
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of CARLA can be built.
 
 ### Installing CARLA Option 1: - Run in Pre-Compiled Package  
-*This option is for for general use and testing.*
-Download and extract the CARLA package from [Github](https://github.com/carla-simulator/carla/releases). Choose versions by downloading the appropriate compressed file (`tar.gz` for Linux, `.zip` for Windows). In these pages, the top directory of the package will be known as `<CARLA_ROOT>`. Download the map assets separately as a compressed file, and place them it the `<CARLA_ROOT>/Import` directory. Navigate to `<CARLA ROOT>` and run the import script to bring the assets into the package as shown below.
+*This option is for general use and testing.*
+Download and extract a pre-compliled CARLA package from [Github](https://github.com/carla-simulator/carla/releases). Choose versions by downloading the appropriate compressed file (`tar.gz` for Linux, `.zip` for Windows). In this tutorial, the top directory of the CARLA package will be known as `<CARLA_ROOT>`. Download the map assets separately as a compressed file, and place them it the `<CARLA_ROOT>/Import` directory. Navigate to `<CARLA_ROOT>` and run the import script to bring the assets into the package as shown below.
 
 ```
-cd <CARLA ROOT>
+cd <CARLA_ROOT>
 ./ImportAssets.sh
 ```
 
@@ -154,7 +154,7 @@ Now, you are ready to build CARLA. Choose one of the options below. Read the doc
 * `make rebuild` 	make clean and make launch both in one command.
 
 ```
-cd <CARLA ROOT>
+cd <CARLA_ROOT>
 make <OPTION>
 ```
 
