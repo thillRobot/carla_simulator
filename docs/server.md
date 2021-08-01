@@ -364,23 +364,21 @@ I assume this issue is a driver issue or a `vulkan` thing, but I am not sure. I 
   * CARLA Server + UE Editor - After building, the provided tools can be used to edit CARLA worlds in the UE4 editor.
   * Map Ingestion Tools + Package Distribution Tools - New maps can be ingested or exported, and distributions of carla can be built.
 
+If CARLA was compiled from source, a package for distribution will be exist in `<CARLA ROOT>/Dist/CARLA_Shipping_0.9.11-4-gfe3cb686/LinuxNoEditor`. The server can be run in a locally built package, but this is mainly for developement purposes. Sometimes the word _dirty_ is used in the filename of the compiled package, but I have not learned why.  
 
-
-The server can be run in a locally built package, but this is mainly for developement purposes.  
-Move to `<CARLA ROOT>` and run the script to start the server and the Unreal Editor.
-```
-cd <CARLA ROOT>
-make launch
-```
-A window will open showing CARLA Town01 from the observer view. You can fly around using the mouse and arrrow keys. Add actors to the world with the `PythonAPI` as described below.
-
-Navigate to the new package and start the server with the following commands.
+To start the server, navigate to the new package and run the `CarlaUE4.sh` script.
 ```
 cd <CARLA ROOT>/Dist/CARLA_Shipping_0.9.11-4-gfe3cb686/LinuxNoEditor
 ./CarlaUE4.sh -opengl
 ```
 
-Sometimes the word _dirty_ is used in the filename of the compiled package, but I have not learned why.
+To use the Unreal Editor to edit a world, move to `<CARLA ROOT>` and use the `launch` option. See more details in maps.md.
+```
+cd <CARLA ROOT>
+make launch
+```
+A window will open showing CARLA `Town01` from the observer view. You can fly around using the mouse and arrrow keys. Add actors to the world and configure the server with the `PythonAPI` as described in `PythonAPI.md`.
+
 
 ### Using CARLA Option 3: Run in Docker
 *This option is for general use, testing, and developement.*
