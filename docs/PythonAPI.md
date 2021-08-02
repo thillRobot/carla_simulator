@@ -169,8 +169,28 @@ The command below changes the CARLA map and environment.
 ```
 python3 PythonAPI/util/config.py --map <map_name>
 ```
+Replace `<map_name>` with one of the following:
+  - `Town01`
+  - `Town02`
+  - `Town03`
+  - `Town04`
+  - `Town05`
+  - and possibly more
 
-And this line changes the weather.
+Download the appropriate additional maps file 'AdditionalMaps_0.9.11.tar.gz' from Github [here](https://github.com/carla-simulator/carla/releases/tag/0.9.11) and place that file in the `import` directory of the CARLA package. Use the `ImportAssets.sh` script to import the resources.  
+
+```
+cp ~/Downloads/AdditionalMaps_0.9.11.tar.gz <CARLA ROOT>/Import/AdditionalMaps_0.9.11.tar.g
+cd <CARLA ROOT>
+./ImportAssets
+```
+
+Now, you will have more worlds to choose from. 
+
+  - 'Town10HD'
+  - and more
+
+You can change the weather using the `--weather` flag.
 
 ```
 python3 PythonAPI/util/config.py --weather HardRainNoon`
