@@ -4,6 +4,8 @@ This README is intended to be a personal guide for preparing and editing custom 
 
 ## Generating Custom Maps with for CARLA from OpenStreetMap 
 
+**It is time to fix this section.**
+
 #### Requirements
 
 This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the Unreal Editor. I am sure there is a way to use the editor without a build from source CARLA, but I have not looked into this yet. 
