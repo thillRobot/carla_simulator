@@ -39,7 +39,7 @@ save single layer as CoE04.osm
 
 convert .osm to with .xodr with carla (notice the weird paths, this is discussed in maps.md)
 
-thill@ubuntu18-ryzen7:~/carla_simulator/carla/PythonAPI/carla$ python3 ../util/convert_osm_xodr.py 
+******@********:~/carla_simulator/carla/PythonAPI/carla$ python3 ../util/convert_osm_xodr.py 
 Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687').
 Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycleway.lane|highway.residential' (first occurence for edge '574210687').
 Warning: Intersecting left turns at junction '203380404' from lane '19585049#0_0' and lane '-19585049#5_0' (increase junction radius to avoid this).
