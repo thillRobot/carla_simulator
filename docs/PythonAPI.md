@@ -124,8 +124,8 @@ vim ~/.bashrc
 ```
 #Setup for CARLA
 export CARLAROOT=~/carla_simulator/dist/CARLA_Shipping_0.9.11/LinuxNoEditor
-export CARLADIST=$CARLAROOT/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
-export PYTHONPATH=$PYTHONPATH:$CARLADIST
+export CARLADIST=carla-0.9.11-py3.6-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:$CARLAROOT/PythonAPI/carla/dist/$CARLADIST
 ```
 
 Close and restart the terminal, or run the script with the following command.
@@ -141,7 +141,6 @@ echo $PYTHONPATH
 
 /opt/ros/melodic/lib/python2.7/dist-packages:/home/<USER>/carla_simulator/dist/CARLA_Shipping_0.9.11/LinuxNoEditor/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
 ```
-
 
 You can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts require further dependencies. These can to be installed with `requirements.txt`. 
 
