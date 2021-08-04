@@ -10,7 +10,7 @@ This README is intended to be a personal guide for preparing and editing custom 
 
 This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the Unreal Editor. I am sure there is a way to use the editor without a build from source CARLA, but I have not looked into this yet. 
 
-(CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18 (jdk11 I think).
+(CHECK THIS ON THIS) - JAVA may be required to run some of these tools. I am using  `openjdk-8-jre`  which is am older version than the default for Ubuntu18 (default is jdk11 I think, check with `sudo apt --installed | grep jdk`).
 
 ```
 sudo apt-get install openjdk-8-jre
@@ -32,11 +32,10 @@ Export a .osm file using with the [web app](www.openstreetmap.org). Choose a bou
 Instead of using the web app, you can import the data directly from OpenStreetMap using the Java app `josm`. This tool requires JDK8.
 This JAVA app can be used to download maps from OpenStreetMap end edit **.osm** files. Read more on the [josm Github](https://josm.openstreetmap.de/). 
 
-
-Download the file `josm.jar` or `josm-latest.jar` from the JOSM (downloads page)[https://josm.openstreetmap.de/wiki/Download]. Save the file somewhere called <JOSM ROOT>. Change to this directory, and run the app with the command shown. This is my preferred method.
+Download the file `josm.jar` or `josm-latest.jar` from the JOSM (downloads page)[https://josm.openstreetmap.de/wiki/Download]. Save the file somewhere called <JOSM_ROOT>. Change to this directory, and run the app with the command shown. This is my preferred method.
 
 ```
-cd <JOSM ROOT>/josm
+cd <JOSM_ROOT>/josm
 java -jar josm-latest.jar
 ```
 
