@@ -1,0 +1,18 @@
+{
+  "maps": [
+    {
+      "name": "CoE04",
+      "source": "./CoE04/CoE04.fbx",
+      "use_carla_materials": true,
+      "xodr": "./CoE04/CoE04.xodr"    
+    },
+    {
+      "name": "Campus02",
+      "source": "./Campus02/Campus02_blndr.fbx",
+      "use_carla_materials": true,
+      "xodr": "./Campus02/Campus02_rr.xodr"
+    }
+  ],
+  "props": [
+  ]
+}

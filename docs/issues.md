@@ -69,31 +69,4 @@ RuntimeError: time-out of 2000ms while waiting for the simulator, make sure the 
 This can be fixed by increasing the connection timeout that is set in the python scripts. For example I increased it to 5 seconds by
 editing line 1038 in `manual_control.py`. I wonder why it defaults to something that works so poorly.
 
-###### Cannot read local schema
-You must be in the `carla/PythonAPI/carla/` directory to run this script. I assume this is just a path issue that can be addressed. For now, use `cd` as shown above. I found this here (insert link - go find post)
-```
-Warning: Cannot read local schema '../carla/data/xsd/types_file.xsd', will try website lookup.
-Traceback (most recent call last):
-  File "PythonAPI/util/convert_osm_xodr.py", line 50, in <module>
-    xodr_data = carla.Osm2Odr.convert(osm_data, settings)
-RuntimeError: unsupported protocol in URL
- In file 'built in type map'
- At line/column 1/0.
 
-  The types could not be loaded from 'built in type map'.
-```
-I have no idea why this is happening, but it does not seem to matter. This workaround seems to be just fine.
-
-
-###### Angular Distortion Issue! - CARLA 0.9.11 may have solved this - actually I think it might be me...
-The conversion runs but the resulting map is distorted in an angular sense (20-30 degrees) - not at all useable This is a known issue (https://github.com/carla-simulator/carla/issues/3009). The angular distortion issue can be avoided by using a (osm2xodr)[https://github.com/JHMeusener/osm2xodr] instead of CARLA to convert from **.osm** to **.xodr**.
-
-@Axel1092 has a suggestion for properly handling the georefencing in issue (3009)[https://github.com/carla-simulator/carla/issues/3009] and he implies that the problem has been solved. However several people are still having the issue. I assume we are not correctly setting the geoferencing for the xodr file.  
-
-@JHMeusener has provided a fix (here)[https://github.com/JHMeusener/CarlaSimpleXODRProjectionWorkaround] and mentioned in issue (3686)[https://github.com/carla-simulator/carla/issues/3686#issuecomment-789629967]. I have not tried this yet. He mentions that it might only work in Europe. 
-
-I thought that the issue was fixed in CARLA, but since Jim's post there has been some related activity from the CARLA team. I guess they are working on a fix (here)[https://github.com/carla-simulator/carla/pull/3901], but I am not sure yet. 
-
-I have test again with updated CARLA 0.9.11 using the steps shown above, and the angular distortion issue is still happening. You can clearly see that the map shown in this image is not correct.
-
-<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/angular_distortion_01.png" alt="drawing" width="200"/>
