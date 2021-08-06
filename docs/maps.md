@@ -353,13 +353,13 @@ OpenDrive Export Preview:
 If you thought you were done, this would be a good time time get some more coffee. Pan over to the end of one of the extending roads and you will see that there is another problem. The automatic rebuilding did not work for the ends of the roads (in my case at least). This can be fixed manually or you be left as is. If you do not fix this I think cars will dissapear when they reach this junction. I want to fix it because I want my NPCs to persist throughout their appropriate lifetime. I have shown a few suggestions, and you can get some ideas from the CARLA maps. This can be fun and time consuming, then it is not much fun anymore.
 
 Small Loops:
-<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/smallloops.png" alt="drawing" width="400"/>
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/roadrunner_smallloops.png" alt="drawing" width="400"/>
 
 Big Loops:
-<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/bigloops.png" alt="drawing" width="400"/>
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/roadrunner_bigloops.png" alt="drawing" width="400"/>
 
 No Extending Roads:
-<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/noextendingroads.png" alt="drawing" width="400"/>
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/roadrunner_noextendingroads.png" alt="drawing" width="400"/>
 
 Finally you are ready to export the map. Click `File >> Export >> CARLA (.fbx,.xodr,.rrdata.xml)` and select `Export to Tiles` and `Export markings as <line>`. I am still testing these options. Choose a filename `<MAP_NAME>.fbx` and click `export`. All three file types listed should be created.
 
