@@ -4,7 +4,7 @@ This README is intended to be a personal guide for preparing and editing custom 
 
 ## Generating Custom Maps with for CARLA from OpenStreetMap 
 
-**It is time to fix this section.**
+**I have finally made some improvements to this section. It is not perfect yet, but it is much better now.**
 
 ### Requirements
 
