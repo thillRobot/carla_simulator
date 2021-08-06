@@ -28,10 +28,10 @@ conda install -c cidermole jdk8
 
 This is a long and involved process, but _you can do it_. Here are the steps to construct a custom map for CARLA. This list starting to make sense, but it still needs some cleaning up.
 
-- **Step 1 -  Obtain map data from OpenStreetMap + Terrain Digital Elevation Map**
-- **Step 2 -  Generate OpenDrive (.xodr) description of roads from (.osm)**
+- **Step 1 - Obtain map data from OpenStreetMap + Terrain Digital Elevation Map**
+- **Step 2 - Generate OpenDrive (.xodr) description of roads from (.osm)**
 - **Step 3 - Import OpenDrive into CARLA (Standalone mode). This step is not neccesary.**
-- **Step 4 - Add Terrain and Customizefile Map with Roadrunner from Mathworks**
+- **Step 4 - Add Terrain and Customize Map with Roadrunner from Mathworks**
 - **Step 5 - Adding models (props) to the map (not Standalone mode)**
 - **Step 6 - Compile CARLA for Map ingestion**
 - **Step 7 - Map Ingestion into CARLA**
