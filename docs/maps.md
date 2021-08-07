@@ -6,6 +6,9 @@ This README is intended to be a personal guide for preparing and editing custom 
 
 **I have finally made some improvements to this section. It is not perfect yet, but it is much better now.**
 
+## Example Maps
+You can see some examples that I am using to learn this process in a separate `Git lfs` repository for map data [carla_maps](https://Github.com/thillRobot/carla_maps.git).
+
 ### Requirements
 
 This process has been tested in Ubuntu 18.04 with CARLA 0.9.10 and 0.9.11. I am primarily using a build from source for so I have access to the Unreal Editor. I am sure there is a way to use the editor without a build from source CARLA, but I have not looked into this yet. 
