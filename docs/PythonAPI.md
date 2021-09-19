@@ -5,7 +5,7 @@ This is intended to be a guide to using the PythonAPI to interact with CARLA. Th
 At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage the (Python?) dependencies.
 
 ### Python Dependencies Option 1: Use CONDA Environments
-This is my preffered method to manage the Python dependencies and is the primary method used in this guide. **I need to test this again**
+This was my preffered method to manage the Python dependencies, but now I like method two more. **I need to re-order them**
 Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). This way you do not have to set the paths each time or install dependencies.
 The CONDA [cheatsheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf) is very useful.
 
