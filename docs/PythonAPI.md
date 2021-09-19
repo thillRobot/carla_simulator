@@ -14,6 +14,12 @@ source carla-env/bin/activate
 
 pip install upgrade pip 
 pip install pygame numpy
+pip install pygame <PATH TO WHL FILE>
+```
+
+Here is an example of installing the wheel file that was created when compiling CARLA-0.9.12 from source.
+
+```
 pip install carla/Dist/CARLA_Shipping_0.9.12/LinuxNoEditor/PythonAPI/carla/dist/carla-0.9.12-cp36-cp36m-linux_x86_64.whl
 ```
 Now you can test the different features included in the API.
