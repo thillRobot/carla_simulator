@@ -18,6 +18,13 @@ sudo apt-get install carla-ros-bridge
 
 #### Install Option B (developers): compile from source
 Create a catkin workspace and install carla_ros_bridge package
+
+
+
+
+#### OLD INSTRUCTIONS From .... sometime before now 
+#### Install Option C (developers): compile from source
+Create a catkin workspace and install carla_ros_bridge package
 ```
 #setup folder structure
 mkdir -p ~/carla-ros-bridge/catkin_ws/src
