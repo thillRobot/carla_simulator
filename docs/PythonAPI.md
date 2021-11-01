@@ -24,6 +24,24 @@ pip install carla/Dist/CARLA_Shipping_0.9.12/LinuxNoEditor/PythonAPI/carla/dist/
 ```
 Now you can test the different features included in the API.
 
+#### add alias to activate venv
+
+You can add an alias in `~/.bashrc` to make activatin the venv very easy. Add the following line to `~/.bashrc` so you can activate the venv with the command `carla`
+
+```
+alias carla='source ~/carla_simulator/carla-env/bin/activate'
+```
+
+Now it is very easy to activate the CARLA python environment in a new terminal
+```
+user@host:~/carla-ros-bridge/catkin_ws$ carla
+```
+You can see the venv is now active
+```
+(carla-env) user@host:~/carla-ros-bridge/catkin_ws$ carla
+```
+That is not neccesary but it is very useful.
+
 ### Python Dependencies Option 2: Use CONDA Environments
 This was my preffered method to manage the Python dependencies, but now I like method two more. **I need to re-order them**
 Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). This way you do not have to set the paths each time or install dependencies.
