@@ -230,6 +230,9 @@ NODES
 
 Woo hoo it finally seems to work...The things stop working quicklly...
 
+
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/CARLA_ros_bridge_01.png" alt="drawing" width="400"/>
+
 ```
     if self.cvtype_to_name[self.encoding_to_cvtype2(encoding)] != cv_type:
   File "/opt/ros/melodic/lib/python2.7/dist-packages/cv_bridge/core.py", line 91, in encoding_to_cvtype2
