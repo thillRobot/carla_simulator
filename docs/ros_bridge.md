@@ -3,7 +3,7 @@ This is intended to be a guide to using the carla_ros_bridge with CARLA. This is
 
 
 The ROS bridge gives access to data from the CARLA simulation in ROS
-Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge)
+Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/).
 
 #### Install Option A (for users): install with `apt`
 ```
