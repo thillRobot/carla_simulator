@@ -49,6 +49,87 @@ I am starting to like `catkin build` because the output is much more readable.
 
 #### Test the CARLA ROS Bridge
 
+Start the simulator
+
+```
+cd $CARLAROOT
+./CarlaUE4.sh
+```
+
+I am using Python [venv](https://docs.python.org/3/tutorial/venv.html) to manage the python dependencies (see [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md) for details). 
+
+Source the virtual environment to use the PythonAPI
+```
+source ~/carla_simulator/carla-env/bin/activate
+```
+
+Alternatively, use an alias in `~/.bashrc` to make this easy
+```
+carla
+```
+With the simulator running, start the first example launch file from the instructions on the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/) under _Run the ROS Bridge_
+
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
+```
+
+
+It looks like I am missing some python packages. It should be easy to install the neccessary packages using `pip` in the virtual environment. 
+
+```
+...
+
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/genpy/message.py", line 48, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+================================================================================REQUIRED process [carla_ros_bridge-2] has died!
+process has died [pid 7196, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/eb36f944-3acc-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/thill/.ros/log/eb36f944-3acc-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+Initiating shutdown!
+================================================================================
+[carla_ros_bridge-2] killing on exit
+
+...
+```
+
+The error messages can be deceiving. Let's do some reading first...
+
+The `yaml` module can be installed by installing [PyYAML](https://pypi.org/project/PyYAML/) using `pip`. Run the following in the venv.
+```
+pip install PyYAML
+```
+The package should install without errors. It is a good idea to update pip with the reccomended command if it has not been updated recently. You will see a message about this when you use pip if an update is needed.
+
+Let's try again with PyYAML installed.
+
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
+```
+
+There are still missing packages. 
+
+```
+...
+
+File "/opt/ros/melodic/lib/python2.7/dist-packages/roslib/launcher.py", line 42, in <module>
+    import rospkg
+ModuleNotFoundError: No module named 'rospkg'
+================================================================================REQUIRED process [carla_ros_bridge-2] has died!
+process has died [pid 8660, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/f70aa158-3ad1-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/thill/.ros/log/f70aa158-3ad1-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+Initiating shutdown!
+================================================================================
+
+...
+```
+
+The `rospkg` package can be installed by installing [`rospkg`](https://pypi.org/project/rospkg/) using `pip` just like before. This times the names match.
+```
+pip install rospkg
+```
+This installed correctly with several other packages. Let's try again.
+
+
 
 
 #### OLD INSTRUCTIONS From .... sometime before now 
