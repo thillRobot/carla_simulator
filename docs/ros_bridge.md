@@ -129,6 +129,47 @@ pip install rospkg
 ```
 This installed correctly with several other packages. Let's try again.
 
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
+```
+
+Still more...
+
+```
+  File "/home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_common/src/carla_common/transforms.py", line 18, in <module>
+    from transforms3d.euler import euler2mat, quat2euler, euler2quat
+ModuleNotFoundError: No module named 'transforms3d'
+================================================================================REQUIRED process [carla_ros_bridge-2] has died!
+process has died [pid 9085, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/146010d4-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/thill/.ros/log/146010d4-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+Initiating shutdown!
+================================================================================
+[carla_ros_bridge-2] killing on exit
+
+```
+The `transforms3d` package can be installed by installing [`transforms3d`](https://pypi.org/project/transforms3d/) using `pip` again. I wonder why the names did not match the first time.
+
+```
+pip install transforms3d
+```
+Install successful. Keep trying!
+
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
+```
+```
+ImportError: dynamic module does not define module export function (PyInit__tf2)
+================================================================================REQUIRED process [carla_ros_bridge-2] has died!
+process has died [pid 9358, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/thill/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+Initiating shutdown!
+================================================================================
+```
+
+OK, this is getting rediculous. I have just realized that this seems like a Python2 Python3 version mismatch... I
+
+
+
 
 
 
