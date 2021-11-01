@@ -4,8 +4,28 @@ This is intended to be a guide to using the PythonAPI to interact with CARLA. Th
 ## Installing Python Dependencies
 At minimum `numpy` and `pygame` are required, and other Python modules are required for some features. It is reccomended to use a vitrual environment such and `venv` or `conda` to manage the (Python?) dependencies.
 
-### Python Dependencies Option 1: Use CONDA Environments
-This is my preffered method to manage the Python dependencies and is the primary method used in this guide. **I need to test this again**
+### Python Dependencies Option 1: Use VENV Environments
+This method has been reccomended by the CARLA team and others. I am testing this now. The CARLA 0.9.12 docs show how to use .whl file instead of egg and this makes all this easy to do in a virtual environment. This is my preferred method.
+
+```
+cd <CARLA_ROOT>
+python3 -m venv carla-env 
+source carla-env/bin/activate
+
+pip install upgrade pip 
+pip install pygame numpy
+pip install pygame <PATH TO WHL FILE>
+```
+
+Here is an example of installing the wheel file that was created when compiling CARLA-0.9.12 from source with `make package`.
+
+```
+pip install carla/Dist/CARLA_Shipping_0.9.12/LinuxNoEditor/PythonAPI/carla/dist/carla-0.9.12-cp36-cp36m-linux_x86_64.whl
+```
+Now you can test the different features included in the API.
+
+### Python Dependencies Option 2: Use CONDA Environments
+This was my preffered method to manage the Python dependencies, but now I like method two more. **I need to re-order them**
 Install conda following instructions [here](https://docs.anaconda.com/anaconda/install/linux/). This way you do not have to set the paths each time or install dependencies.
 The CONDA [cheatsheet](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf) is very useful.
 
@@ -72,7 +92,19 @@ conda install networkx
 Now you can test the different features included in the API.
 
 ### Python Dependencies Option 2: Use VENV Environments
-I have only done limited testing for this option. This method has been reccomended by the CARLA team and others. **I would like to figure this out.**
+This method has been reccomended by the CARLA team and others. I am testing this now. In CARLA 0.9.12 the docs show how to use .whl file instead of egg and this makes all this easy to do in a virtual environment. I like this method the most.
+
+```
+cd <CARLA_ROOT>
+python3 -m venv carla-env 
+source carla-env/bin/activate
+
+pip install upgrade pip 
+pip install pygame numpy
+pip install carla/Dist/CARLA_Shipping_0.9.12/LinuxNoEditor/PythonAPI/carla/dist/carla-0.9.12-cp36-cp36m-linux_x86_64.whl
+```
+Now you can test the different features included in the API.
+
 
 This [turtorial](https://antc2lt.medium.com/carla-on-ubuntu-20-04-with-docker-5c2ccdfe2f71) shows a similar way that uses `virtualenv`. There are one or two bugs in the tutorial, but overall it was very useful to read because this person is doing something very similar to me.
 

@@ -1,7 +1,7 @@
 # server
 This README is intended to be a personal guide to using CARLA. This repository is not a distribution or fork of the CARL package.
 
-October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020 - July 29, 2021 
+October 07, 2020 - December 06, 2020 - December 29, 2020 - January 05, 2020 - July 29, 2021 - September 18 2021
 
 ## Watch
 The videos have been down, but I am putting them back up now. You can watch CARLA demos on Youtube [here](https://youtu.be/e4NEGhGX1po).
@@ -77,74 +77,7 @@ Building CARLA is going to take a long time, and it will require significant mem
 
 The build instructions for Ubuntu 18.04 from the CARLA docs are shown below. See the link above for more details.
 
-First, install the neccessary system dependencies and configure the compiler.
-
-```
-sudo apt-get update &&
-sudo apt-get install wget software-properties-common &&
-sudo add-apt-repository ppa:ubuntu-toolchain-r/test &&
-wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - &&
-sudo apt-add-repository "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main" &&
-sudo apt-get update
-```
-
-```
-sudo apt-get install build-essential clang-8 lld-8 g++-7 cmake ninja-build libvulkan1 python python-pip python-dev python3-dev python3-pip libpng-dev libtiff5-dev libjpeg-dev tzdata sed curl unzip autoconf libtool rsync libxml2-dev &&
-pip2 install --user setuptools &&
-pip3 install --user -Iv setuptools==47.3.1 &&
-pip2 install --user distro &&
-pip3 install --user distro
-```
-
-```
-sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/lib/llvm-8/bin/clang++ 180 &&
-sudo update-alternatives --install /usr/bin/clang clang /usr/lib/llvm-8/bin/clang 180
-```
-Link your Github account to Epic Games if it is not already. Then, install Unreal Engine.
-
-```
-git clone --depth=1 -b 4.24 https://github.com/EpicGames/UnrealEngine.git ~/UnrealEngine_4.24
-```
-
-```
-cd ~/UnrealEngine_4.24
-```
-
-```
-wget https://carla-releases.s3.eu-west-3.amazonaws.com/Linux/UE_Patch/430667-13636743-patch.txt 430667-13636743-patch.txt
-patch --strip=4 < 430667-13636743-patch.txt
-```
-
-```
-./Setup.sh && ./GenerateProjectFiles.sh && make
-```
-
-```
-cd ~/UnrealEngine_4.24/Engine/Binaries/Linux && ./UE4Editor
-```
-Now Unreal 4.24 should be installed. 
-
-Clone or Download the latest CARLA package from Github [here](https://github.com/carla-simulator/carla.git) or choose a version from the releases page here(https://github.com/carla-simulator/carla/releases).
-
-```
-git clone https://github.com/carla-simulator/carla
-```
-
-```
-cd ~/carla
-```
-
-```
-./Update.sh
-```
-
-```
-echo "export UE4_ROOT=~/UnrealEngine_4.24" >> ~/.bashrc
-```
-
-Restart the terminal so that the environment variable is set by running `~/.bashrc`.
-
-Now, you are ready to build CARLA. Choose one of the options below. Read the docs for CARLA [Linux Build](https://carla.readthedocs.io/en/latest/build_linux/) for more information.
+Here are the options you have when building.
 
 * `make help` 	Prints all available commands.
 * `make launch` 	Launches CARLA server in Editor window.
@@ -601,6 +534,7 @@ Run the client. Notice that this script can be easiyl modified. `PythonClient` i
  - [x] carla 0.9.10
  - [x] carla 0.9.10.1
  - [x] carla 0.9.11
+ - [x] carla 0.9.12 - woop woop
  - [ ] carla latest
 
 ### Version:latest
