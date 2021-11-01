@@ -1,9 +1,8 @@
 # ros_bridge
-This is intended to be a guide to using the carla_ros_bridge with CARLA. This is not a distribution or source code of the carla_ros_bridge.
-
+This is intended to be a guide to using the carla_ros_bridge with CARLA. This is not a distribution or source code of the carla_ros_bridge. Read the official docs first.
 
 The ROS bridge gives access to data from the CARLA simulation in ROS
-Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/).
+Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/). The instructions are repeated below for convenience. 
 
 #### Install Option A (for users): install with `apt`
 ```
@@ -18,7 +17,37 @@ sudo apt-get install carla-ros-bridge
 
 #### Install Option B (developers): compile from source
 Create a catkin workspace and install carla_ros_bridge package
+```
+mkdir -p ~/carla-ros-bridge/catkin_ws/src
+cd ~/carla-ros-bridge
+```
+Source the ROS setup files. This is probably in your `~/.bashrc` already
+```
+source /opt/ros/melodic/setup.bash
+```
 
+Install ROS dependencies with rosdep
+```
+cd catkin_ws
+rosdep update
+rosdep install --from-paths src --ignore-src -r
+```
+
+Build the package
+```
+catkin build # alternatively use catkin_make
+```
+
+The package compiles and gives this nice message at the end. 
+`[build] Note: Workspace packages have changed, please re-source setup files to use them.`
+
+Let's do that. 
+```
+source ~/.bashrc
+```
+I am starting to like `catkin build` because the output is much more readable.
+
+#### Test the CARLA ROS Bridge
 
 
 
