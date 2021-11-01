@@ -35,17 +35,15 @@ rosdep install --from-paths src --ignore-src -r
 
 Build the package
 ```
-catkin build # alternatively use catkin_make
+catkin_make # alternatively use `catkin build`
 ```
 
-The package compiles and gives this nice message at the end. 
-`[build] Note: Workspace packages have changed, please re-source setup files to use them.`
+source workspace setup files again
 
-Let's do that. 
 ```
 source ~/.bashrc
 ```
-I am starting to like `catkin build` because the output is much more readable.
+
 
 #### Test the CARLA ROS Bridge
 
@@ -166,11 +164,81 @@ Initiating shutdown!
 ================================================================================
 ```
 
-OK, this is getting rediculous. I have just realized that this seems like a Python2 Python3 version mismatch... I
+OK, this is getting rediculous. I have just realized that this seems like a Python2 Python3 version mismatch... 
 
+The issue is that the ros packge tf2 was built with python2, but my virtual environment is python 3.6.9 which should match the CARLA simulator version. I think I compiled CARLA in the default version. I would have gone with 3.7...
 
+Either way, I found a fix for this on [stack exchange](https://answers.ros.org/question/326226/importerror-dynamic-module-does-not-define-module-export-function-pyinit__tf2/) which involves compiling `tf2` in workspace with the ros bridge. At first I was nervous about this, but I was able to do in totally in the venv so there is no threat of borking the deps with apt. I **did not** run the `apt install python3-catkin-pkg-modules-etc` line because this is how you break things. 
 
+Now, try again.
 
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
+```
+
+```
+ModuleNotFoundError: No module named 'cv2'
+================================================================================REQUIRED process [carla_ros_bridge-2] has died!
+process has died [pid 28808, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/thill/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+Initiating shutdown!
+================================================================================
+[carla_ros_bridge-2] killing on exit
+```
+
+Blarhg! Now, it looks like we are missing `cv2`. There is no packge `cv2` on [Pypi][Pypi.org], but a quick search leads to [opencv-python](https://pypi.org/project/opencv-python/). This will be larger than the other packages that were installed. 
+
+Make sure the venv is still activated. You must activate again after sourcing the ~/.bashrc script
+```
+pip install opencv-python
+```
+
+Take a deep breathe and try again. 
+
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
+... logging to 
+
+...
+
+PARAMETERS
+ * /carla_ros_bridge/ego_vehicle_role_name: ["hero", "ego_veh...
+ * /carla_ros_bridge/fixed_delta_seconds: 0.05
+ * /carla_ros_bridge/host: localhost
+ * /carla_ros_bridge/passive: False
+ * /carla_ros_bridge/port: 2000
+ * /carla_ros_bridge/register_all_sensors: True
+ * /carla_ros_bridge/synchronous_mode: True
+ * /carla_ros_bridge/synchronous_mode_wait_for_vehicle_control_command: False
+ * /carla_ros_bridge/timeout: 2
+ * /carla_ros_bridge/town: Town01
+ * /rosdistro: melodic
+ * /rosversion: 1.14.12
+ * /use_sim_time: True
+
+NODES
+  /
+    carla_ros_bridge (carla_ros_bridge/bridge.py)
+ ...
+ 
+[INFO] [1635749974.358817, 0.000000]: Trying to connect to localhost:2000
+[INFO] [1635749974.445062, 0.000000]: Loading town 'Town01' (previous: 'Carla/Maps/Town10HD_Opt').
+
+...
+
+```
+
+Woo hoo it finally seems to work...The things stop working quicklly...
+
+```
+    if self.cvtype_to_name[self.encoding_to_cvtype2(encoding)] != cv_type:
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/cv_bridge/core.py", line 91, in encoding_to_cvtype2
+    from cv_bridge.boost.cv_bridge_boost import getCvType
+ImportError: dynamic module does not define module export function (PyInit_cv_bridge_boost)
+```
+This looks familiar doesnt it? Stack Echange says we need to [build cv_bridge](https://answers.ros.org/question/368957/importerror-dynamic-module-does-not-define-module-export-function-pyinit_cv_bridge_boost/) in the workspace. 
+
+It is time to take a break.
 
 
 #### OLD INSTRUCTIONS From .... sometime before now 
