@@ -238,7 +238,7 @@ ImportError: dynamic module does not define module export function (PyInit_cv_br
 ```
 This looks familiar doesnt it? Stack Echange says we need to [build cv_bridge](https://answers.ros.org/question/368957/importerror-dynamic-module-does-not-define-module-export-function-pyinit_cv_bridge_boost/) in the workspace. 
 
-It is time to take a break.
+It is time to take a break. Let's continue in the morning... wait.. when we wake up in the morning.... 
 
 
 #### OLD INSTRUCTIONS From .... sometime before now 
