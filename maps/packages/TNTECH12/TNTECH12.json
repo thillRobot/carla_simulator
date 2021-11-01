@@ -1,0 +1,12 @@
+{
+  "maps": [
+    {
+      "name": "Campus12",
+      "source": "./Campus12/Campus12.fbx",
+      "use_carla_materials": true,
+      "xodr": "./Campus12/Campus12.xodr"
+    }
+  ],
+  "props": [
+  ]
+}

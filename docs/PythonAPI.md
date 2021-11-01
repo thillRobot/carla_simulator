@@ -124,8 +124,8 @@ vim ~/.bashrc
 ```
 #Setup for CARLA
 export CARLAROOT=~/carla_simulator/dist/CARLA_Shipping_0.9.11/LinuxNoEditor
-export CARLADIST=carla-0.9.11-py3.6-linux-x86_64.egg
-export PYTHONPATH=$PYTHONPATH:$CARLAROOT/PythonAPI/carla/dist/$CARLADIST
+export CARLADIST=$CARLAROOT/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
+export PYTHONPATH=$PYTHONPATH:$CARLADIST
 ```
 
 Close and restart the terminal, or run the script with the following command.
@@ -141,6 +141,7 @@ echo $PYTHONPATH
 
 /opt/ros/melodic/lib/python2.7/dist-packages:/home/<USER>/carla_simulator/dist/CARLA_Shipping_0.9.11/LinuxNoEditor/PythonAPI/carla/dist/carla-0.9.11-py3.6-linux-x86_64.egg
 ```
+
 
 You can run *some* of the examples in `/PythonAPI/examples` and `/PythonAPI/utils`, but several of the scripts require further dependencies. These can to be installed with `requirements.txt`. 
 
@@ -171,7 +172,7 @@ On the client side I have had some trouble with the 'no module named carla issue
 this is related to properly setting the path for the 'carla' python module from `/carla/PythonAPI`.
 
 In Ubuntu 20.04 (server machine) I downloaded and extracted carla 0.9.10 - `pip3 install pygame` did not work so I had to use `apt install python3-pygame`
-i had to set the PYTHONPATH for the carla module to work. Basically the `PYTHONPATH` must include the path to *.egg* file for the right version of carla, I think that this is the same problem I am having in the docker container 'no module named carla'
+I had to set the PYTHONPATH for the carla module to work. Basically the `PYTHONPATH` must include the path to *.egg* file for the right version of carla, I think that this is the same problem I am having in the docker container 'no module named carla'
 
 #### Run the client on the local (server) machine
 

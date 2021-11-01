@@ -28,8 +28,8 @@ conda install -c cidermole jdk8
 
 This is a long and involved process, but _you can do it_. Here are the steps to construct a custom map for CARLA. This list starting to make sense, but it still needs some cleaning up.
 
-- **Step 1 -  Obtain map data from OpenStreetMap + Terrain Digital Elevation Map**
-- **Step 2 -  Generate OpenDrive (.xodr) description of roads from (.osm)**
+- **Step 1 - Obtain map data from OpenStreetMap + Terrain Digital Elevation Map**
+- **Step 2 - Generate OpenDrive (.xodr) description of roads from (.osm)**
 - **Step 3 - Import OpenDrive into CARLA (Standalone mode). This step is not neccesary.**
 - **Step 4 - Add Terrain and Customizefile Map with Roadrunner from Mathworks**
 - **Step 5 - Adding models (props) to the map (not Standalone mode)**
@@ -85,13 +85,13 @@ Click the big green download button to oprn the map tool. Choose a bounding box 
 
 Does JOSM work in a conda env? You have implied that it will above...
 
+
 ##### Step 1 Part 2 - Obtain Digital Elevation Map for road terrain. 
 
 The script `osm2xodr` should accept a digital elevation map as a 16int .png the corners of the image must match the corners of the .osm file
 and the minimum and max elevation must be known. This seems difficult, and luckily this is not how I am currently doing the elevation projection.
 
 In TN we are fortunate to have decent public arial flown LIDAR data. Download the digital elevation model from http://www.tngis.org/lidar.
-
 
 ###### Adding Elevation Data and Terrain from GIS data
 
@@ -115,7 +115,6 @@ osmPath = '/home/$USER/carla_simulator/maps/Campus02/Campus02.osm'
 ...
 
 ```
-
 
 ```
 cd ~/tool/CarlaSimpleXODRProjectionWorkaround
@@ -178,7 +177,6 @@ Warning: Could not write OpenDRIVE geoReference. Only unshifted Coordinate syste
 
 You might see some warnings, but the file `<MAP_NAME>_CARLA.xodr` should be generated.
 
-
 ###### Replace header in `<MAP_NAME>_CARLA.xodr` with text from `<MAP_NAME>_replace_XodrHeader_with_this.txt` (following Jans instructions)
 
 The (.xodr) file should now be ready to be imported into CARLA, Roadrunner, or other tools without modifying the map projections.
@@ -209,6 +207,7 @@ Warning: Discarding unknown compound 'cycleway.lane' in type 'cycleway.lane|cycl
 Warning: Intersecting left turns at junction '203380404' from lane '19585049#0_0' and lane '-19585049#5_0' (increase junction radius to avoid this).
 Warning: Could not write OpenDRIVE geoReference. Only unshifted Coordinate systems are supported (offset=7684531.66,-4019288.35)
 ```
+
 
 ##### Step 2 Alternate Option B - Convert OpenStreetMap (.osm) to OpenDRIVE format (.xodr) using osm2xodr
 
@@ -479,10 +478,10 @@ This results in a standalone asset package directory in `carla/Dist` which can b
 
 
 #### Step 9 - Importing Map Asset Package into CARLA
-Move the compressed asset package to the `carla/Import` directory of the package in which you will use `PythonAPI/util/config.py` to set the map.
-Import the assets with the script provided.
+Move the compressed asset package to the `carla/Import` directory of the package in which you will use `PythonAPI/util/config.py` to set the map. (The package you want to use) Import the assets with the script provided.
 
 ```
+cd <CARLAROOT>
 ./ImportAssets.sh
 ```
 If the import was successful you should see the asset packages under `carla/CarlaUE4/content/`. With the simulator running, change to a newly imported map.
