@@ -239,9 +239,12 @@ Woo hoo it finally seems to work...The things stop working quicklly...
     from cv_bridge.boost.cv_bridge_boost import getCvType
 ImportError: dynamic module does not define module export function (PyInit_cv_bridge_boost)
 ```
-This looks familiar doesnt it? Stack Echange says we need to [build cv_bridge](https://answers.ros.org/question/368957/importerror-dynamic-module-does-not-define-module-export-function-pyinit_cv_bridge_boost/) in the workspace. 
+This looks familiar doesnt it? Somebody on Stack Echange says we need to [build cv_bridge](https://answers.ros.org/question/368957/importerror-dynamic-module-does-not-define-module-export-function-pyinit_cv_bridge_boost/) in the workspace. The link in that post has a well accepted answer (18 upvotes lol).  
 
-It is time to take a break. Let's continue in the morning... wait.. when we wake up in the morning.... 
+It is time to take a break. Let's continue in the morning... wait.. when we wake up in the morning....
+OK! The plan is to try to build cv_bridge in the same workspace following the Stack Overflow post [here](https://stackoverflow.com/questions/49221565/unable-to-use-cv-bridge-with-ros-kinetic-and-python3). Hold on to your butts...
+
+
 
 
 
