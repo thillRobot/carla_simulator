@@ -170,6 +170,10 @@ The issue is that the ros packge tf2 was built with python2, but my virtual envi
 
 Either way, I found a fix for this on [stack exchange](https://answers.ros.org/question/326226/importerror-dynamic-module-does-not-define-module-export-function-pyinit__tf2/) which involves compiling `tf2` in workspace with the ros bridge. At first I was nervous about this, but I was able to do in totally in the venv so there is no threat of borking the deps with apt. I **did not** run the `apt install python3-catkin-pkg-modules-etc` line because this is how you break things. 
 
+
+I need to document the exact compile. I remember I switched a python3 to a python to make it work in my venv, I think.
+
+
 Now, try again.
 
 ```
@@ -197,6 +201,8 @@ Take a deep breathe and try again.
 
 ```
 roslaunch carla_ros_bridge carla_ros_bridge.launch
+
+
 ... logging to 
 
 ...
@@ -243,6 +249,171 @@ This looks familiar doesnt it? Somebody on Stack Echange says we need to [build 
 
 It is time to take a break. Let's continue in the morning... wait.. when we wake up in the morning....
 OK! The plan is to try to build cv_bridge in the same workspace following the Stack Overflow post [here](https://stackoverflow.com/questions/49221565/unable-to-use-cv-bridge-with-ros-kinetic-and-python3). Hold on to your butts...
+
+
+Again, I do not want to install any system wide python packages just to compile an open_cv library. Let's do this in a virtual environment.
+
+
+The dependencies look familiar. Most of them are already installed in this environment. 
+
+```
+# `python-catkin-tools` is needed for catkin tool
+# `python3-dev` and `python3-catkin-pkg-modules` is needed to build cv_bridge
+# `python3-numpy` and `python3-yaml` is cv_bridge dependencies
+# `ros-kinetic-cv-bridge` is needed to install a lot of cv_bridge deps. Probaply you already have it installed.
+```
+
+Activate the virtual environment
+```
+carla
+```
+
+Install the additional required packages from pypi using pip.
+```
+pip install catkin-tools python-dev-tools
+``` 
+
+Great, that succesfully installed a lot of packages.
+
+There are instructions in the link above for compiling `cv_bridge`  using for `cmake` or `catkin build`. Our workspace is built with `catkin_make` so the `cmake` option should be compatitble. The `catkin_build` option will not be compatible. 
+
+build cv_bridge with python3 by passing the following to cmake (see [catkin_make docs](http://wiki.ros.org/catkin/commands/catkin_make) for usage)
+
+```
+-DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.5m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.5m.so
+```
+
+Clone the `cv_bridge` source 
+```
+cd ~/carla-ros-bridge/catklin_ws
+git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv
+```
+Find the cv_bridge version in ros melodic, it the SO post im following they used `kinetic`
+```
+apt-cache show ros-melodic-cv-bridge | grep Version
+    Version: 1.13.0-0bionic.20210921.205941
+```
+```
+git checkout 1.13.0 
+cd ../../
+```
+Would `git checkout melodic` this also work? Let's try that later.
+
+```
+cd build
+
+cmake ../src -DCMAKE_INSTALL_PREFIX=../install -DCATKIN_DEVEL_PREFIX=../devel -DPYTHON_EXECUTABLE=/usr/bin/python -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so 
+```
+
+Awesome. It compiled without errors, and the cv_bridge was found. 
+
+```
+
+...
+
+ +++ processing catkin package: 'cv_bridge'
+-- ==> add_subdirectory(vision_opencv/cv_bridge)
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.6m.so (found version "3.6.9") 
+CMake Warning at /usr/share/cmake-3.10/Modules/FindBoost.cmake:1626 (message):
+  No header defined for python3; skipping header check
+Call Stack (most recent call first):
+  vision_opencv/cv_bridge/CMakeLists.txt:11 (find_package)
+
+
+-- Boost version: 1.65.1
+-- Found the following Boost libraries:
+--   python3
+-- Found OpenCV: /usr (found suitable version "3.2.0", minimum required is "3") found components:  opencv_core opencv_imgproc opencv_imgcodecs 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.6m.so (found suitable version "3.6.9", minimum required is "2.7") 
+-- +++ processing catkin package: 'image_geometry'
+-- ==> add_subdirectory(vision_opencv/image_geometry)
+-- Found OpenCV: /usr (found version "3.2.0") 
+
+...
+
+
+```
+
+```
+make
+
+```
+
+this failed,
+
+```
+
+...
+
+/usr/include/python3.6m/numpy/__multiarray_api.h:1532:35: error: return-statement with a value, in function returning 'void' [-fpermissive]
+ #define NUMPY_IMPORT_ARRAY_RETVAL NULL
+                                   ^
+/usr/include/python3.6m/numpy/__multiarray_api.h:1537:151: note: in expansion of macro ‘NUMPY_IMPORT_ARRAY_RETVAL’
+ #define import_array() {if (_import_array() < 0) {PyErr_Print(); PyErr_SetString(PyExc_ImportError, "numpy.core.multiarray failed to import"); return NUMPY_IMPORT_ARRAY_RETVAL; } }
+
+
+/home/thill/carla-ros-bridge/catkin_ws/src/vision_opencv/cv_bridge/src/module.hpp:44:5: note: in expansion of macro ‘import_array’
+     import_array( );
+     ^
+...
+
+```
+
+
+ We are in a venv, so the paths in the cmake command need to point to the executables in the virtual environment. This is discussed in a later post [here](https://stackoverflow.com/questions/49221565/unable-to-use-cv-bridge-with-ros-kinetic-and-python3). This means the command above was building with the system wide python.
+
+
+```
+cmake ../src -DCMAKE_INSTALL_PREFIX=../install -DCATKIN_DEVEL_PREFIX=../devel -DPYTHON_EXECUTABLE=~/carla_simulator/carla-env/bin/python -DPYTHON_INCLUDE_DIR=~/carla_simulator/carla-env/bin/include/python3.6m -DPYTHON_LIBRARY=~/carla_simulator/carla-env/bin/lib/x86_64-linux-gnu/libpython3.6m.so 
+```
+
+OK..... That did not work, failed at 24%.
+```
+[ 24%] Generating C++ code from carla_msgs/CarlaBoundingBox.msg
+Traceback (most recent call last):
+  File "/opt/ros/melodic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py", line 50, in <module>
+    sys.argv, msg_template_map, srv_template_map)
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 213, in generate_from_command_line_options
+    generate_from_file(argv[1], options.package, options.outdir, options.emdir, options.includepath, msg_template_dict, srv_template_dict)
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 154, in generate_from_file
+    _generate_msg_from_file(input_file, output_dir, template_dir, search_path, package_name, msg_template_dict)
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 99, in _generate_msg_from_file
+    search_path)
+  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 77, in _generate_from_spec
+    interpreter = em.Interpreter(output=ofile, globals=g, options={em.RAW_OPT:True,em.BUFFERED_OPT:True})
+AttributeError: module 'em' has no attribute 'Interpreter'
+ros-bridge/carla_msgs/CMakeFiles/carla_msgs_generate_messages_cpp.dir/build.make:83: recipe for target '/home/thill/carla-ros-bridge/catkin_ws/devel/include/carla_msgs/CarlaBoundingBox.h' failed
+```
+
+Well, we were getting closer... I think it is time for a new approach. Blargh. 
+
+
+
+https://cyaninfinite.com/ros-cv-bridge-with-python-3/ This contains the is the solution to building cv_bridge, compile the version for noetic
+
+
+
+OK, well i finally got it to work, but it is miserably slow. I am so happy I spend two night on this... wooo
+
+here is a post about the slowdown issue https://github.com/carla-simulator/ros-bridge/issues/192
+
+go to bed
+
+
+
+
+
+It makes sense to upgrade to a newer python. This will also require a different version of CARLA. This will be fun...
+
+
+Rename the old carla to carla-py36 so the new version (py37) 
+
+
+
+
+
+
+
 
 
 
