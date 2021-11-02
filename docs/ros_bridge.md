@@ -231,7 +231,7 @@ NODES
 Woo hoo it finally seems to work...The things stop working quicklly...
 
 
-<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/xros_bridge_01.png" alt="drawing" width="1000"/>
+<img src="https://github.com/thillRobot/carla_simulator/blob/master/png_images/ros_bridge_01.png" alt="drawing" width="1000"/>
 
 ```
     if self.cvtype_to_name[self.encoding_to_cvtype2(encoding)] != cv_type:
