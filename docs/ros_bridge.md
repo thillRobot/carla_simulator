@@ -4,6 +4,9 @@ This is intended to be a guide to using the carla_ros_bridge with CARLA. This is
 The ROS bridge gives access to data from the CARLA simulation in ROS
 Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/). The instructions are repeated below for convenience. 
 
+This is a mess right now... It should be cleaned up soon.
+
+
 #### Install Option A (for users): install with `apt`
 ```
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1AF1527DE64CB8D9
@@ -16,6 +19,37 @@ sudo apt-get install carla-ros-bridge
 ```
 
 #### Install Option B (developers): compile from source
+
+##### Installing Python 3.7
+
+The egg file for the official realease of CARLA 0.9.12 implies that the version was built in Python 3.7. We want to install Python 3.7 alongside of 2.7 and 3.6. There are known issues related to the `update-alternatives` method shown in several tutorials online, so I will not complete this step. Afterwards we will use Python 3.7 in a `venv` so we will invoke it with `python`. DON'T BORK THE DEPS MAX!
+
+Also, it looks like we can use `ppa:ubuntu-toolchain-r/ppa` or `ppa:deadsnakes/ppa` to get the new version. I think deadsnakes is the more commonly used option.
+
+Upgrade and install Python 3.7 from [deadsnakes](https://github.com/orgs/deadsnakes/repositories)
+```
+sudo apt update
+sudo apt upgrade
+
+sudo add-apt-repository ppa:deadsnakes/ppa
+sudo apt install python3.7
+```
+
+Check the versions installed
+```
+python --version
+    Python 2.7.17
+
+python3 --version
+    Python 3.6.9
+
+python3.7 --version
+    Python 3.7.12
+```
+Again, I am not going to worry about the default version for now.
+
+
+
 Create a catkin workspace and install carla_ros_bridge package
 ```
 mkdir -p ~/carla-ros-bridge/catkin_ws/src
