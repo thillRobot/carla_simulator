@@ -7,20 +7,8 @@ Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simu
 This is a mess right now... It should be cleaned up soon.
 
 
-#### Install Option A (for users): install with `apt`
-```
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1AF1527DE64CB8D9
-sudo add-apt-repository "deb [arch=amd64] http://dist.carla.org/carla $(lsb_release -sc) main"
-```
-Then simply install the ROS bridge:
-```
-sudo apt-get update
-sudo apt-get install carla-ros-bridge
-```
 
-#### Install Option B (developers): compile from source
-
-##### Installing Python 3.7
+### Installing Python 3.7
 
 The egg file for the official realease of CARLA 0.9.12 implies that the version was built in Python 3.7. We want to install Python 3.7 alongside of 2.7 and 3.6. There are known issues related to the `update-alternatives` method shown in several tutorials online, so I will not complete this step. Afterwards we will use Python 3.7 in a `venv` so we will invoke it with `python`. DON'T BORK THE DEPS MAX!
 
@@ -85,12 +73,34 @@ source ~/.venv/carla-py37/bin/activate
 ```
  
 
+### Install carla_ros_bridge
+Follow the instructions from the official CARLA page. The commands have been copied here for convenience. 
+
+#### Install Option A (for users): install with `apt`
+```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1AF1527DE64CB8D9
+sudo add-apt-repository "deb [arch=amd64] http://dist.carla.org/carla $(lsb_release -sc) main"
+```
+Then simply install the ROS bridge:
+```
+sudo apt-get update
+sudo apt-get install carla-ros-bridge
+```
+
+#### Install Option B (developers): compile from source
+
 
 Create a catkin workspace and install carla_ros_bridge package
 ```
 mkdir -p ~/carla-ros-bridge/catkin_ws/src
 cd ~/carla-ros-bridge
 ```
+Download the source code from github.
+
+```
+git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git catkin_ws/src/ros-bridge
+```
+
 Source the ROS setup files. This is probably in your `~/.bashrc` already
 ```
 source /opt/ros/melodic/setup.bash
