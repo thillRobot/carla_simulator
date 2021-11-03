@@ -46,7 +46,23 @@ python3 --version
 python3.7 --version
     Python 3.7.12
 ```
-Again, I am not going to worry about the default version for now.
+
+Again, I am not going to worry about the default version for now because we are going to use a `venv` so it does not matter.
+
+We need `pip` for Python3.7 to use venv. There are several answers for how to do this([here](https://stackoverflow.com/questions/54633657/how-to-install-pip-for-python-3-7-on-ubuntu-18) and here), but we want the solution that follows the Python docs. Here is post about it on the [deadsnakes github](https://github.com/deadsnakes/issues/issues/79). The advice in that post is that `ensurepip` comes with `install python#.#-venv`. This makes sense.
+
+
+```
+python3.7 -m venv test
+Error: Command '['/home/thill/test/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
+```
+
+```
+python3.7 -m ensurepip
+/usr/bin/python3.7: No module named ensurepip
+```
+ the advice about should fix this./
+
 
 
 
