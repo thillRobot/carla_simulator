@@ -46,7 +46,19 @@ python3 --version
 python3.7 --version
     Python 3.7.12
 ```
-Again, I am not going to worry about the default version for now.
+Instead of changing the default version, let's use a virtual environment.
+
+```
+python3.7 -m venv ~/.venv/carla-py37
+
+    Error: Command '['/home/thill/.venv/carla-py37/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
+```
+
+This is because we need `pip` for Python 3.7 for `venv` to work with Python3.7. To check test that it still works with Python3.6
+
+
+
+
 
 
 
