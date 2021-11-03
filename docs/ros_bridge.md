@@ -71,6 +71,14 @@ That should run without errors. Activate the virtual environment and test the py
 ```
 source ~/.venv/carla-py37/bin/activate 
 ```
+
+ 
+Install the neccessary python packages in the venv with pip
+```
+pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
+```
+
+ 
  
 
 ### Install carla_ros_bridge
@@ -113,9 +121,10 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r
 ```
 
-Build the package
+Build the package with Python 3.7 (alternatively use `catkin build`)
 ```
-catkin_make # alternatively use `catkin build`
+catkin_make -DPYTHON_VERSION=3.7
+
 ```
 
 source workspace setup files again
