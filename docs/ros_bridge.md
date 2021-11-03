@@ -52,11 +52,15 @@ Again, I am not going to worry about the default version for now because we are 
 We need `pip` for Python3.7 to use venv. There are several answers for how to do this([here](https://stackoverflow.com/questions/54633657/how-to-install-pip-for-python-3-7-on-ubuntu-18) and here), but we want the solution that follows the Python docs. 
 
 
+Make a directory and create a virtual python environment
 ```
-python3.7 -m venv test
+mkdir ~/.venv
+cd ~/.venv
+python3.7 -m venv carla-py37
 Error: Command '['/home/thill/test/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
 ```
 
+Check that pip is up to date
 ```
 python3.7 -m ensurepip
 /usr/bin/python3.7: No module named ensurepip
@@ -67,6 +71,19 @@ Here is post about it on the [deadsnakes github](https://github.com/deadsnakes/i
 ```
 sudo apt install python3.7-venv
 ```
+Now create a virtual Python3.7 environment with `venv`. Remove the test environment from the line above first.
+
+```
+rm -rf ~/.venv/carla-py37
+cd ~/.venv
+python3.7 -m venv carla-py37  
+```
+That should run without errors. Activate the virtual environment and test the python version. Notice the terminal shows the venv name to the left. You can exit the environment when you are done with `deactivate`.
+
+```
+source ~/.venv/carla-py37/bin/activate 
+```
+ 
 
 
 Create a catkin workspace and install carla_ros_bridge package
