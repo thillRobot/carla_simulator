@@ -45,17 +45,16 @@ Make a directory and create a virtual python environment
 mkdir ~/.venv
 cd ~/.venv
 python3.7 -m venv carla-py37
-Error: Command '['/home/thill/test/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
+    Error: Command '['/home/thill/test/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
 ```
 
-This is because we need `pip` for Python 3.7 for `venv` to work with Python3.7. To check test that it still works with Python3.6
+This failed because we need `pip` for Python 3.7 for `venv` to work with Python3.7. The activate script was not created properly
 
+```
+source carla-py37/bin/activate
+    bash: carla-py37/bin/activate: No such file or directory
+```
 
-Check that pip is up to date
-```
-python3.7 -m ensurepip
-/usr/bin/python3.7: No module named ensurepip
-```
 
 Here is post about it on the [deadsnakes github](https://github.com/deadsnakes/issues/issues/79). The advice in that post is that `ensurepip` comes with `install python#.#-venv`. This makes sense, and the advice in the link should fix this.
 
@@ -67,7 +66,7 @@ Now create a virtual Python3.7 environment with `venv`. Remove the test environm
 ```
 rm -rf ~/.venv/carla-py37
 cd ~/.venv
-python3.7 -m venv carla-py37  
+    python3.7 -m venv carla-py37  
 ```
 That should run without errors. Activate the virtual environment and test the python version. Notice the terminal shows the venv name to the left. You can exit the environment when you are done with `deactivate`.
 
@@ -75,14 +74,47 @@ That should run without errors. Activate the virtual environment and test the py
 source ~/.venv/carla-py37/bin/activate 
 ```
 
- 
+Check the python version
+```
+python --version
+    Python 3.7.12
+```
+
+Check for pip updates
+```
+python -m ensurepip  
+    Looking in links: /tmp/tmphxz02iz3
+    Requirement already satisfied: setuptools in ./carla-py37/lib/python3.7/site-packages (47.1.0)
+    Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
+```
+
 Install the neccessary python packages in the venv with pip
 ```
 pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
 ```
+The packages installed, but I got this warning. 
 
+```
+WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
+You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip' command.
+```
+
+``` 
+/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip
  
- 
+ ...
+
+      Successfully uninstalled pip-20.1.1
+      Successfully installed pip-21.3.1
+```
+
+ The evironment is ready to use. 
+
+ To activate: `source ~/.venv/carla-py37/bin/activate`
+
+ To deactivate: `deactivate`
+
+
 
 ### Install carla_ros_bridge
 Follow the instructions from the official CARLA page. The commands have been copied here for convenience. 
@@ -127,7 +159,6 @@ rosdep install --from-paths src --ignore-src -r
 Build the package with Python 3.7 (alternatively use `catkin build`)
 ```
 catkin_make -DPYTHON_VERSION=3.7
-
 ```
 
 source workspace setup files again
