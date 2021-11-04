@@ -88,7 +88,7 @@ python -m ensurepip
     Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
 ```
 
-Install the neccessary python packages in the venv with pip
+Install the neccessary python packages for the compile in the venv with pip. 
 ```
 pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
 ```
@@ -170,119 +170,55 @@ source ~/.bashrc
 
 #### Test the CARLA ROS Bridge
 
-Start the simulator
+Install a few more Python packages in the venv before testing the ros_bridge.
 
 ```
-cd $CARLAROOT
+source ~/.venv/carla-py37/bin/activate
+
+pip install numpy pygame transforms3d
+```
+
+
+
+
+Start the simulator (I do not _think_ the venv has any affect on this)
+
+```
+export CARLA_ROOT=~/carla_simulator/dist/CARLA_0.9.12 # this path is dependent on your system
+cd $CARLA_ROOT
 ./CarlaUE4.sh
 ```
 
-I am using Python [venv](https://docs.python.org/3/tutorial/venv.html) to manage the python dependencies (see [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md) for details). 
 
-Source the virtual environment to use the PythonAPI
+Open a second terminal and source the virtual environment and the .egg file before using the PythonAPI. It makes sense to use an alias in `~/.bashrc` for these lines.
+
 ```
-source ~/carla_simulator/carla-env/bin/activate
+source ~/.venv/carla-py37/bin/activate
+
+export CARLA_ROOT=~/carla_simulator/dist/CARLA_0.9.12 # this path is dependent on your system
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.12-py3.7-linux-x86_64.egg # this path is standard for CARLA distributions
 ```
 
-Alternatively, use an alias in `~/.bashrc` to make this easy
-```
-carla
-```
+Install a few more python packages in the virtual environment
+
+
+I am using Python [venv](https://docs.python.org/3/tutorial/venv.html) to manage the python dependencies (see [PythonAPI](https://github.com/thillRobot/carla_simulator/blob/master/docs/PythonAPI.md) for details).
+
+
 With the simulator running, start the first example launch file from the instructions on the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/) under _Run the ROS Bridge_
 
 ```
+source /opt/ros/melodic/setup.bash
+source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
+
 roslaunch carla_ros_bridge carla_ros_bridge.launch
 ```
 
-
-It looks like I am missing some python packages. It should be easy to install the neccessary packages using `pip` in the virtual environment. 
-
-```
-...
-
-  File "/opt/ros/melodic/lib/python2.7/dist-packages/genpy/message.py", line 48, in <module>
-    import yaml
-ModuleNotFoundError: No module named 'yaml'
-================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 7196, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/eb36f944-3acc-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/thill/.ros/log/eb36f944-3acc-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
-Initiating shutdown!
-================================================================================
-[carla_ros_bridge-2] killing on exit
-
-...
-```
-
-The error messages can be deceiving. Let's do some reading first...
-
-The `yaml` module can be installed by installing [PyYAML](https://pypi.org/project/PyYAML/) using `pip`. Run the following in the venv.
-```
-pip install PyYAML
-```
-The package should install without errors. It is a good idea to update pip with the reccomended command if it has not been updated recently. You will see a message about this when you use pip if an update is needed.
-
-Let's try again with PyYAML installed.
-
-```
-roslaunch carla_ros_bridge carla_ros_bridge.launch
-```
-
-There are still missing packages. 
-
-```
-...
-
-File "/opt/ros/melodic/lib/python2.7/dist-packages/roslib/launcher.py", line 42, in <module>
-    import rospkg
-ModuleNotFoundError: No module named 'rospkg'
-================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 8660, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/f70aa158-3ad1-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/thill/.ros/log/f70aa158-3ad1-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
-Initiating shutdown!
-================================================================================
-
-...
-```
-
-The `rospkg` package can be installed by installing [`rospkg`](https://pypi.org/project/rospkg/) using `pip` just like before. This times the names match.
-```
-pip install rospkg
-```
-This installed correctly with several other packages. Let's try again.
-
-```
-roslaunch carla_ros_bridge carla_ros_bridge.launch
-```
-
-Still more...
-
-```
-  File "/home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_common/src/carla_common/transforms.py", line 18, in <module>
-    from transforms3d.euler import euler2mat, quat2euler, euler2quat
-ModuleNotFoundError: No module named 'transforms3d'
-================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 9085, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/146010d4-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/thill/.ros/log/146010d4-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
-Initiating shutdown!
-================================================================================
-[carla_ros_bridge-2] killing on exit
-
-```
-The `transforms3d` package can be installed by installing [`transforms3d`](https://pypi.org/project/transforms3d/) using `pip` again. I wonder why the names did not match the first time.
-
-```
-pip install transforms3d
-```
-Install successful. Keep trying!
-
-```
-roslaunch carla_ros_bridge carla_ros_bridge.launch
-```
 ```
 ImportError: dynamic module does not define module export function (PyInit__tf2)
 ================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 9358, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/thill/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+process has died [pid 9358, exit code 1, cmd /home/*****/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/*****/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/*****/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
 Initiating shutdown!
 ================================================================================
 ```
