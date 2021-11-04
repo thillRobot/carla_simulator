@@ -161,10 +161,10 @@ Build the package with Python 3.7 (alternatively use `catkin build`)
 catkin_make -DPYTHON_VERSION=3.7
 ```
 
-source workspace setup files again
+source workspace setup files again after compiling
 
 ```
-source ~/.bashrc
+source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
 
@@ -175,7 +175,7 @@ Install a few more Python packages in the venv before testing the ros_bridge.
 ```
 source ~/.venv/carla-py37/bin/activate
 
-pip install numpy pygame transforms3d
+pip install numpy pygame transforms3d devtools
 ```
 
 
@@ -195,8 +195,9 @@ Open a second terminal and source the virtual environment and the .egg file befo
 ```
 source ~/.venv/carla-py37/bin/activate
 
-export CARLA_ROOT=~/carla_simulator/dist/CARLA_0.9.12 # this path is dependent on your system
-export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.12-py3.7-linux-x86_64.egg # this path is standard for CARLA distributions
+# this path is dependent on your system 
+export CARLA_ROOT=~/carla_simulator/dist/CARLA_0.9.12 
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.12-py3.7-linux-x86_64.egg 
 ```
 
 Install a few more python packages in the virtual environment
@@ -217,24 +218,124 @@ roslaunch carla_ros_bridge carla_ros_bridge.launch
 ```
 ImportError: dynamic module does not define module export function (PyInit__tf2)
 ================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 9358, exit code 1, cmd /home/*****/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/*****/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/*****/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+process has died [pid 9358, exit code 1, cmd /home/******/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/*****/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/******/.ros/log/932dbd26-3ad3-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
 Initiating shutdown!
 ================================================================================
 ```
 
-OK, this is getting rediculous. I have just realized that this seems like a Python2 Python3 version mismatch... 
+OK, this  seems like a Python2 <-x-> Python3 version mismatch... 
 
 The issue is that the ros packge tf2 was built with python2, but my virtual environment is python 3.6.9 which should match the CARLA simulator version. I think I compiled CARLA in the default version. I would have gone with 3.7...
 
 Either way, I found a fix for this on [stack exchange](https://answers.ros.org/question/326226/importerror-dynamic-module-does-not-define-module-export-function-pyinit__tf2/) which involves compiling `tf2` in workspace with the ros bridge. At first I was nervous about this, but I was able to do in totally in the venv so there is no threat of borking the deps with apt. I **did not** run the `apt install python3-catkin-pkg-modules-etc` line because this is how you break things. 
 
+##### Compile `tf2` for Python3.7
 
-I need to document the exact compile. I remember I switched a python3 to a python to make it work in my venv, I think.
+Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
+
+Setup the compile 
+```
+cd ~/carla-ros-bridge/catkin_ws
+source devel/setup.bash
+wstool init
+wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.5
+wstool update src/geometry2
+rosdep install --from-paths src --ignore-src -y -r
+    #All required rosdeps installed successfully
+```
+Compile for Python 3. I did this did differently than the link above. I like mine better, but we will see if it works. 
+
+```
+catkin_make -DPYTHON_VERSION=3.7
+```
+
+source workspace setup files again after compiling
+
+```
+source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
+```
+
+[ 91%] Building CXX object geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o
+/home/thill/carla-ros-bridge/catkin_ws/src/geometry2/tf2_py/src/tf2_py.cpp:1:10: fatal error: Python.h: No such file or directory
+ #include <Python.h>
+          ^~~~~~~~~~
+compilation terminated.
+geometry2/tf2_py/CMakeFiles/tf2_py.dir/build.make:62: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o' failed
+make[2]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o] Error 1
+CMakeFiles/Makefile2:10204: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/all' failed
+make[1]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 94%] Built target tf2_ros
+Makefile:140: recipe for target 'all' failed
+make: *** [all] Error 2
+Invoking "make -j16 -l16" failed
 
 
-Now, try again.
 
+Scanning dependencies of target tf2
+[ 88%] Built target tf2_msgs_generate_messages
+[ 88%] Building CXX object geometry2/tf2/CMakeFiles/tf2.dir/src/buffer_core.cpp.o
+[ 88%] Built target carla_ackermann_msgs_generate_messages_eus
+[ 88%] Built target carla_ackermann_msgs_generate_messages
+[ 89%] Linking CXX shared library /home/thill/carla-ros-bridge/catkin_ws/devel/lib/libtf2.so
+[ 90%] Built target tf2
+Scanning dependencies of target tf2_ros
+[ 91%] Building CXX object geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o
+/home/thill/carla-ros-bridge/catkin_ws/src/geometry2/tf2_py/src/tf2_py.cpp:1:10: fatal error: Python.h: No such file or directory
+ #include <Python.h>
+          ^~~~~~~~~~
+compilation terminated.
+geometry2/tf2_py/CMakeFiles/tf2_py.dir/build.make:62: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o' failed
+make[2]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o] Error 1
+CMakeFiles/Makefile2:10204: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/all' failed
+make[1]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/all] Error 2
+make[1]: *** Waiting for unfinished jobs....
+[ 91%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/buffer_server.cpp.o
+[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/transform_listener.cpp.o
+[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/buffer_client.cpp.o
+[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/buffer.cpp.o
+[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/static_transform_broadcaster.cpp.o
+[ 94%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/transform_broadcaster.cpp.o
+[ 94%] Linking CXX shared library /home/thill/carla-ros-bridge/catkin_ws/devel/lib/libtf2_ros.so
+[ 94%] Built target tf2_ros
+Makefile:140: recipe for target 'all' failed
+make: *** [all] Error 2
+Invoking "make -j16 -l16" failed
+
+
+
+
+
+```
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
+            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
+```
+
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
+            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 \
+            -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
+
+```
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=/usr/bin/python3 \
+            -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m \
+            -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython
+```
+
+
+
+```
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=/usr/bin/python \
+            -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m \
+            -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
 ```
 roslaunch carla_ros_bridge carla_ros_bridge.launch
 ```
@@ -242,8 +343,8 @@ roslaunch carla_ros_bridge carla_ros_bridge.launch
 ```
 ModuleNotFoundError: No module named 'cv2'
 ================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 28808, exit code 1, cmd /home/thill/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/thill/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/thill/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
+process has died [pid 28808, exit code 1, cmd /home/******/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/******/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
+log file: /home/******/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
 Initiating shutdown!
 ================================================================================
 [carla_ros_bridge-2] killing on exit
