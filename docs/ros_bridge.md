@@ -329,7 +329,7 @@ rosdep install --from-paths src --ignore-src -y -r
 Compile for Python 3. 
 
 ```
-catkin_make cv_bridge -DPYTHON_VERSION=3.7
+catkin_make ros-bridge -DPYTHON_VERSION=3.7
 
 ```
 
