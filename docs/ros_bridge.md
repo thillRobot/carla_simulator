@@ -75,11 +75,11 @@ rm -rf ~/.venv/carla-py37
 cd ~/.venv
     python3.7 -m venv carla-py37  
 ```
-That should run without errors. Activate the virtual environment and test the python version. Notice the terminal shows the venv name to the left. You can exit the environment when you are done with `deactivate`.
+If that runs without errors, the evironment is ready to use. Activate the virtual environment and test the python version. After activation, the terminal shows the venv name to the left. 
 
-```
-source ~/.venv/carla-py37/bin/activate 
-```
+ To activate: `source ~/.venv/carla-py37/bin/activate`
+
+ To deactivate: `deactivate`
 
 Check the python version
 ```
@@ -133,11 +133,6 @@ pip install catkin-pkg catkin-tools rospkg empy numpy pygame
 
 
 
- The evironment is ready to use. 
-
- To activate: `source ~/.venv/carla-py37/bin/activate`
-
- To deactivate: `deactivate`
 
 
 ##### Compile CV_Brige with Python 3.7
