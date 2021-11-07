@@ -313,25 +313,52 @@ catkin build cv_bridge
 
 
 ### Install carla_ros_bridge
+
+
+Try the same method again.
+
+Setup the compile 
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+source devel/setup.bash
+wstool set -y src/ros-bridge --git https://github.com/carla-simulator/ros-bridge.git -v 0.9.11 # latest ros bridge
+wstool update src/ros-bridge
+rosdep install --from-paths src --ignore-src -y -r
+    #All required rosdeps installed successfully
+```
+Compile for Python 3. 
+
+```
+catkin_make cv_bridge -DPYTHON_VERSION=3.7
+
+
+
+
+
 Follow the [ROS Bridge installation instructions](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/) on the CARLA page for installing from source.
+
+
+
+
+
+
+
 
 
 #### Install Option B (developers): compile from source
 
+Clone the source code into the catkin make workspace
 
-Create a catkin workspace and install carla_ros_bridge package
 ```
 cd ~/carla-ros-bridge
-```
-Download the source code from github.
-
-```
 git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git catkin_make_ws/src/ros-bridge
+
 ```
 
 Source the ROS setup files. This is probably in your `~/.bashrc` already
 ```
 source /opt/ros/melodic/setup.bash
+source devel/setup.bash
 ```
 
 Install ROS dependencies with rosdep
