@@ -91,7 +91,7 @@ sudo apt install software-properties-common build-essential
 
 ```
 mkdir -p carla-ros-bridge/catkin_make_ws/src
-cd carla-ros-bridge/catkin_make_ws/src
+cd carla-ros-bridge/catkin_make_ws
 catkin_make -DPYTHON_VERSION=3.7
 ```
 
@@ -99,7 +99,7 @@ OR
 
 ```
 mkdir -p carla-ros-bridge/catkin_bukld_ws/src
-cd carla-ros-bridge/catkin_build_ws/src
+cd carla-ros-bridge/catkin_build_ws
 catkin build
 ```
 
