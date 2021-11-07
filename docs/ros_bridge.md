@@ -154,7 +154,7 @@ pip install --upgrade pip
 Install python packages for building ROS. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
-pip install rosdep rosinstall-generator vcstool rosinstall wstool empy
+pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy
 
     Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
 
