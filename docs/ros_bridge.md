@@ -173,6 +173,31 @@ pip install catkin-pkg catkin-tools rospkg empy numpy pygame
 ```
 
 
+##### Compile `tf2` for Python3.7
+
+Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
+
+Setup the compile 
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+source devel/setup.bash
+wstool init
+wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.5
+wstool update src/geometry2
+rosdep install --from-paths src --ignore-src -y -r
+    #All required rosdeps installed successfully
+```
+Compile for Python 3. 
+
+```
+catkin_make -DPYTHON_VERSION=3.7
+```
+
+source workspace setup files again after compiling
+
+```
+source ~/carla-ros-bridge/catkin_make_ws/devel/setup.bash
+```
 
 
 
