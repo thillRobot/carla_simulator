@@ -202,7 +202,6 @@ wow that worked
 
 
 ```
-mkdir -p carla-ros-bridge/catkin_build_ws/src
 cd carla-ros-bridge/catkin_build_ws
 
 catkin config -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
