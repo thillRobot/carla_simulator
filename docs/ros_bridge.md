@@ -8,6 +8,17 @@ This is a mess right now... It should be cleaned up soon.
 
 I got stuck a few times on the approach below. I had to take a couple days off, but now it is time to make this happen. First let's do some reading.
 
+### Host System 
+
+This is being tested in fresh install of Ubuntu 18.04.06 LTS (desktop amd64) in VirtualBox. The system has been updated with Software Updater (gui), and no other commands have been run.
+
+Check that the system is up to date before proceeding.
+
+```
+sudo apt update
+sudo apt upgrade
+```
+
 
 ### Installing Python 3.7
 
