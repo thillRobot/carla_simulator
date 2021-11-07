@@ -141,6 +141,11 @@ pip install rosdep rosinstall-generator vcstool rosinstall
 
 ```
 
+Revert  pyyaml to version 5.4.1 ([SO Post](https://stackoverflow.com/questions/69564817/typeerror-load-missing-1-required-positional-argument-loader-in-google-col))
+```
+!pip install pyyaml==5.4.1
+```
+
 
 Install the neccessary python packages for the compile in the venv with pip. (do not install 'em')
 
