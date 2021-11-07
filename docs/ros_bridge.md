@@ -127,9 +127,7 @@ pip install catkin-pkg catkin-tools rospkg empy numpy pygame
 cd carla-ros-bridge/
 mkdir -p catkin_build_ws/src && cd catkin_build_ws
 
-catkin config -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python 
-              -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
-              -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.s
+catkin config -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
 
 catkin config --install
 
