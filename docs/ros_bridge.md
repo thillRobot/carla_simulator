@@ -21,10 +21,9 @@ sudo apt upgrade
 
 ### Install (or build?) ROS
 
-Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melodic/Installation/Ubuntu). At first I am going to start with the 
+Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melodic/Installation/Ubuntu). 
 
 Complete Steps 1.1-1.3 in the installation instructions. 
-
 On step 1.4 choose bare bones option (`ros-melodic-ros-base`), then complete the remainder of the instructions as usual.
 
 
