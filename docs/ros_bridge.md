@@ -113,7 +113,7 @@ pip install --upgrade pip
       Successfully installed pip-21.3.1
 ```
 
-Install the neccessary python packages for the compile in the venv with pip. (do not install 'em')
+Install python packages for building ROS. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
 pip install rosdep rosinstall-generator vcstool rosinstall 
@@ -123,6 +123,7 @@ pip install rosdep rosinstall-generator vcstool rosinstall
 ```
 
 
+Install the neccessary python packages for the compile in the venv with pip. (do not install 'em')
 
 ```
 pip install catkin-pkg catkin-tools rospkg empy numpy pygame 
