@@ -6,6 +6,7 @@ Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simu
 
 This is a mess right now... It should be cleaned up soon.
 
+I got stuck a few times on the approach below. I had to take a couple days off, but now it is time to make this happen. First let's do some reading.
 
 
 ### Installing Python 3.7
