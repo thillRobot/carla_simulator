@@ -200,6 +200,32 @@ wow that worked
 
 ##### Compile CV_Brige with Python 3.7
 
+Try the same method.
+
+Setup the compile 
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+source devel/setup.bash
+wstool set -y src/vision_opencv --git https://github.com/ros-perception/vision_opencv.git -v 1.15.0 # latest ros 1 ?
+wstool update src/vision_opencv
+rosdep install --from-paths src --ignore-src -y -r
+    #All required rosdeps installed successfully
+```
+Compile for Python 3. 
+
+```
+catkin_make -DPYTHON_VERSION=3.7
+```
+
+source workspace setup files again after compiling
+
+```
+source carla-ros-bridge/catkin_make_ws/devel/setup.bash
+```
+
+
+
+
 
 ```
 cd carla-ros-bridge/catkin_build_ws
