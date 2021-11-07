@@ -81,7 +81,7 @@ python --version
     Python 3.7.12
 ```
 
-Check for pip updates
+Check for pip 
 ```
 python -m ensurepip  
     Looking in links: /tmp/tmphxz02iz3
@@ -89,11 +89,7 @@ python -m ensurepip
     Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
 ```
 
-Install the neccessary python packages for the compile in the venv with pip. 
-```
-pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
-```
-The packages installed, but I got this warning. 
+This warning suggests upgrading pip
 
 ```
 WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
@@ -101,7 +97,7 @@ You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3
 ```
 
 ``` 
-/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip
+pip install --upgrade pip
  
  ...
 
@@ -109,11 +105,41 @@ You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3
       Successfully installed pip-21.3.1
 ```
 
+Install the neccessary python packages for the compile in the venv with pip. 
+```
+pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
+```
+
+
  The evironment is ready to use. 
 
  To activate: `source ~/.venv/carla-py37/bin/activate`
 
  To deactivate: `deactivate`
+
+
+##### Compile CV_Brige with Python 3.7
+
+
+```
+cd carla-ros-bridge/
+mkdir -p catkin_build_ws/src && cd catkin_build_ws
+
+catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.s
+
+cd src
+
+git clone https://github.com/ros-perception/vision_opencv.git -b melodic
+
+```
+
+
+
+
+
+
+
+
 
 
 
@@ -230,24 +256,6 @@ OK, this  seems like a Python2 <-x-> Python3 version mismatch...
 The issue is that the ros packge tf2 was built with python2, but my virtual environment is python 3.6.9 which should match the CARLA simulator version. I think I compiled CARLA in the default version. I would have gone with 3.7...
 
 Either way, I found a fix for this on [stack exchange](https://answers.ros.org/question/326226/importerror-dynamic-module-does-not-define-module-export-function-pyinit__tf2/) which involves compiling `tf2` in workspace with the ros bridge. At first I was nervous about this, but I was able to do in totally in the venv so there is no threat of borking the deps with apt. I **did not** run the `apt install python3-catkin-pkg-modules-etc` line because this is how you break things. 
-
-
-##### Compile CV_Brige with Python 3.7
-
-
-```
-cd carla-ros-bridge/
-mkdir -p catkin_build_ws/src && cd catkin_build_ws
-
-catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.s
-
-cd src
-
-git clone https://github.com/ros-perception/vision_opencv.git -b melodic
-
-
-
-
 
 
 
