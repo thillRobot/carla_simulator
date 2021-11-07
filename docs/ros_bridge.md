@@ -285,6 +285,17 @@ source devel/setup.bash
 
 
 
+Previously I tried by manually setting the CMAKE args. 
+
+```
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
+            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
+```
+
+Alternatively use catkin build
+
 
 ```
 cd carla-ros-bridge/catkin_build_ws
@@ -301,10 +312,7 @@ catkin build cv_bridge
 ```
 
 
-catkin_make --cmake-args \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
-            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
+
 
 
 
