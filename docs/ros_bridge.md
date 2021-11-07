@@ -313,7 +313,7 @@ catkin build cv_bridge
 
 
 ### Install carla_ros_bridge
-Follow the instructions from the official CARLA page.
+Follow the [ROS Bridge installation instructions](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/) on the CARLA page for installing from source.
 
 
 #### Install Option B (developers): compile from source
