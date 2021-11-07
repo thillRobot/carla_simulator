@@ -87,6 +87,25 @@ Install required system wide packages.
 sudo apt install software-properties-common build-essential
 ```
 
+### Setup Catkin Workspace
+
+```
+mkdir -p carla-ros-bridge/catkin_make_ws/src
+cd carla-ros-bridge/catkin_make_ws/src
+catkin_make -DPYTHON_VERSION=3.7
+```
+
+OR
+
+```
+mkdir -p carla-ros-bridge/catkin_bukld_ws/src
+cd carla-ros-bridge/catkin_build_ws/src
+catkin build
+```
+
+
+
+
 Now create a virtual Python3.7 environment with `venv`. Remove the environment if it already exists for a fresh start.
 
 ```
