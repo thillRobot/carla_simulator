@@ -312,41 +312,21 @@ catkin build cv_bridge
 ```
 
 
-
-
-
-
-
-
-
-
-
 ### Install carla_ros_bridge
-Follow the instructions from the official CARLA page. The commands have been copied here for convenience. 
+Follow the instructions from the official CARLA page.
 
-#### Install Option A (for users): install with `apt`
-```
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1AF1527DE64CB8D9
-sudo add-apt-repository "deb [arch=amd64] http://dist.carla.org/carla $(lsb_release -sc) main"
-```
-Then simply install the ROS bridge:
-```
-sudo apt-get update
-sudo apt-get install carla-ros-bridge
-```
 
 #### Install Option B (developers): compile from source
 
 
 Create a catkin workspace and install carla_ros_bridge package
 ```
-mkdir -p ~/carla-ros-bridge/catkin_ws/src
 cd ~/carla-ros-bridge
 ```
 Download the source code from github.
 
 ```
-git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git catkin_ws/src/ros-bridge
+git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git catkin_make_ws/src/ros-bridge
 ```
 
 Source the ROS setup files. This is probably in your `~/.bashrc` already
