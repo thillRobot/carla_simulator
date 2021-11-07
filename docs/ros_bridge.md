@@ -214,13 +214,72 @@ rosdep install --from-paths src --ignore-src -y -r
 Compile for Python 3. 
 
 ```
-catkin_make -DPYTHON_VERSION=3.7
+catkin_make cv_bridge -DPYTHON_VERSION=3.7
+
+    CMake Error at /usr/share/cmake-3.10/Modules/FindBoost.cmake:1947 (message):
+  Unable to find the requested Boost libraries.
+
+  Boost version: 1.65.1
+
+  Boost include path: /usr/include
+
+  Could not find the following Boost libraries:
+
+          boost_python37
+
+  No Boost libraries were found.  You may need to set BOOST_LIBRARYDIR to the
+  directory containing Boost libraries or BOOST_ROOT to the location of
+  Boost.
+
 ```
+
+This looks familiar. I think we can solve this.
+
+```
+vim src/vision_opencv/cv_bridge/CMakeLists.txt 
+```
+
+Remove the references to Python37 in lines 9-15 of `cv_bridge/CMakeLists.txt`. The python37 executable does not work in the venv so this makes sense.
+
+Original `CMakeLists.txt`: 
+```
+  if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
+    # Debian Buster
+    find_package(Boost REQUIRED python37)
+  else()
+    # Ubuntu Focal
+    find_package(Boost REQUIRED python)
+  endif()
+```
+
+Modified `CMakeLists.txt`: (this makes no sense now !?!?!)
+```
+  if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
+    # Debian Buster
+    find_package(Boost REQUIRED python3) # added by TH
+    #find_package(Boost REQUIRED python37) # commented out by TH
+  else()
+    # Ubuntu Focal
+    find_package(Boost REQUIRED python3) # added by TH
+    #find_package(Boost REQUIRED python) # commented out by TH
+  endif()
+
+```
+
+Now the package should compile without errors.
+
+```
+catkin_make cv_bridge -DPYTHON_VERSION=3.7
+```
+
+Wow. Once again it compiled. This is progress.
+
+
 
 source workspace setup files again after compiling
 
 ```
-source carla-ros-bridge/catkin_make_ws/devel/setup.bash
+source devel/setup.bash
 ```
 
 
