@@ -62,7 +62,13 @@ Here is post about it on the [deadsnakes github](https://github.com/deadsnakes/i
 ```
 sudo apt install python3.7-venv
 ```
-Now create a virtual Python3.7 environment with `venv`. Remove the test environment from the line above first.
+
+Install required system wide packages. 
+```
+sudo apt install software-properties-common build-essential
+```
+
+Now create a virtual Python3.7 environment with `venv`. Remove the environment if it already exists for a fresh start.
 
 ```
 rm -rf ~/.venv/carla-py37
@@ -108,9 +114,22 @@ pip install --upgrade pip
 ```
 
 Install the neccessary python packages for the compile in the venv with pip. (do not install 'em')
+
+```
+pip install rosdep rosinstall-generator vcstool rosinstall 
+
+    Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 pyparsing-3.0.5 python-dateutil-2.8.2    rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
+
+```
+
+
+
 ```
 pip install catkin-pkg catkin-tools rospkg empy numpy pygame 
 ```
+
+
+
 
 
  The evironment is ready to use. 
