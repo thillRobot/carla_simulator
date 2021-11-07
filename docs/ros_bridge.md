@@ -89,12 +89,14 @@ python -m ensurepip
     Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
 ```
 
-This warning suggests upgrading pip
+If you install a package thie warning suggests upgrading pip
 
 ```
 WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
 You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip' command.
 ```
+
+Upgrade pip
 
 ``` 
 pip install --upgrade pip
@@ -105,9 +107,9 @@ pip install --upgrade pip
       Successfully installed pip-21.3.1
 ```
 
-Install the neccessary python packages for the compile in the venv with pip. 
+Install the neccessary python packages for the compile in the venv with pip. (do not install 'em')
 ```
-pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
+pip install catkin-pkg catkin-tools rospkg empy numpy pygame 
 ```
 
 
@@ -125,16 +127,24 @@ pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
 cd carla-ros-bridge/
 mkdir -p catkin_build_ws/src && cd catkin_build_ws
 
-catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.s
+catkin config -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python 
+              -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
+              -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.s
+
+catkin config --install
 
 cd src
-
 git clone https://github.com/ros-perception/vision_opencv.git -b melodic
 
+cd ..
+catkin build cv_bridge
 ```
 
 
-
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
+            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
 
 
 
