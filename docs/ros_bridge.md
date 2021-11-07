@@ -257,7 +257,7 @@ source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
 [ 91%] Building CXX object geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o
-/home/thill/carla-ros-bridge/catkin_ws/src/geometry2/tf2_py/src/tf2_py.cpp:1:10: fatal error: Python.h: No such file or directory
+/home/*****/carla-ros-bridge/catkin_ws/src/geometry2/tf2_py/src/tf2_py.cpp:1:10: fatal error: Python.h: No such file or directory
  #include <Python.h>
           ^~~~~~~~~~
 compilation terminated.
