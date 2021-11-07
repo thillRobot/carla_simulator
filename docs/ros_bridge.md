@@ -231,6 +231,30 @@ The issue is that the ros packge tf2 was built with python2, but my virtual envi
 
 Either way, I found a fix for this on [stack exchange](https://answers.ros.org/question/326226/importerror-dynamic-module-does-not-define-module-export-function-pyinit__tf2/) which involves compiling `tf2` in workspace with the ros bridge. At first I was nervous about this, but I was able to do in totally in the venv so there is no threat of borking the deps with apt. I **did not** run the `apt install python3-catkin-pkg-modules-etc` line because this is how you break things. 
 
+
+##### Compile CV_Brige with Python 3.7
+
+
+```
+cd carla-ros-bridge/
+mkdir -p catkin_build_ws/src && cd catkin_build_ws
+
+catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.s
+
+cd src
+
+git clone https://github.com/ros-perception/vision_opencv.git -b melodic
+
+
+
+
+
+
+
+
+
+
+
 ##### Compile `tf2` for Python3.7
 
 Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
@@ -256,23 +280,6 @@ source workspace setup files again after compiling
 ```
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
-
-[ 91%] Building CXX object geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o
-/home/*****/carla-ros-bridge/catkin_ws/src/geometry2/tf2_py/src/tf2_py.cpp:1:10: fatal error: Python.h: No such file or directory
- #include <Python.h>
-          ^~~~~~~~~~
-compilation terminated.
-geometry2/tf2_py/CMakeFiles/tf2_py.dir/build.make:62: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o' failed
-make[2]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o] Error 1
-CMakeFiles/Makefile2:10204: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/all' failed
-make[1]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/all] Error 2
-make[1]: *** Waiting for unfinished jobs....
-[ 94%] Built target tf2_ros
-Makefile:140: recipe for target 'all' failed
-make: *** [all] Error 2
-Invoking "make -j16 -l16" failed
-
-
 
 Scanning dependencies of target tf2
 [ 88%] Built target tf2_msgs_generate_messages
@@ -341,15 +348,14 @@ catkin_make --cmake-args \
 roslaunch carla_ros_bridge carla_ros_bridge.launch
 ```
 
-```
+
+
 ModuleNotFoundError: No module named 'cv2'
-================================================================================REQUIRED process [carla_ros_bridge-2] has died!
-process has died [pid 28808, exit code 1, cmd /home/******/carla-ros-bridge/catkin_ws/src/ros-bridge/carla_ros_bridge/src/carla_ros_bridge/bridge.py __name:=carla_ros_bridge __log:=/home/******/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2.log].
-log file: /home/******/.ros/log/88be8988-3add-11ec-afb0-244bfe994ccd/carla_ros_bridge-2*.log
-Initiating shutdown!
-================================================================================
+
 [carla_ros_bridge-2] killing on exit
 ```
+
+
 
 Blarhg! Now, it looks like we are missing `cv2`. There is no packge `cv2` on [Pypi][Pypi.org], but a quick search leads to [opencv-python](https://pypi.org/project/opencv-python/). This will be larger than the other packages that were installed. 
 
@@ -362,7 +368,7 @@ Take a deep breathe and try again.
 
 ```
 roslaunch carla_ros_bridge carla_ros_bridge.launch
-
+```
 
 ... logging to 
 
@@ -393,7 +399,7 @@ NODES
 
 ...
 
-```
+
 
 Woo hoo it finally seems to work...The things stop working quicklly...
 
@@ -550,7 +556,9 @@ Well, we were getting closer... I think it is time for a new approach. Blargh.
 
 
 
-https://cyaninfinite.com/ros-cv-bridge-with-python-3/ This contains the is the solution to building cv_bridge, compile the version for noetic
+https://cyaninfinite.com/ros-cv-bridge-with-python-3/ This contains the solution to building cv_bridge, compile the version for noetic
+
+
 
 
 
@@ -568,6 +576,12 @@ It makes sense to upgrade to a newer python. This will also require a different 
 
 
 Rename the old carla to carla-py36 so the new version (py37) 
+
+
+
+
+
+
 
 
 
