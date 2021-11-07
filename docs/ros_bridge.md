@@ -154,7 +154,7 @@ pip install --upgrade pip
 Install python packages for building ROS. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
-pip install rosdep rosinstall-generator vcstool rosinstall wstool 
+pip install rosdep rosinstall-generator vcstool rosinstall wstool empy
 
     Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
 
@@ -166,12 +166,6 @@ Revert  pyyaml to version 5.4.1 ([SO Post](https://stackoverflow.com/questions/6
 ```
 
 
-Install the neccessary python packages for the compile in the venv with pip. (do not install 'em')
-
-```
-pip install catkin-pkg catkin-tools rospkg empy numpy pygame 
-```
-
 
 ##### Compile `tf2` for Python3.7
 
@@ -182,7 +176,7 @@ Setup the compile
 cd ~/carla-ros-bridge/catkin_make_ws
 source devel/setup.bash
 wstool init
-wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.5
+wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.7 # latest melodic
 wstool update src/geometry2
 rosdep install --from-paths src --ignore-src -y -r
     #All required rosdeps installed successfully
@@ -199,6 +193,7 @@ source workspace setup files again after compiling
 source carla-ros-bridge/catkin_make_ws/devel/setup.bash
 ```
 
+wow that worked
 
 
 
