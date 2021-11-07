@@ -19,6 +19,15 @@ sudo apt update
 sudo apt upgrade
 ```
 
+### Install (or build?) ROS
+
+Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melodic/Installation/Ubuntu). At first I am going to start with the 
+
+Complete Steps 1.1-1.3 in the installation instructions. 
+
+On step 1.4 choose bare bones option (`ros-melodic-ros-base`), then complete the remainder of the instructions as usual.
+
+
 
 ### Installing Python 3.7
 
@@ -50,7 +59,6 @@ python3.7 --version
 Again, I am not going to worry about the default version for now because we are going to use a `venv` so it does not matter.
 
 We need `pip` for Python3.7 to use venv. There are several answers for how to do this([here](https://stackoverflow.com/questions/54633657/how-to-install-pip-for-python-3-7-on-ubuntu-18) and here), but we want the solution that follows the Python docs. 
-
 
 Make a directory and create a virtual python environment
 ```
