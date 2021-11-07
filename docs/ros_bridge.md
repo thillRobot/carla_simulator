@@ -302,16 +302,13 @@ Either way, I found a fix for this on [stack exchange](https://answers.ros.org/q
 
 
 
-
-
-
 ##### Compile `tf2` for Python3.7
 
 Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
 
 Setup the compile 
 ```
-cd ~/carla-ros-bridge/catkin_ws
+cd ~/carla-ros-bridge/catkin_make_ws
 source devel/setup.bash
 wstool init
 wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.5
