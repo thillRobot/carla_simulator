@@ -184,7 +184,7 @@ rosdep install --from-paths src --ignore-src -y -r
 Compile for Python 3. 
 
 ```
-catkin_make -DPYTHON_VERSION=3.7
+catkin_make tf2 -DPYTHON_VERSION=3.7
 ```
 
 source workspace setup files again after compiling
