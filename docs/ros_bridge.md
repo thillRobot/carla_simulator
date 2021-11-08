@@ -90,12 +90,10 @@ cd carla-ros-bridge/catkin_build_ws
 catkin build
 ```
 
-
-
-
 Now create a virtual Python3.7 environment with `venv`. Remove the environment if it already exists for a fresh start.
 
 ```
+mkdir ~/.venv
 rm -rf ~/.venv/carla-py37
 cd ~/.venv
     python3.7 -m venv carla-py37  
