@@ -156,7 +156,7 @@ pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy ope
 
 ```
 
-##### Compile `tf2` for Python3.7
+### Compile `tf2` for Python3.7
 
 Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
 
@@ -189,9 +189,7 @@ catkin_make geometry2 -DPYTHON_VERSION=3.7
 It appears that Python 3.7 was used for the build 
 
 
-
-
-Alternatively use `wstool` to download
+#### Alternatively use `wstool` to download source
 
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
@@ -217,9 +215,9 @@ source ~/carla-ros-bridge/catkin_make_ws/devel/setup.bash
 wow that worked
 
 
-##### Compile CV_Bridge with Python 3.7
+### Compile CV Bridge with Python 3.7
 
-Try the same method. Download source and check for dependencies.
+Use the same method. Download source and check for dependencies.
 
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
@@ -303,7 +301,7 @@ just ... wow
 Again, it appears that Python 3.7 was used to build `cv_bridge`.
 
 
-
+#### Alternatively use `wstool` to download source
 
 Setup the compile 
 ```
@@ -387,6 +385,8 @@ source devel/setup.bash
 
 
 
+
+####
 
 Previously I tried by manually setting the CMAKE args. 
 
