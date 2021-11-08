@@ -4,6 +4,11 @@ This is intended to be a guide to using the carla_ros_bridge with CARLA. This is
 The ROS bridge gives access to data from the CARLA simulation in ROS
 Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/). The instructions are repeated below for convenience. 
 
+## CARLA and Python versions
+
+The official realease of CARLA 0.9.12 comes with one egg file for Python 2.7 and another for Python3.7. Source the egg file corresponding to the version of python being used. 
+
+This is the `carla-py27` branch. 
 
 ### Host System 
 
