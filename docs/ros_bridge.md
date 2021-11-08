@@ -293,7 +293,7 @@ Source workspace setup files again after compiling
 source devel/setup.bash
 ```
 
-### Compile `ros_bridge` for Python 3.7 
+### Compile `ros_bridge` or `carla_ros_bridge` for Python 3.7 
 
 
 Follow the [ROS Bridge installation instructions](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/) on the CARLA page for installing from source.
@@ -328,7 +328,15 @@ rosdep install --from-paths src --ignore-src -r
 Build the package with Python 3.7 (alternatively use `catkin build`)
 ```
 catkin_make ros-bridge DPYTHON_VERSION=3.7
+
+    -- +++ processing catkin package: 'carla_ros_bridge'
+    -- ==> add_subdirectory(ros-bridge/carla_ros_bridge)
+    -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+
 ```
+
+Woop Woop. That was easy!
+
 
 source workspace setup files again after compiling
 
