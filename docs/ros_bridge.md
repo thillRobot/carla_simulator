@@ -389,6 +389,10 @@ source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
 
+STOPPED HERE 11/08/2021
+
+
+
 #### Test the CARLA ROS Bridge
 
 Install a few more Python packages in the venv before testing the ros_bridge.
