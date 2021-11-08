@@ -122,6 +122,7 @@ python --version
 Check for pip 
 ```
 python -m ensurepip  
+
     Looking in links: /tmp/tmphxz02iz3
     Requirement already satisfied: setuptools in ./carla-py37/lib/python3.7/site-packages (47.1.0)
     Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
@@ -130,16 +131,14 @@ python -m ensurepip
 If you install a package thie warning suggests upgrading pip
 
 ```
-WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
-You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip' command.
+    WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
+    You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip'     command.
 ```
 
 Upgrade pip
 
 ``` 
 pip install --upgrade pip
- 
- ...
 
       Successfully uninstalled pip-20.1.1
       Successfully installed pip-21.3.1
