@@ -301,83 +301,7 @@ just ... wow
 Again, it appears that Python 3.7 was used to build `cv_bridge`.
 
 
-#### Alternatively use `wstool` to download source
-
-Setup the compile 
-```
-cd ~/carla-ros-bridge/catkin_make_ws
-source devel/setup.bash
-wstool set -y src/vision_opencv --git https://github.com/ros-perception/vision_opencv.git -v 1.15.0 # latest ros 1 ?
-wstool update src/vision_opencv
-rosdep install --from-paths src --ignore-src -y -r
-    #All required rosdeps installed successfully
-```
-Compile for Python 3. 
-
-```
-catkin_make cv_bridge -DPYTHON_VERSION=3.7
-
-    CMake Error at /usr/share/cmake-3.10/Modules/FindBoost.cmake:1947 (message):
-  Unable to find the requested Boost libraries.
-
-  Boost version: 1.65.1
-
-  Boost include path: /usr/include
-
-  Could not find the following Boost libraries:
-
-          boost_python37
-
-  No Boost libraries were found.  You may need to set BOOST_LIBRARYDIR to the
-  directory containing Boost libraries or BOOST_ROOT to the location of
-  Boost.
-
-```
-
-This looks familiar. I think we can solve this.
-
-```
-vim src/vision_opencv/cv_bridge/CMakeLists.txt 
-```
-
-Remove the references to Python37 in lines 9-15 of `cv_bridge/CMakeLists.txt`. The python37 executable does not work in the venv so this makes sense.
-
-Original `CMakeLists.txt`: 
-```
-  if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
-    # Debian Buster
-    find_package(Boost REQUIRED python37)
-  else()
-    # Ubuntu Focal
-    find_package(Boost REQUIRED python)
-  endif()
-```
-
-Modified `CMakeLists.txt`: (this makes no sense now !?!?!)
-```
-  if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
-    # Debian Buster
-    find_package(Boost REQUIRED python3) # added by TH
-    #find_package(Boost REQUIRED python37) # commented out by TH
-  else()
-    # Ubuntu Focal
-    find_package(Boost REQUIRED python3) # added by TH
-    #find_package(Boost REQUIRED python) # commented out by TH
-  endif()
-
-```
-
-Now the package should compile without errors.
-
-```
-catkin_make cv_bridge -DPYTHON_VERSION=3.7
-```
-
-Wow. Once again it compiled. This is progress.
-
-
-
-source workspace setup files again after compiling
+Source workspace setup files again after compiling
 
 ```
 source devel/setup.bash
@@ -386,33 +310,6 @@ source devel/setup.bash
 
 
 
-####
-
-Previously I tried by manually setting the CMAKE args. 
-
-```
-catkin_make --cmake-args \
-            -DCMAKE_BUILD_TYPE=Release \
-            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
-            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
-```
-
-Alternatively use catkin build
-
-
-```
-cd carla-ros-bridge/catkin_build_ws
-
-catkin config -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
-
-catkin config --install
-
-cd src
-git clone https://github.com/ros-perception/vision_opencv.git -b melodic
-
-cd ..
-catkin build cv_bridge
-```
 
 
 ### Install carla_ros_bridge
@@ -546,6 +443,63 @@ The issue is that the ros packge tf2 was built with python2, but my virtual envi
 Either way, I found a fix for this on [stack exchange](https://answers.ros.org/question/326226/importerror-dynamic-module-does-not-define-module-export-function-pyinit__tf2/) which involves compiling `tf2` in workspace with the ros bridge. At first I was nervous about this, but I was able to do in totally in the venv so there is no threat of borking the deps with apt. I **did not** run the `apt install python3-catkin-pkg-modules-etc` line because this is how you break things. 
 
 
+
+
+
+
+#### Alternative methods for downloading or compiling packages (previous attempts)
+
+
+use `wstool` to download source
+
+Setup the compile 
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+source devel/setup.bash
+wstool set -y src/vision_opencv --git https://github.com/ros-perception/vision_opencv.git -v 1.15.0 # latest ros 1 ?
+wstool update src/vision_opencv
+rosdep install --from-paths src --ignore-src -y -r
+    #All required rosdeps installed successfully
+```
+Compile for Python 3. 
+
+```
+catkin_make cv_bridge -DPYTHON_VERSION=3.7
+```
+
+source workspace setup files again after compiling
+
+```
+source devel/setup.bash
+```
+
+
+
+Previously I tried by manually setting the CMAKE args. 
+
+```
+catkin_make --cmake-args \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
+            -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
+```
+
+Alternatively use catkin build
+
+
+```
+cd carla-ros-bridge/catkin_build_ws
+
+catkin config -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
+
+catkin config --install
+
+cd src
+git clone https://github.com/ros-perception/vision_opencv.git -b melodic
+
+cd ..
+catkin build cv_bridge
+```
 
 
 ##### Compile `tf2` for Python3.7
