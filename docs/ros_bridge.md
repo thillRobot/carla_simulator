@@ -19,6 +19,12 @@ sudo apt update
 sudo apt upgrade
 ```
 
+
+### Install system wide dependencies 
+```
+sudo apt install software-properties-common build-essential
+```
+
 ### Install (or build?) ROS
 
 Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melodic/Installation/Ubuntu). 
@@ -32,7 +38,6 @@ For now, do not install the `python-*` packages in Dependencies for building pac
 ```
 source /opt/ros/melodic/setup.bash
 ```
-
 
 ### Installing Python 3.7
 
@@ -64,10 +69,6 @@ python3.7 --version
 Again, I am not going to worry about the default version for now because we are going to use a `venv` so it does not matter.
 
 
-Install required system wide packages. 
-```
-sudo apt install software-properties-common build-essential
-```
 
 ### Setup Catkin Workspace
 
