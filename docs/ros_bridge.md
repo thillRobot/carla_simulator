@@ -72,9 +72,9 @@ rosdep update
 rosdep install --from-paths src --ignore-src -r
 ```
 
-Build the package with Python 3.7 (alternatively use `catkin build`)
+Build the package (alternatively use `catkin build`)
 ```
-catkin_make -DPYTHON_VERSION=3.7
+catkin_make
 ```
 
 source workspace setup files again after compiling
@@ -105,11 +105,10 @@ rosdep install --from-paths src --ignore-src -r
 #build
 catkin_make
 ```
-NOTE: using conda conflicts with ROS somehow. I need to figure this out somehow.
 
-source the rosbridge workspace before testing. Notice that this path is slightly different than shown in the CARLA docs. I moved it one level in.
+Source the workspace setup file
 ```
-source ~/carla_simulator/carla-ros-bridge/catkin_ws/devel/setup.bash
+source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
 
@@ -127,7 +126,7 @@ cd <CARLA ROOT>
 ./CarlaUE4.sh -opengl
 ```
 
-#### run the CARLA-ROS-BRIDGE
+#### run the CARLA-ROS-BRIDGE (This needs to be updated)
 
 `export CARLA_ROOT=~/carla_simulator/carla09101`
 
