@@ -133,7 +133,7 @@ python -m ensurepip
     Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
 ```
 
-If you install a package thie warning suggests upgrading pip
+If you install a package this warning will suggests upgrading pip
 
 ```
     WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
@@ -149,7 +149,7 @@ pip install --upgrade pip
       Successfully installed pip-21.3.1
 ```
 
-Install python packages for building ROS. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
+Install python packages for building ROS packages. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
 pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy opencv-python
