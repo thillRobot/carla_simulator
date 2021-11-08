@@ -25,7 +25,14 @@ Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melo
 
 Complete Steps 1.1-1.3 in the installation instructions. 
 
-On step 1.4 choose the _bare bones_ option (`ros-melodic-ros-base`), then complete the remainder of the instructions as usual.
+On step 1.4 choose the _bare bones_ option (`ros-melodic-ros-base`), and install the package. 
+
+For now, do not install the `python-*` packages in Dependencies for building packages. These will be installed in the virtual envoronment.
+
+```
+
+
+```
 
 
 
@@ -41,7 +48,7 @@ sudo apt update
 sudo apt upgrade
 
 sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.7
+sudo apt install python3.7 python3.7-dev python3.7-venv
 ```
 
 Check the versions installed
@@ -58,29 +65,6 @@ python3.7 --version
 
 Again, I am not going to worry about the default version for now because we are going to use a `venv` so it does not matter.
 
-We need `pip` for Python3.7 to use venv. There are several answers for how to do this([here](https://stackoverflow.com/questions/54633657/how-to-install-pip-for-python-3-7-on-ubuntu-18) and here), but we want the solution that follows the Python docs. 
-
-Make a directory and create a virtual python environment
-```
-mkdir ~/.venv
-cd ~/.venv
-python3.7 -m venv carla-py37
-    Error: Command '['/home/thill/test/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
-```
-
-This failed because we need `pip` for Python 3.7 for `venv` to work with Python3.7. The activate script was not created properly
-
-```
-source carla-py37/bin/activate
-    bash: carla-py37/bin/activate: No such file or directory
-```
-
-
-Here is post about it on the [deadsnakes github](https://github.com/deadsnakes/issues/issues/79). The advice in that post is that `ensurepip` comes with `install python#.#-venv`. This makes sense, and the advice in the link should fix this.
-
-```
-sudo apt install python3.7-venv
-```
 
 Install required system wide packages. 
 ```
@@ -154,9 +138,9 @@ pip install --upgrade pip
 Install python packages for building ROS. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
-pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy
+pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy opencv-python
 
-    Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
+    Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 empy-3.3.4 numpy-1.21.4 opencv-python-4.5.4.58 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
 
 ```
 
