@@ -216,7 +216,7 @@ wow that worked
 
 
 
-##### Compile CV_Brige with Python 3.7
+##### Compile CV_Bridge with Python 3.7
 
 Try the same method.
 
