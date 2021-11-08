@@ -105,7 +105,7 @@ Now create a virtual Python3.7 environment with `venv`. Remove the environment i
 mkdir ~/.venv
 rm -rf ~/.venv/carla-py37
 cd ~/.venv
-    python3.7 -m venv carla-py37  
+python3.7 -m venv carla-py37  
 ```
 If that runs without errors, the evironment is ready to use. Activate the virtual environment and test the python version. After activation, the terminal shows the venv name to the left. 
 
