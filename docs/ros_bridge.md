@@ -201,7 +201,7 @@ source ~/carla-ros-bridge/catkin_make_ws/devel/setup.bash
 wow that worked
 
 
-### Compile CV Bridge with Python 3.7
+### Compile `cv_bridge` with Python 3.7
 
 Use the same method. Download source and check for dependencies.
 
