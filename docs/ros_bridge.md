@@ -83,7 +83,7 @@ Again, I am not going to worry about the default version for now because we are 
 
 
 
-### Setup Catkin Workspace
+### Create Catkin Workspace
 
 ```
 mkdir -p carla-ros-bridge/catkin_make_ws/src
@@ -98,6 +98,8 @@ mkdir -p carla-ros-bridge/catkin_bukld_ws/src
 cd carla-ros-bridge/catkin_build_ws
 catkin build
 ```
+
+### Configure Virtual Python Environment
 
 Now create a virtual Python3.7 environment with `venv`. Remove the environment if it already exists for a fresh start.
 
