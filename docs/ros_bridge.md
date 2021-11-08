@@ -154,21 +154,6 @@ pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy ope
 
 ```
 
-Revert  pyyaml to version 5.4.1 ([SO Post](https://stackoverflow.com/questions/69564817/typeerror-load-missing-1-required-positional-argument-loader-in-google-col))
-```
-!pip install pyyaml==5.4.1
-```
-
-
-Initialize rosep
-
-```
-sudo rosdep init
-
-rosdep update
-```
-
-
 ##### Compile `tf2` for Python3.7
 
 Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
