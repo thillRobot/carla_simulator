@@ -19,9 +19,8 @@ sudo apt upgrade
 ### Install ROS
 
 
-### Python Versions
 
-```
+### Python Versions
 
 Check the versions installed
 ```
