@@ -111,7 +111,7 @@ If that runs without errors, the evironment is ready to use. Activate the virtua
 
 To activate: 
 ```
-source ~/.venv/carla-py37/bin/activate`
+source ~/.venv/carla-py37/bin/activate
 ```
 
 To deactivate: `deactivate`
