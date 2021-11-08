@@ -512,11 +512,14 @@ catkin_make --cmake-args \
             -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 
 ```
 
+```
 catkin_make --cmake-args \
             -DCMAKE_BUILD_TYPE=Release \
             -DPYTHON_EXECUTABLE=~/.venv/carla-py37/bin/python \
             -DPYTHON_INCLUDE_DIR=~/.venv/carla-py37/include/site/python3.7 \
             -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
+```
+
 
 ```
 catkin_make --cmake-args \
