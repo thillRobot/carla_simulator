@@ -4,9 +4,13 @@ This is intended to be a guide to using the carla_ros_bridge with CARLA. This is
 The ROS bridge gives access to data from the CARLA simulation in ROS
 Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/). The instructions are repeated below for convenience. 
 
-This is a mess right now... It should be cleaned up soon.
+## CARLA and Python versions
 
-I got stuck a few times on the approach below. I had to take a couple days off, but now it is time to make this happen. First let's do some reading.
+The official realease of CARLA 0.9.12 comes with one egg file for Python 3.7 and another for Python3.7. Source the egg file corresponding to the version of python being used. 
+
+The goal of `devel` is to get the `ros-bridge` working with Python 3.7 and CARLA 0.9.12.  
+
+I have been stuck on this for a while. Today I made some progress, but it was very minor.
 
 ### Host System 
 
@@ -41,7 +45,7 @@ source /opt/ros/melodic/setup.bash
 
 ### Installing Python 3.7
 
-The egg file for the official realease of CARLA 0.9.12 implies that the version was built in Python 3.7. We want to install Python 3.7 alongside of 2.7 and 3.6. There are known issues related to the `update-alternatives` method shown in several tutorials online, so I will not complete this step. Afterwards we will use Python 3.7 in a `venv` so we will invoke it with `python`. DON'T BORK THE DEPS MAX!
+. The goal is to install Python 3.7 alongside of 2.7 and 3.6. There are known issues related to the `update-alternatives` method shown in several tutorials online, so I will not complete this step. Afterwards we will use Python 3.7 in a `venv` so we will invoke it with `python`. DON'T BORK THE DEPS MAX!
 
 Also, it looks like we can use `ppa:ubuntu-toolchain-r/ppa` or `ppa:deadsnakes/ppa` to get the new version. I think deadsnakes is the more commonly used option.
 
