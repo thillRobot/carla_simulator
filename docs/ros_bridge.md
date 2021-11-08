@@ -39,6 +39,15 @@ On step 1.4 choose the _bare bones_ option (`ros-melodic-ros-base`), and install
 
 For now, do not install the `python-*` packages in Dependencies for building packages. These will be installed in the virtual envoronment.
 
+Except his one.
+
+```
+sudo apt install python-rosdep
+
+sudo rosdep init
+rosdep update
+```
+
 ```
 source /opt/ros/melodic/setup.bash
 ```
@@ -151,33 +160,37 @@ Revert  pyyaml to version 5.4.1 ([SO Post](https://stackoverflow.com/questions/6
 ```
 
 
+Initialize rosep
+
+```
+sudo rosdep init
+
+rosdep update
+```
+
 
 ##### Compile `tf2` for Python3.7
 
 Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
 
-Setup the compile 
+Download the source code and check for dependencies
 
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
 source devel/setup.bash
 
-git clone https://github.com/ros/geometry2 -b melodic src/geometry2
+git clone https://github.com/ros/geometry2 -b melodic-devel src/geometry2
 rosdep install --from-paths src --ignore-src -y -r
 ```
 
 Compile for Python 3. 
 
 ```
-catkin_make tf2 -DPYTHON_VERSION=3.7
+catkin_make geometry2 -DPYTHON_VERSION=3.7
 ```
 
 
-
-
-
-
-
+Alternatively use `wstool` to download
 
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
