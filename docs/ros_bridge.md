@@ -10,7 +10,7 @@ The official realease of CARLA 0.9.12 comes with one egg file for Python 2.7 and
 
 The goal of `devel` is to get the `ros-bridge` working with Python 3.7 and CARLA 0.9.12.  
 
-I have been stuck on this for a while. Today I made a big push and FINALLY it compiles in 3.7. It still needs to be tested.
+I have been stuck on this for a while. Today I made a big push and FINALLY it compiles in 3.7, but it still needs to be tested with CARLA.
 
 ### Host System 
 
