@@ -1,4 +1,4 @@
-# ros_bridge
+# ros_bridge -b carla-py37
 This is intended to be a guide to using the carla_ros_bridge with CARLA. This is not a distribution or source code of the carla_ros_bridge. Read the official docs first.
 
 The ROS bridge gives access to data from the CARLA simulation in ROS
