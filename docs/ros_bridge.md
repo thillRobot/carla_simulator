@@ -191,22 +191,6 @@ catkin_make geometry2 -DPYTHON_VERSION=3.7
 It appears that Python 3.7 was used for the build 
 
 
-#### Alternatively use `wstool` to download source
-
-```
-cd ~/carla-ros-bridge/catkin_make_ws
-source devel/setup.bash
-wstool init
-wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.7 # latest melodic
-wstool update src/geometry2
-rosdep install --from-paths src --ignore-src -y -r
-    #All required rosdeps installed successfully
-```
-Compile for Python 3. 
-
-```
-catkin_make tf2 -DPYTHON_VERSION=3.7
-```
 
 source workspace setup files again after compiling
 
@@ -450,6 +434,24 @@ Either way, I found a fix for this on [stack exchange](https://answers.ros.org/q
 
 
 #### Alternative methods for downloading or compiling packages (previous attempts)
+
+
+#### Alternatively use `wstool` to download source
+
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+source devel/setup.bash
+wstool init
+wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.7 # latest melodic
+wstool update src/geometry2
+rosdep install --from-paths src --ignore-src -y -r
+    #All required rosdeps installed successfully
+```
+Compile for Python 3. 
+
+```
+catkin_make tf2 -DPYTHON_VERSION=3.7
+```
 
 
 use `wstool` to download source
