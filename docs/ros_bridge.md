@@ -173,8 +173,6 @@ Compile for Python 3.
 ```
 catkin_make geometry2 -DPYTHON_VERSION=3.7
     
-    ...
-
    -- This workspace overlays: /home/******/carla-ros-bridge/catkin_make_ws/devel;/opt/ros/melodic
    -- Found PythonInterp: /home/******/.venv/carla-py37/bin/python3.7 (found suitable version "3.7.12", minimum required is "3.7") 
    -- Using PYTHON_EXECUTABLE: /home/******/.venv/carla-py37/bin/python3.7
@@ -183,8 +181,6 @@ catkin_make geometry2 -DPYTHON_VERSION=3.7
 
    -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found suitable version "3.7.12", minimum required is "2") 
    
-   ...
-
 
 ```
 
