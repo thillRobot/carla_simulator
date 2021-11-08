@@ -152,7 +152,7 @@ pip install --upgrade pip
 Install python packages for building ROS packages. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
-pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy opencv-python
+pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy opencv-python 
 
     Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 empy-3.3.4 numpy-1.21.4 opencv-python-4.5.4.58 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
 
@@ -169,7 +169,7 @@ cd ~/carla-ros-bridge/catkin_make_ws
 source devel/setup.bash
 
 git clone https://github.com/ros/geometry2 -b melodic-devel src/geometry2
-rosdep install --from-paths src --ignore-src -y -r
+rosdep install --from-paths src --ignore-src -r
 ```
 
 Compile for Python 3. 
@@ -208,7 +208,7 @@ Use the same method. Download source and check for dependencies.
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
 git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv -b noetic
-rosdep install --from-paths src --ignore-src -y -r
+rosdep install --from-paths src --ignore-src -r
 ```
 
 Compile for Python 3. 
@@ -308,10 +308,11 @@ cd ~/carla-ros-bridge/catkin_make_ws
 git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git src/ros-bridge
 export ROS_PYTHON_VERSION=3
 export ROS_DISTRO=melodic
+pip install transforms3d # this should go above
 rosdep install --from-paths src --ignore-src -r
 ```
 
-Source the ROS setup files. This is probably in your `~/.bashrc` already
+Source the ROS setup files. This has probably been done already.
 ```
 source /opt/ros/melodic/setup.bash
 source devel/setup.bash
@@ -326,7 +327,7 @@ rosdep install --from-paths src --ignore-src -r
 
 Build the package with Python 3.7 (alternatively use `catkin build`)
 ```
-catkin_make -DPYTHON_VERSION=3.7
+catkin_make ros-bridge DPYTHON_VERSION=3.7
 ```
 
 source workspace setup files again after compiling
