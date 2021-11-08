@@ -30,8 +30,10 @@ On step 1.4 choose the _bare bones_ option (`ros-melodic-ros-base`), and install
 For now, do not install the `python-*` packages in Dependencies for building packages. These will be installed in the virtual envoronment.
 
 ```
+sudo apt install python-rosdep
+sudo rosdep init
 
-
+rosdep update
 ```
 
 
