@@ -4,24 +4,23 @@ This is intended to be a guide to using the carla_ros_bridge with CARLA. This is
 The ROS bridge gives access to data from the CARLA simulation in ROS
 Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simulator/ros-bridge) or the [CARLA page](https://carla.readthedocs.io/projects/ros-bridge/en/latest/ros_installation_ros1/). The instructions are repeated below for convenience. 
 
-This is a mess right now... It should be cleaned up soon.
 
-I got stuck a few times on the approach below. I had to take a couple days off, but now it is time to make this happen. First let's do some reading.
+### Host System 
 
+This is being tested on relatively fresh install of Ubuntu 18.04.06 LTS (desktop amd64). The system has been updated with Software Updater (gui), and no other commands have been run. Honestly that is not true at all. This is work in progress, proceed at your own risk.
 
-### Installing Python 3.7
+Check that the system is up to date before proceeding.
 
-The egg file for the official realease of CARLA 0.9.12 implies that the version was built in Python 3.7. We want to install Python 3.7 alongside of 2.7 and 3.6. There are known issues related to the `update-alternatives` method shown in several tutorials online, so I will not complete this step. Afterwards we will use Python 3.7 in a `venv` so we will invoke it with `python`. DON'T BORK THE DEPS MAX!
-
-Also, it looks like we can use `ppa:ubuntu-toolchain-r/ppa` or `ppa:deadsnakes/ppa` to get the new version. I think deadsnakes is the more commonly used option.
-
-Upgrade and install Python 3.7 from [deadsnakes](https://github.com/orgs/deadsnakes/repositories)
 ```
 sudo apt update
 sudo apt upgrade
+```
 
-sudo add-apt-repository ppa:deadsnakes/ppa
-sudo apt install python3.7 python3.7-dev
+### Install ROS
+
+
+### Python Versions
+
 ```
 
 Check the versions installed
@@ -31,90 +30,7 @@ python --version
 
 python3 --version
     Python 3.6.9
-
-python3.7 --version
-    Python 3.7.12
 ```
-
-Again, I am not going to worry about the default version for now because we are going to use a `venv` so it does not matter.
-
-We need `pip` for Python3.7 to use venv. There are several answers for how to do this([here](https://stackoverflow.com/questions/54633657/how-to-install-pip-for-python-3-7-on-ubuntu-18) and here), but we want the solution that follows the Python docs. 
-
-
-Make a directory and create a virtual python environment
-```
-mkdir ~/.venv
-cd ~/.venv
-python3.7 -m venv carla-py37
-    Error: Command '['/home/thill/test/bin/python3.7', '-Im', 'ensurepip', '--upgrade', '--default-pip']' returned non-zero exit status 1.
-```
-
-This failed because we need `pip` for Python 3.7 for `venv` to work with Python3.7. The activate script was not created properly
-
-```
-source carla-py37/bin/activate
-    bash: carla-py37/bin/activate: No such file or directory
-```
-
-
-Here is post about it on the [deadsnakes github](https://github.com/deadsnakes/issues/issues/79). The advice in that post is that `ensurepip` comes with `install python#.#-venv`. This makes sense, and the advice in the link should fix this.
-
-```
-sudo apt install python3.7-venv
-```
-Now create a virtual Python3.7 environment with `venv`. Remove the test environment from the line above first.
-
-```
-rm -rf ~/.venv/carla-py37
-cd ~/.venv
-    python3.7 -m venv carla-py37  
-```
-That should run without errors. Activate the virtual environment and test the python version. Notice the terminal shows the venv name to the left. You can exit the environment when you are done with `deactivate`.
-
-```
-source ~/.venv/carla-py37/bin/activate 
-```
-
-Check the python version
-```
-python --version
-    Python 3.7.12
-```
-
-Check for pip updates
-```
-python -m ensurepip  
-    Looking in links: /tmp/tmphxz02iz3
-    Requirement already satisfied: setuptools in ./carla-py37/lib/python3.7/site-packages (47.1.0)
-    Requirement already satisfied: pip in ./carla-py37/lib/python3.7/site-packages (20.1.1
-```
-
-Install the neccessary python packages for the compile in the venv with pip. 
-```
-pip install catkin-pkg catkin-tools rospkg empy # do not install 'em'
-```
-The packages installed, but I got this warning. 
-
-```
-WARNING: You are using pip version 20.1.1; however, version 21.3.1 is available.
-You should consider upgrading via the '/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip' command.
-```
-
-``` 
-/home/<USER>/.venv/carla-py37/bin/python3.7 -m pip install --upgrade pip
- 
- ...
-
-      Successfully uninstalled pip-20.1.1
-      Successfully installed pip-21.3.1
-```
-
- The evironment is ready to use. 
-
- To activate: `source ~/.venv/carla-py37/bin/activate`
-
- To deactivate: `deactivate`
-
 
 
 ### Install carla_ros_bridge
