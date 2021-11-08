@@ -479,7 +479,6 @@ catkin_make ros-bridge -DPYTHON_VERSION=3.7
 ```
 
 
-
 Previously I tried by manually setting the CMAKE args. 
 
 ```
@@ -506,66 +505,7 @@ cd ..
 catkin build cv_bridge
 ```
 
-
-##### Compile `tf2` for Python3.7
-
-Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
-
-Setup the compile 
-```
-cd ~/carla-ros-bridge/catkin_make_ws
-source devel/setup.bash
-wstool init
-wstool set -y src/geometry2 --git https://github.com/ros/geometry2 -v 0.6.5
-wstool update src/geometry2
-rosdep install --from-paths src --ignore-src -y -r
-    #All required rosdeps installed successfully
-```
-Compile for Python 3. I did this did differently than the link above. I like mine better, but we will see if it works. 
-
-```
-catkin_make -DPYTHON_VERSION=3.7
-```
-
-source workspace setup files again after compiling
-
-```
-source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
-```
-
-Scanning dependencies of target tf2
-[ 88%] Built target tf2_msgs_generate_messages
-[ 88%] Building CXX object geometry2/tf2/CMakeFiles/tf2.dir/src/buffer_core.cpp.o
-[ 88%] Built target carla_ackermann_msgs_generate_messages_eus
-[ 88%] Built target carla_ackermann_msgs_generate_messages
-[ 89%] Linking CXX shared library /home/thill/carla-ros-bridge/catkin_ws/devel/lib/libtf2.so
-[ 90%] Built target tf2
-Scanning dependencies of target tf2_ros
-[ 91%] Building CXX object geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o
-/home/thill/carla-ros-bridge/catkin_ws/src/geometry2/tf2_py/src/tf2_py.cpp:1:10: fatal error: Python.h: No such file or directory
- #include <Python.h>
-          ^~~~~~~~~~
-compilation terminated.
-geometry2/tf2_py/CMakeFiles/tf2_py.dir/build.make:62: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o' failed
-make[2]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/src/tf2_py.cpp.o] Error 1
-CMakeFiles/Makefile2:10204: recipe for target 'geometry2/tf2_py/CMakeFiles/tf2_py.dir/all' failed
-make[1]: *** [geometry2/tf2_py/CMakeFiles/tf2_py.dir/all] Error 2
-make[1]: *** Waiting for unfinished jobs....
-[ 91%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/buffer_server.cpp.o
-[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/transform_listener.cpp.o
-[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/buffer_client.cpp.o
-[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/buffer.cpp.o
-[ 92%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/static_transform_broadcaster.cpp.o
-[ 94%] Building CXX object geometry2/tf2_ros/CMakeFiles/tf2_ros.dir/src/transform_broadcaster.cpp.o
-[ 94%] Linking CXX shared library /home/thill/carla-ros-bridge/catkin_ws/devel/lib/libtf2_ros.so
-[ 94%] Built target tf2_ros
-Makefile:140: recipe for target 'all' failed
-make: *** [all] Error 2
-Invoking "make -j16 -l16" failed
-
-
-
-
+Manually set the CMAKE args to configure the build
 
 ```
 catkin_make --cmake-args \
@@ -591,8 +531,6 @@ catkin_make --cmake-args \
             -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython
 ```
 
-
-
 ```
 catkin_make --cmake-args \
             -DCMAKE_BUILD_TYPE=Release \
@@ -600,14 +538,16 @@ catkin_make --cmake-args \
             -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m \
             -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.7m.so
 ```
-roslaunch carla_ros_bridge carla_ros_bridge.launch
+
+
 ```
+roslaunch carla_ros_bridge carla_ros_bridge.launch
 
 
 
-ModuleNotFoundError: No module named 'cv2'
+    ModuleNotFoundError: No module named 'cv2'
 
-[carla_ros_bridge-2] killing on exit
+    [carla_ros_bridge-2] killing on exit
 ```
 
 
@@ -685,10 +625,7 @@ The dependencies look familiar. Most of them are already installed in this envir
 # `ros-kinetic-cv-bridge` is needed to install a lot of cv_bridge deps. Probaply you already have it installed.
 ```
 
-Activate the virtual environment
-```
-carla
-```
+
 
 Install the additional required packages from pypi using pip.
 ```
@@ -730,93 +667,6 @@ cmake ../src -DCMAKE_INSTALL_PREFIX=../install -DCATKIN_DEVEL_PREFIX=../devel -D
 Awesome. It compiled without errors, and the cv_bridge was found. 
 
 ```
-
-...
-
- +++ processing catkin package: 'cv_bridge'
--- ==> add_subdirectory(vision_opencv/cv_bridge)
--- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.6m.so (found version "3.6.9") 
-CMake Warning at /usr/share/cmake-3.10/Modules/FindBoost.cmake:1626 (message):
-  No header defined for python3; skipping header check
-Call Stack (most recent call first):
-  vision_opencv/cv_bridge/CMakeLists.txt:11 (find_package)
-
-
--- Boost version: 1.65.1
--- Found the following Boost libraries:
---   python3
--- Found OpenCV: /usr (found suitable version "3.2.0", minimum required is "3") found components:  opencv_core opencv_imgproc opencv_imgcodecs 
--- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.6m.so (found suitable version "3.6.9", minimum required is "2.7") 
--- +++ processing catkin package: 'image_geometry'
--- ==> add_subdirectory(vision_opencv/image_geometry)
--- Found OpenCV: /usr (found version "3.2.0") 
-
-...
-
-
-```
-
-```
-make
-
-```
-
-this failed,
-
-```
-
-...
-
-/usr/include/python3.6m/numpy/__multiarray_api.h:1532:35: error: return-statement with a value, in function returning 'void' [-fpermissive]
- #define NUMPY_IMPORT_ARRAY_RETVAL NULL
-                                   ^
-/usr/include/python3.6m/numpy/__multiarray_api.h:1537:151: note: in expansion of macro ‘NUMPY_IMPORT_ARRAY_RETVAL’
- #define import_array() {if (_import_array() < 0) {PyErr_Print(); PyErr_SetString(PyExc_ImportError, "numpy.core.multiarray failed to import"); return NUMPY_IMPORT_ARRAY_RETVAL; } }
-
-
-/home/thill/carla-ros-bridge/catkin_ws/src/vision_opencv/cv_bridge/src/module.hpp:44:5: note: in expansion of macro ‘import_array’
-     import_array( );
-     ^
-...
-
-```
-
-
- We are in a venv, so the paths in the cmake command need to point to the executables in the virtual environment. This is discussed in a later post [here](https://stackoverflow.com/questions/49221565/unable-to-use-cv-bridge-with-ros-kinetic-and-python3). This means the command above was building with the system wide python.
-
-
-```
-cmake ../src -DCMAKE_INSTALL_PREFIX=../install -DCATKIN_DEVEL_PREFIX=../devel -DPYTHON_EXECUTABLE=~/carla_simulator/carla-env/bin/python -DPYTHON_INCLUDE_DIR=~/carla_simulator/carla-env/bin/include/python3.6m -DPYTHON_LIBRARY=~/carla_simulator/carla-env/bin/lib/x86_64-linux-gnu/libpython3.6m.so 
-```
-
-OK..... That did not work, failed at 24%.
-```
-[ 24%] Generating C++ code from carla_msgs/CarlaBoundingBox.msg
-Traceback (most recent call last):
-  File "/opt/ros/melodic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py", line 50, in <module>
-    sys.argv, msg_template_map, srv_template_map)
-  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 213, in generate_from_command_line_options
-    generate_from_file(argv[1], options.package, options.outdir, options.emdir, options.includepath, msg_template_dict, srv_template_dict)
-  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 154, in generate_from_file
-    _generate_msg_from_file(input_file, output_dir, template_dir, search_path, package_name, msg_template_dict)
-  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 99, in _generate_msg_from_file
-    search_path)
-  File "/opt/ros/melodic/lib/python2.7/dist-packages/genmsg/template_tools.py", line 77, in _generate_from_spec
-    interpreter = em.Interpreter(output=ofile, globals=g, options={em.RAW_OPT:True,em.BUFFERED_OPT:True})
-AttributeError: module 'em' has no attribute 'Interpreter'
-ros-bridge/carla_msgs/CMakeFiles/carla_msgs_generate_messages_cpp.dir/build.make:83: recipe for target '/home/thill/carla-ros-bridge/catkin_ws/devel/include/carla_msgs/CarlaBoundingBox.h' failed
-```
-
-Well, we were getting closer... I think it is time for a new approach. Blargh. 
-
-
-
-https://cyaninfinite.com/ros-cv-bridge-with-python-3/ This contains the solution to building cv_bridge, compile the version for noetic
-
-
-
-
-
 OK, well i finally got it to work, but it is miserably slow. I am so happy I spend two night on this... wooo
 
 here is a post about the slowdown issue https://github.com/carla-simulator/ros-bridge/issues/192
@@ -826,97 +676,7 @@ go to bed
 
 
 
-
 It makes sense to upgrade to a newer python. This will also require a different version of CARLA. This will be fun...
 
 
 Rename the old carla to carla-py36 so the new version (py37) 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#### OLD INSTRUCTIONS From .... sometime before now 
-#### Install Option C (developers): compile from source
-Create a catkin workspace and install carla_ros_bridge package
-```
-#setup folder structure
-mkdir -p ~/carla-ros-bridge/catkin_ws/src
-cd ~/carla-ros-bridge
-git clone https://github.com/carla-simulator/ros-bridge.git
-cd ros-bridge
-git submodule update --init
-cd ../catkin_ws/src
-ln -s ../../ros-bridge
-source /opt/ros/<kinetic or melodic or noetic>/setup.bash
-cd ..
-
-#install required ros-dependencies
-rosdep update
-rosdep install --from-paths src --ignore-src -r
-
-#build
-catkin_make
-```
-NOTE: using conda conflicts with ROS somehow. I need to figure this out somehow.
-
-source the rosbridge workspace before testing. Notice that this path is slightly different than shown in the CARLA docs. I moved it one level in.
-```
-source ~/carla_simulator/carla-ros-bridge/catkin_ws/devel/setup.bash
-```
-
-#### run the CARLA server before the ros-bridge
-
-```
-docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus all -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 ./CarlaUE4.sh -opengl
-```
-
-or
-
-```
-cd <CARLA ROOT>
-./CarlaUE4.sh -opengl
-```
-
-#### run the CARLA-ROS-BRIDGE
-
-`export CARLA_ROOT=~/carla_simulator/carla09101`
-
-`export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
-
-`roslaunch carla_ros_bridge carla_ros_bridge.launch host:=<HOST_IP>`
-
- or start with an `ego vehicle` instead
-
-`roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch`
-
-#### run rostopic to test
-
-`rostopic list`
-
-`rostopic echo /carla/ego_vehicle/imu/imu1`
-
-You should now be able to see the data from the simulator in ROS, cool.
-
-#### Testing carla-ros-bridge in ros-noetic
-I have successfully tested this in Ubuntu18.04 using both intallation methods shown here. `ros-noetic` is not supported yet. You can copmile from source in ubuntu20.04 there is a python version error when you try the launch files. ALso, `apt` cannot find the the package `carla-ros-bridge`. This somewhat confirms that it isnot yet supported in `focal fossa`
-
-This the main reason I am holding onto `Ubuntu18.04`.
-
-
-Note the ros bridge requires the python egg file for carla to match the version of ros. So, if you are running ros melodic you will need to use python 2.7 egg file instead of the 3.6 one. This seems like something that we should be outgrowing now. 
