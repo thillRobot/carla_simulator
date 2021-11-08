@@ -217,11 +217,93 @@ source ~/carla-ros-bridge/catkin_make_ws/devel/setup.bash
 wow that worked
 
 
-
-
 ##### Compile CV_Bridge with Python 3.7
 
-Try the same method.
+Try the same method. Download source and check for dependencies.
+
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv -b noetic
+rosdep install --from-paths src --ignore-src -y -r
+```
+
+Compile for Python 3. 
+
+```
+catkin_make vision_opencv -DPYTHON_VERSION=3.7
+```
+
+This error may be shown, edit `cv_bridge/CMakeLists.txt` to fix this.
+
+```
+CMake Error at /usr/share/cmake-3.10/Modules/FindBoost.cmake:1947 (message):
+  Unable to find the requested Boost libraries.
+
+  Boost version: 1.65.1
+
+  Boost include path: /usr/include
+
+  Could not find the following Boost libraries:
+
+          boost_python37
+
+  No Boost libraries were found.  You may need to set BOOST_LIBRARYDIR to the
+  directory containing Boost libraries or BOOST_ROOT to the location of
+  Boost.
+```
+
+```
+vim src/vision_opencv/cv_bridge/CMakeLists.txt
+```
+original lines 9-15 :
+```
+  if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
+    # Debian Buster 
+    find_package(Boost REQUIRED python37)
+  else()
+    # Ubuntu Focal
+    find_package(Boost REQUIRED python)
+  endif()
+```
+modified :
+```
+  if(PYTHONLIBS_VERSION_STRING VERSION_LESS "3.8")
+    # Debian Buster 
+    find_package(Boost REQUIRED python) 
+  else()
+    # Ubuntu Focal
+    find_package(Boost REQUIRED python)
+  endif()
+```
+
+Compile again for Python 3. 
+
+```
+catkin_make vision_opencv -DPYTHON_VERSION=3.7
+```
+
+
+just ... wow
+
+```
+
+-- +++ processing catkin package: 'cv_bridge'
+-- ==> add_subdirectory(vision_opencv/cv_bridge)
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found version "3.7.12") 
+-- Boost version: 1.65.1
+-- Found the following Boost libraries:
+--   python
+-- Did not find OpenCV 4, trying OpenCV 3
+-- Found OpenCV: /usr (found suitable version "3.2.0", minimum required is "3") found components:  opencv_core opencv_imgproc opencv_imgcodecs 
+-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found suitable version "3.7.12", minimum required is "3.7") 
+
+
+```
+
+Again, it appears that Python 3.7 was used to build `cv_bridge`.
+
+
+
 
 Setup the compile 
 ```
