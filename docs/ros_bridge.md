@@ -208,7 +208,7 @@ catkin_make tf2 -DPYTHON_VERSION=3.7
 source workspace setup files again after compiling
 
 ```
-source carla-ros-bridge/catkin_make_ws/devel/setup.bash
+source ~/carla-ros-bridge/catkin_make_ws/devel/setup.bash
 ```
 
 wow that worked
