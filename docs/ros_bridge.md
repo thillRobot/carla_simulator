@@ -109,7 +109,7 @@ python3.7 -m venv carla-py37
 ```
 If that runs without errors, the evironment is ready to use. Activate the virtual environment and test the python version. After activation, the terminal shows the venv name to the left. 
 
-To activate: 
+Activate the environment with the following command.
 ```
 source ~/.venv/carla-py37/bin/activate
 ```
