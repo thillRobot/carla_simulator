@@ -6,7 +6,7 @@ Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simu
 
 ## CARLA and Python versions
 
-The official realease of CARLA 0.9.12 comes with one egg file for Python 3.7 and another for Python3.7. Source the egg file corresponding to the version of python being used. 
+The official realease of CARLA 0.9.12 comes with one egg file for Python 2.7 and another for Python3.7. Source the egg file corresponding to the version of python being used. 
 
 The goal of `devel` is to get the `ros-bridge` working with Python 3.7 and CARLA 0.9.12.  
 
