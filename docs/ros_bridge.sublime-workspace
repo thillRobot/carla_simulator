@@ -1,0 +1,283 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"car",
+				"carla_simulator"
+			],
+			[
+				"Vce",
+				"Vector3f"
+			],
+			[
+				"cloud_filt",
+				"cloud_filtered4"
+			],
+			[
+				"z",
+				"getZ"
+			],
+			[
+				"cor_",
+				"cor_src_pts"
+			],
+			[
+				"trans",
+				"translation"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"mar",
+				"MarkdownLivePreview: Open Preview"
+			],
+			[
+				"Mark",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/thill/carla_simulator/docs/ros_bridge.md",
+		"/home/thill/carla_simulator/docs/server.md",
+		"/home/thill/carla_simulator/maps/packages/TNTECH12/TNTECH12.json",
+		"/home/thill/carla_simulator/maps/Campus02_new/Campus02_new_info.md",
+		"/home/thill/carla_simulator/docs/maps.md",
+		"/home/thill/carla_simulator/README.md",
+		"/home/thill/carla_simulator/docs/issues.md",
+		"/home/thill/carla_simulator/docs/PythonAPI.md",
+		"/home/thill/tools/CarlaSimpleXODRProjectionWorkaround/main.py",
+		"/home/thill/Documents/backup.md",
+		"/home/thill/carla_simulator/PythonAPI/util/convert_osm_xodr.py",
+		"/home/thill/carla_simulator/carla/Import/TNTECH11/TNTECH11.json",
+		"/home/thill/carla_simulator/maps/CoE04/CoE04_info.md",
+		"/home/thill/carla_simulator/maps/CoE03/CoE03_info.md",
+		"/home/thill/Desktop/Campus02_info.md",
+		"/home/thill/carla_simulator/maps/Campus01/Campus01_info.md",
+		"/home/thill/carla_simulator/maps/Campus02/Campus02_CARLA.xodr",
+		"/home/thill/carla_simulator/carla/PythonAPI/util/convert_osm_xodr.py",
+		"/home/thill/carla_simulator/maps/packages/TNTECH06/TNTECH06.json",
+		"/home/thill/carla_simulator/maps/packages/TNTECH07/TNTECH07.json",
+		"/home/thill/carla_simulator/carla/Import/TNTECH10/TNTECH10.json",
+		"/home/thill/carla_simulator/carla/Import/TNTECH09/TNTECH09.json",
+		"/home/thill/carla_simulator/maps/packages/TNTECH08/TNTECH08.json",
+		"/home/thill/carla_simulator/maps/packages/TNTECH07/Campus02/Campus02.rrdata.xml",
+		"/home/thill/carla_simulator/maps/CoE04/CoE04_CARLA.xodr",
+		"/home/thill/carla_simulator/maps/CoE04/CoE04_CARLA_archive.xodr",
+		"/home/thill/carla_simulator/maps/CoE01/CoE01_info.md",
+		"/media/thill/storage1/Dropbox/zoneminder/README.md",
+		"/home/thill/carla_simulator/carla/Util/BuildTools/Package.sh",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_plate_tee_clamps_c1_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_offset_tee_clamps_c2_30_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_offset_tee_clamps_c1_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/README.md",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection_tf.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/cad_cloud_bulk.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/cad_cloud.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_8in10in_tee_x4y24_45.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_8in10in_tee_x0y24.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_8in10in_tee_longclamps_x4y24_45.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection_tmp.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_round_tube_c0.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection_ICP.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection_RANSAC.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection_teaser.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/CMakeLists.txt",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/segment_plane.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/segment_cylinder.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/correspondence_grouping.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/ransac_plane.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/devel/seam_detection_teaser.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_round_cylinder_c1.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/.gitignore",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_tee_c2_30_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_tee_c2.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_tee_c1_30.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_tee_c1.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_tee_c0_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/table_tee_c0.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c0_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c1.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c1_30.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c1_30_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c1_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c2.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c2_30.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c2_blndr.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_round_cylinder_01.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_round_cylinder_02.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/plate_rect_block_c0.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/rviz/seam_detection.rviz",
+		"/home/thill/Desktop/seam_detection.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/config/tee_01_teaser.yaml",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/teaser_cpp_ply.cc",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/teaser_cpp_fpfh.cc",
+		"/home/thill/ryzen7_ros/src/seam_detection/src/seam_detection_archive.cpp",
+		"/home/thill/ryzen7_ros/src/seam_detection/pcd_images/table_teetable_tee_c0.pcd"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"scrollbar_highlights": true,
+		"show_context": true,
+		"use_buffer2": true,
+		"use_gitignore": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 47.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ros_bridge.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 535.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
