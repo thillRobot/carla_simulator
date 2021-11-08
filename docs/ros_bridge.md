@@ -329,6 +329,47 @@ Build the package with Python 3.7 (alternatively use `catkin build`)
 ```
 catkin_make ros-bridge DPYTHON_VERSION=3.7
 
+    -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    -- ~~  traversing 35 packages in topological order:
+    -- ~~  - carla_ad_demo
+    -- ~~  - carla_common
+    -- ~~  - geometry2 (metapackage)
+    -- ~~  - opencv_tests
+    -- ~~  - carla_msgs
+    -- ~~  - carla_ackermann_msgs
+    -- ~~  - carla_ros_scenario_runner_types
+    -- ~~  - carla_waypoint_types
+    -- ~~  - tf2_msgs
+    -- ~~  - tf2
+    -- ~~  - tf2_bullet
+    -- ~~  - tf2_eigen
+    -- ~~  - vision_opencv (metapackage)
+    -- ~~  - ros_compatibility
+    -- ~~  - carla_ackermann_control
+    -- ~~  - carla_ad_agent
+    -- ~~  - carla_manual_control
+    -- ~~  - carla_ros_bridge
+    -- ~~  - carla_ros_scenario_runner
+    -- ~~  - carla_spawn_objects
+    -- ~~  - carla_twist_to_control
+    -- ~~  - carla_walker_agent
+    -- ~~  - carla_waypoint_publisher
+    -- ~~  - rqt_carla_control
+    -- ~~  - tf2_py
+    -- ~~  - cv_bridge
+    -- ~~  - image_geometry
+    -- ~~  - tf2_ros
+    -- ~~  - pcl_recorder
+    -- ~~  - tf2_geometry_msgs
+    -- ~~  - tf2_kdl
+    -- ~~  - test_tf2
+    -- ~~  - tf2_sensor_msgs
+    -- ~~  - tf2_tools
+    -- ~~  - rviz_carla_plugin
+    -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    ...
+    
     -- +++ processing catkin package: 'carla_ros_bridge'
     -- ==> add_subdirectory(ros-bridge/carla_ros_bridge)
     -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
