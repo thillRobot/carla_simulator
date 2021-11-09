@@ -35,14 +35,31 @@ sudo apt install software-properties-common build-essential vim git curl termina
 ### Install (or build?) ROS
 
 Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melodic/Installation/Ubuntu). 
+- Step 1.1 - Configure repositories (no action needed) 
+- Step 1.2 - Setup Sources
 
-Complete Steps 1.1-1.3 in the installation instructions. 
+```
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+```
+- Step 1.3 - Setup Keys
+```
+curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
+```
 
-On step 1.4 choose the _bare bones_ option (`ros-melodic-ros-base`), and install the package. 
+- Step 1.4 - Install ROS 
+Update package list and install ROS. choose the _full_ option (`ros-melodic-ros-desktop-full`), to install the complete package. 
+```
+sudo apt update
+```
 
-For now, do not install the `python-*` packages in Dependencies for building packages. These will be installed in the virtual envoronment.
+```
+sudo apt install ros-melodic-desktop-full
+```
 
-Except his one
+On step 1.5 - Environment Setup (This step is modified from standard instructions)
+For now, skip installing most of the `python-*` packages in Dependencies for building packages. These will be installed in the virtual envoronment.
+
+This one is required (I have not figured out how to initialize with the rosdep in the .venv)
 
 ```
 sudo apt install python-rosdep
