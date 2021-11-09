@@ -19,7 +19,13 @@ I have been stuck on this for a while. Today I made a big push and FINALLY it co
 
 This was originally tested on a fresh install of Ubuntu 18.04.06 LTS (desktop amd64) in VirtualBox. The system has been updated with Software Updater (gui), and no other commands have been run.
 
-Now I am trying on my main desktop. _Hold on to your butts_
+Now I am trying on my main desktop. This is a standard ubuntu machine, but it hosts several projects.
+- Ubuntu 18.04 LTS 
+- ROS Melodic (desktop-full) previously installed. 
+- CARLA (with Unreal) built from source
+
+_Hold on to your butts_
+
 
 Check that the system is up to date before proceeding.
 ```
