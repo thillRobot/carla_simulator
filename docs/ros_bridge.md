@@ -376,7 +376,7 @@ Woop Woop. That was easy!
 source workspace setup files again after compiling
 
 ```
-source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
+source devel/setup.bash
 ```
 
 
