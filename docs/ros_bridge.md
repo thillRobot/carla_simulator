@@ -394,6 +394,24 @@ STOPPED HERE 11/08/2021
 
 #### Test the CARLA ROS Bridge
 
+To turn on CARLA set the PYTHONPATH to include to appropriate egg file. I did this with an alias in `~/bashrc`. 
+
+```
+# carla 0.9.12 - pre-compiled from CARLA
+alias carla-py37='export UE4_ROOT=~/UnrealEngine_4.26;
+                  source ~/.venv/carla-py37/bin/activate;
+                  export CARLA_ROOT=~/carla_simulator/dist/CARLA_0.9.12;
+                  export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.12-py3.7-linux-x86_64.egg;
+                  cd $CARLA_ROOT'
+```
+
+Now run  `carla-py37` to choose this version
+
+```
+carla-py37
+```
+
+
 Install a few more Python packages in the venv before testing the ros_bridge.
 
 ```
