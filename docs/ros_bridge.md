@@ -394,7 +394,7 @@ STOPPED HERE 11/08/2021
 
 #### Test the CARLA ROS Bridge
 
-To turn on CARLA set the PYTHONPATH to include to appropriate egg file. I did this with an alias in `~/bashrc`. 
+To turn on CARLA set the PYTHONPATH to include to the appropriate egg file. I did this with an alias in `~/bashrc`. 
 
 ```
 # carla 0.9.12 - pre-compiled from CARLA
