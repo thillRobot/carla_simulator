@@ -313,7 +313,6 @@ git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git
 
 Install ROS dependencies with rosdep
 ```
-rosdep update
 rosdep install --from-paths src --ignore-src -r
 ```
 
