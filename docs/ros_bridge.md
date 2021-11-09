@@ -211,8 +211,10 @@ git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv 
 rosdep install --from-paths src --ignore-src -r
 
     executing command [sudo -H apt-get install python3-opencv]
+    executing command [sudo -H apt-get install python3-numpy]
 
 ```
+You can see sudo priviledge is needed to install `python3-opencv` and `python3-numpy`
 
 Compile for Python 3. 
 
