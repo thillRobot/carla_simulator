@@ -20,12 +20,10 @@ I have been stuck on this for a while. Today I made a big push and FINALLY it co
 This is being tested in fresh install of Ubuntu 18.04.06 LTS (desktop amd64) in VirtualBox. The system has been updated with Software Updater (gui), and no other commands have been run.
 
 Check that the system is up to date before proceeding.
-
 ```
 sudo apt update
 sudo apt upgrade
 ```
-
 
 ### Install system wide dependencies (plus some utilies)
 ```
@@ -51,9 +49,7 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 Update package list and install ROS. choose the _full_ option (`ros-melodic-ros-desktop-full`), to install the complete package. 
 ```
 sudo apt update
-```
 
-```
 sudo apt install ros-melodic-desktop-full
 ```
 
