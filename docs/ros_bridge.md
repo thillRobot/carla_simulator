@@ -32,7 +32,7 @@ sudo apt upgrade
 sudo apt install software-properties-common build-essential vim git curl terminator
 ```
 
-### Install (or build?) ROS
+### Install ROS
 
 Install ROS Melodic using the instructions on [ros.org](http://wiki.ros.org/melodic/Installation/Ubuntu). 
 - Step 1.1 - Configure repositories (no action needed) 
