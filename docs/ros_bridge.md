@@ -17,7 +17,9 @@ I have been stuck on this for a while. Today I made a big push and FINALLY it co
 
 ### Host System 
 
-This is being tested in fresh install of Ubuntu 18.04.06 LTS (desktop amd64) in VirtualBox. The system has been updated with Software Updater (gui), and no other commands have been run.
+This was originally tested on a fresh install of Ubuntu 18.04.06 LTS (desktop amd64) in VirtualBox. The system has been updated with Software Updater (gui), and no other commands have been run.
+
+Now I am trying on my main desktop. _Hold on to your butts_
 
 Check that the system is up to date before proceeding.
 ```
