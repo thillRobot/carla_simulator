@@ -265,26 +265,21 @@ modified :
   endif()
 ```
 
-Compile again for Python 3. 
+Compile again for Python 3.7. 
 
 ```
 catkin_make vision_opencv -DPYTHON_VERSION=3.7
-```
 
 
-just ... wow
-
-```
-
--- +++ processing catkin package: 'cv_bridge'
--- ==> add_subdirectory(vision_opencv/cv_bridge)
--- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found version "3.7.12") 
--- Boost version: 1.65.1
--- Found the following Boost libraries:
---   python
--- Did not find OpenCV 4, trying OpenCV 3
--- Found OpenCV: /usr (found suitable version "3.2.0", minimum required is "3") found components:  opencv_core opencv_imgproc opencv_imgcodecs 
--- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found suitable version "3.7.12", minimum required is "3.7") 
+    -- +++ processing catkin package: 'cv_bridge'
+    -- ==> add_subdirectory(vision_opencv/cv_bridge)
+    -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found version "3.7.12") 
+    -- Boost version: 1.65.1
+    -- Found the following Boost libraries:
+    --   python
+    -- Did not find OpenCV 4, trying OpenCV 3
+    -- Found OpenCV: /usr (found suitable version "3.2.0", minimum required is "3") found components:  opencv_core opencv_imgproc opencv_imgcodecs 
+    -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found suitable version "3.7.12", minimum required is "3.7") 
 
 
 ```
