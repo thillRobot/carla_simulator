@@ -311,12 +311,6 @@ cd ~/carla-ros-bridge/catkin_make_ws
 git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git src/ros-bridge
 ```
 
-Source the ROS setup files. This has probably been done already.
-```
-source /opt/ros/melodic/setup.bash
-source devel/setup.bash
-```
-
 Install ROS dependencies with rosdep
 ```
 rosdep update
