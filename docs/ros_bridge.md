@@ -79,7 +79,6 @@ Also, it looks like we can use `ppa:ubuntu-toolchain-r/ppa` or `ppa:deadsnakes/p
 
 Upgrade and install Python 3.7 from [deadsnakes](https://github.com/orgs/deadsnakes/repositories)
 ```
-sudo apt update
 sudo apt upgrade
 
 sudo add-apt-repository ppa:deadsnakes/ppa
