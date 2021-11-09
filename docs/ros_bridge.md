@@ -311,12 +311,15 @@ cd ~/carla-ros-bridge/catkin_make_ws
 git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git src/ros-bridge
 ```
 
-Install ROS dependencies with rosdep
+Install ROS dependencies with rosdep. 
 ```
 rosdep install --from-paths src --ignore-src -r
+
+    executing command [sudo -H apt-get install ros-melodic-ackermann-msgs]
+
 ```
 
-Build the package with Python 3.7 (alternatively use `catkin build`)
+Build the package with Python 3.7 
 ```
 catkin_make ros-bridge DPYTHON_VERSION=3.7
 
