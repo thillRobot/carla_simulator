@@ -47,7 +47,7 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 ```
 
 - Step 1.4 - Install ROS 
-- 
+
 Update package list and install ROS. choose the _full_ option (`ros-melodic-ros-desktop-full`), to install the complete package. 
 ```
 sudo apt update
