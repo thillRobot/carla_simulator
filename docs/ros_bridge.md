@@ -209,6 +209,9 @@ Use the same method. Download source and check for dependencies. Notice this is 
 cd ~/carla-ros-bridge/catkin_make_ws
 git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv -b noetic
 rosdep install --from-paths src --ignore-src -r
+
+    executing command [sudo -H apt-get install python3-opencv]
+
 ```
 
 Compile for Python 3. 
