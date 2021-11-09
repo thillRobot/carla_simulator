@@ -203,7 +203,7 @@ source devel/setup.bash
 
 ### Compile `cv_bridge` with Python 3.7
 
-Use the same method. Download source and check for dependencies.
+Use the same method. Download source and check for dependencies. Notice this is the `noetic` branch.
 
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
