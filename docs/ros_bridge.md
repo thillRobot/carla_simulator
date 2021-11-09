@@ -27,9 +27,9 @@ sudo apt upgrade
 ```
 
 
-### Install system wide dependencies 
+### Install system wide dependencies (plus some utilies)
 ```
-sudo apt install software-properties-common build-essential
+sudo apt install software-properties-common build-essential vim git terminator
 ```
 
 ### Install (or build?) ROS
