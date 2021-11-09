@@ -65,11 +65,14 @@ sudo rosdep init
 rosdep update
 ```
 
-Source the ROS setup files
+Source the ROS setup files by adding line to `~/.bashrc`
 
 ```
-source /opt/ros/melodic/setup.bash
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
+source ~/.bashrc
 ```
+
+
 
 ### Installing Python 3.7
 
@@ -100,24 +103,12 @@ python3.7 --version
 
 Again, I am not going to worry about the default version for now because we are going to use a `venv` so it does not matter.
 
-
-
-### Create Catkin Workspace
-
-```
-mkdir -p carla-ros-bridge/catkin_make_ws/src
-cd carla-ros-bridge/catkin_make_ws
-catkin_make -DPYTHON_VERSION=3.7
-```
-
 ### Configure Virtual Python Environment
 
-Now create a virtual Python3.7 environment with `venv`. Remove the environment if it already exists for a fresh start.
+Now create a virtual Python3.7 environment with `venv`. Remove the environment with `rm -rf` if it already exists for a fresh start.
 
 ```
-mkdir ~/.venv
-rm -rf ~/.venv/carla-py37
-cd ~/.venv
+mkdir ~/.venv && cd ~/.venv
 python3.7 -m venv carla-py37  
 ```
 If that runs without errors, the evironment is ready to use. Activate the virtual environment and test the python version. After activation, the terminal shows the venv name to the left. 
@@ -163,27 +154,31 @@ pip install --upgrade pip
 Install python packages for building ROS packages. This list comes from the [source installation](http://wiki.ros.org/melodic/Installation/Source) instructions for ROS Melodic.
 
 ```
-pip install rosdep rosinstall-generator vcstool rosinstall wstool empy numpy opencv-python transforms3d pygame
+pip install rosdep rosinstall rosinstall-generator vcstool wstool opencv-python transforms3d empy numpy pygame
 
-    Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 empy-3.3.4 numpy-1.21.4 opencv-python-4.5.4.58 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
+    Successfully installed PyYAML-6.0 catkin-pkg-0.4.24 distro-1.6.0 docutils-0.18 empy-3.3.4 numpy-1.21.4 opencv-python-4.5.4.58 pygame-2.1.0 pyparsing-3.0.5 python-dateutil-2.8.2 rosdep-0.21.0 rosdistro-0.8.3 rosinstall-0.7.8 rosinstall-generator-0.1.22 rospkg-1.3.0 six-1.16.0 transforms3d-0.3.1 vcstool-0.3.0 vcstools-0.1.42 wstool-0.1.17
 
+```
+
+### Create a catkin workspace for compiling packages
+
+```
+cd ~ # or somewhere else
+mkdir -p carla-ros-bridge/catkin_make_ws/src
 ```
 
 ### Compile `tf2` for Python3.7
 
-Notice that you are choosing the version of `geometry2` with the `wstool set` command. I appears that 0.7.0 and above is for Noetic. 0.6.7 is the highest version (tag) that works with melodic.
-
-Download the source code and check for dependencies
+Download the source code and check for dependencies. Notice we are cloning a specific branch (`melodic-devel`) directly into the source directory. 
 
 ```
 cd ~/carla-ros-bridge/catkin_make_ws
-source devel/setup.bash
 
 git clone https://github.com/ros/geometry2 -b melodic-devel src/geometry2
 rosdep install --from-paths src --ignore-src -r
 ```
 
-Compile for Python 3. 
+Compile for Python 3.7. 
 
 ```
 catkin_make geometry2 -DPYTHON_VERSION=3.7
@@ -196,17 +191,14 @@ catkin_make geometry2 -DPYTHON_VERSION=3.7
 
    -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.7m.so (found suitable version "3.7.12", minimum required is "2") 
    
-
 ```
 
 It appears that Python 3.7 was used for the build 
 
-
-
 source workspace setup files again after compiling
 
 ```
-source ~/carla-ros-bridge/catkin_make_ws/devel/setup.bash
+source devel/setup.bash
 ```
 
 wow that worked
