@@ -201,9 +201,6 @@ source workspace setup files again after compiling
 source devel/setup.bash
 ```
 
-wow that worked
-
-
 ### Compile `cv_bridge` with Python 3.7
 
 Use the same method. Download source and check for dependencies.
