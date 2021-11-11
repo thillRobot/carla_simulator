@@ -23,10 +23,7 @@ Now I am trying on my main desktop. This is a standard ubuntu machine, but it ho
 - Ubuntu 18.04 LTS 
 - ROS Melodic (desktop-full) previously installed. 
 - CARLA (with Unreal) built from source
-
-_Hold on to your butts_
-
-
+ 
 Check that the system is up to date before proceeding.
 ```
 sudo apt update
