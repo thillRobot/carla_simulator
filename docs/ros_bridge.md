@@ -6,7 +6,7 @@ Follow the instructions on the ROS-BRIDGE [github](https://github.com/carla-simu
 
 ## CARLA and Python versions
 
-The official realease of CARLA 0.9.12 comes with one egg file for Python 2.7 and another for Python3.7. Source the egg file corresponding to the version of python being used. 
+The official realease of CARLA 0.9.12 comes with one egg file for Python 2.7 and another for Python 3.7. Source the egg file corresponding to the version of python being used. 
 
 This is the `carla-py27` branch. 
 
@@ -56,13 +56,14 @@ sudo apt-get install carla-ros-bridge
 
 Create a catkin workspace and install carla_ros_bridge package
 ```
-mkdir -p ~/carla-ros-bridge/catkin_ws/src
-cd ~/carla-ros-bridge
+cd <SOME_PLACE>
+mkdir -p carla-ros-bridge/catkin_make_ws/src
+cd carla-ros-bridge
 ```
 Download the source code from github.
 
 ```
-git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git catkin_ws/src/ros-bridge
+git clone --recurse-submodules https://github.com/carla-simulator/ros-bridge.git catkin_make_ws/src/ros-bridge
 ```
 
 Source the ROS setup files. This is probably in your `~/.bashrc` already
@@ -72,7 +73,7 @@ source /opt/ros/melodic/setup.bash
 
 Install ROS dependencies with rosdep
 ```
-cd catkin_ws
+cd catkin_make_ws
 rosdep update
 rosdep install --from-paths src --ignore-src -r
 ```
@@ -89,7 +90,8 @@ source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
 
-#### Install Option C (developers): compile from source
+#### Install Option C (developers): achived compile from source instructions (CARLA 9.10)
+
 Create a catkin workspace and install carla_ros_bridge package
 ```
 #setup folder structure
@@ -116,32 +118,71 @@ Source the workspace setup file
 source ~/carla-ros-bridge/catkin_ws/devel/setup.bash
 ```
 
+### Compile `tf2` for Python 2.7
 
-#### Test the CARLA ROS Bridge
-#### run the CARLA server before the ros-bridge
+I somehow messed up the tf2_ros package. This must have happened when I was working on the `py37` branch. 
+
+This was fixed by re-installing `geometry2`.
+
+```
+sudo apt-install ros-melodic-geometry2
+```
+
+Alternatively, download the source code and compile locally. Notice we are cloning a specific branch (`melodic-devel`) directly into the source directory. 
+
+```
+cd ~/carla-ros-bridge/catkin_make_ws
+
+git clone https://github.com/ros/geometry2 -b melodic-devel src/geometry2
+rosdep install --from-paths src --ignore-src -r
+```
+
+Compile  
+
+```
+catkin_make geometry2 
+```
+
+### Test the CARLA ROS Bridge
+
+#### start CARLA simulator 
+
+Navigate to the CARLA root directory and start the server
+
+```
+cd <CARLA ROOT>
+./CarlaUE4.sh 
+```
+
+You could use Docker
 
 ```
 docker run --name carlaserver -e SDL_VIDEODRIVER=x11 -e DISPLAY=$DISPLAY -e XAUTHORITY=$XAUTHORITY -v /tmp/.X11-unix:/tmp/.X11-unix -v $XAUTHORITY:$XAUTHORITY -it --gpus all -p 2000-2002:2000-2002 carlasim/carla:0.9.10.1 ./CarlaUE4.sh -opengl
 ```
 
-or
+#### run the CARLA-ROS-BRIDGE 
+
+Set the required environment variables
 
 ```
-cd <CARLA ROOT>
-./CarlaUE4.sh -opengl
+export UE4_ROOT=~/UnrealEngine_4.26 # required for compiled from source only
+export CARLA_ROOT=~/carla_simulator/dist/CARLA_0.9.12
+export PYTHONPATH=$PYTHONPATH:$CARLA_ROOT/PythonAPI/carla/dist/carla-0.9.12-py2.7-linux-x86_64.egg
 ```
 
-#### run the CARLA-ROS-BRIDGE (This needs to be updated)
-
-`export CARLA_ROOT=~/carla_simulator/carla09101`
-
-`export PYTHONPATH=$PYTHONPATH:${CARLA_ROOT}/PythonAPI/carla/dist/carla-0.9.10-py2.7-linux-x86_64.egg:${CARLA_ROOT}/PythonAPI/carla/agents:${CARLA_ROOT}/PythonAPI/carla`
-
-`roslaunch carla_ros_bridge carla_ros_bridge.launch host:=<HOST_IP>`
+```
+roslaunch carla_ros_bridge carla_ros_bridge.launch host:=<HOST_IP>
+```
 
  or start with an `ego vehicle` instead
 
-`roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch`
+```
+roslaunch carla_ros_bridge carla_ros_bridge_with_example_ego_vehicle.launch
+```
+
+This works on my system, but for some reason it is miserably slow.... grumble grumble.
+
+
 
 #### run rostopic to test
 
@@ -158,3 +199,5 @@ This the main reason I am holding onto `Ubuntu18.04`.
 
 
 Note the ros bridge requires the python egg file for carla to match the version of ros. So, if you are running ros melodic you will need to use python 2.7 egg file instead of the 3.6 one. This seems like something that we should be outgrowing now. 
+
+This issue seems to be more complex than I thought.
