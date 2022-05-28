@@ -1,0 +1,12 @@
+{
+  "maps": [
+    {
+      "name": "netconvert_test",
+      "use_carla_materials": true,
+      "source": "./netconvert_test/netconvert_test.fbx",
+      "xodr": "./netconvert_test/netconvert_test.xodr"
+    }
+  ],
+  "props": [
+  ]
+}
