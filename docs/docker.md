@@ -1,3 +1,69 @@
+# docker.md - using CARLA in docker
+
+This document needs work!
+
+## Running CARLA 0.9.13 in Docker in Ubuntu 20.04
+
+Follow the official instructions or building CARLA in Docker. I used the 0.9.13 version selector.
+
+The first step went fine. I used my Github user name and a  personal access token here for the password.
+
+```
+docker build --build-arg EPIC_USER=<GitHubUserName> --build-arg EPIC_PASS=<GitHubPassword> -t carla-prerequisites -f Prerequisites.Dockerfile .
+```
+
+During the second step of the build there was an error related to a failed download from Autodesk of the FBXSDK. Apparently, autodesk has moved the download link. I followed [#4862](https://github.com/carla-simulator/carla/issues/4862) to solve the problem. The edit to line 20 in `/BuildTools/BuildUtilsDocker.sh` worked, but the `Carla.Dockerfile` did not work as shown in the post. This is because the directory structure has changed slightly. 
+
+I copied `BuildTools/BuildUtilsDocker.sh` to `Docker/MyBuildUtilsDocker.sh` and changed line 20 to:
+
+```
+wget --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0" -c "${FBXSDK_URL}" -P "${CARLA_DOCKER_UTILS_FOLDER}"
+``` 
+
+Next, I modified `Carla.Dockerfile` to copy and use the changes. The modified Dockerfile is shown below.
+
+```
+FROM carla-prerequisites:latest
+
+ARG GIT_BRANCH
+
+USER carla
+WORKDIR /home/carla
+
+RUN cd /home/carla/ && \
+  if [ -z ${GIT_BRANCH+x} ]; then git clone --depth 1 https://github.com/carla-simulator/carla.git; \
+  else git clone --depth 1 --branch $GIT_BRANCH https://github.com/carla-simulator/carla.git; fi && \
+  cd /home/carla/carla && \
+  ./Update.sh && \
+  make CarlaUE4Editor && \
+  make PythonAPI
+WORKDIR /home/carla/carla
+COPY MyBuildUtilsDocker.sh .  
+RUN cat MyBuildUtilsDocker.sh > Util/BuildTools/BuildUtilsDocker.sh && \
+    make build.utils && \
+    make package && \
+    rm -r /home/carla/carla/Dist
+
+WORKDIR /home/carla/carla
+
+```
+
+Now, compile again with the following line:
+
+```
+docker build -t carla -f Carla.Dockerfile . --build-arg GIT_BRANCH=0.9.13
+```
+
+
+It is still compiling now, but I think this fixed the download issue. I do not really like the way the fix is applied above so I would like to change. I do not see why the modified script MyBuildUtilsDocker needs to be in a different directory. After the compile works, we will investigate this further.
+
+
+
+
+
+
+
+Old stuff below here:
 
 How to bind mount a host directory when running a docker container
 
@@ -12,7 +78,7 @@ docker inspect devtest
 "Mounts": [
             {
                 "Type": "bind",
-                "Source": "/home/thill/test",
+                "Source": "/home/$USER/test",
                 "Destination": "/home",
                 "Mode": "",
                 "RW": true,
