@@ -2,9 +2,14 @@
 
 This document needs work!
 
-## Running CARLA 0.9.13 in Docker in Ubuntu 20.04
 
-Follow the official instructions or building CARLA in Docker. I used the 0.9.13 version selector.
+## Use CARLA in Docker
+
+add/find/update this section
+
+## Build Unreal Engine and CARLA in Docker
+
+Follow the official instructions or building Unreal Engine and CARLA in Docker [here](https://carla.readthedocs.io/en/0.9.13/build_docker_unreal/). I used the 0.9.13 version selector.
 
 The first step went fine. I used my Github user name and a  personal access token here for the password.
 
@@ -57,7 +62,33 @@ docker build -t carla -f Carla.Dockerfile . --build-arg GIT_BRANCH=0.9.13
 
 It is still compiling now, but I think this fixed the download issue. I do not really like the way the fix is applied above so I would like to change. I do not see why the modified script MyBuildUtilsDocker needs to be in a different directory. After the compile works, we will investigate this further.
 
+Woop Woop, the compile finished!
 
+```
+...
+
+Town01.pcd
+Town02.pcd
+Town03.pcd
+Town04.pcd
+Town05.pcd
+Town06.pcd
+Town07.pcd
+Readme.md
+Package.sh: Packaging CARLA release.
+Package.sh: CARLA release created at /home/carla/carla/Dist/CARLA_0.9.13-dirty.tar.gz
+Package.sh: Success!
+Removing intermediate container 8303cfdeca9c
+ ---> d68bd3e8f052
+Step 9/9 : WORKDIR /home/carla/carla
+ ---> Running in 3d4b3612cdfe
+Removing intermediate container 3d4b3612cdfe
+ ---> 69d1f7be220b
+Successfully built 69d1f7be220b
+Successfully tagged carla:latest
+```
+
+The docs say that this docker build is for working with custom maps. This is what we need. 
 
 
 
