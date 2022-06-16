@@ -158,7 +158,7 @@ XAUTHORITY=$XAUTHORITY \
 ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
 
 
-## Testing CARLA in Docker on BRWN305-D01 
+## Testing CARLA in Docker on new office machine (P350) 
 
 I have tried the example docker line from the CARLA docs and I am getting an error. It seems like the XAUTH stuff is not working right, but I am really not sure. I do not remember having these issues on my other machine (it was 18.04 and this is 20.04).
 
