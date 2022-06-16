@@ -156,3 +156,31 @@ XAUTHORITY=$XAUTHORITY \
 -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
 -p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
 ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+
+
+## Testing CARLA in Docker on BRWN305-D01 
+
+I have tried the example docker line from the CARLA docs and I am getting an error. It seems like the XAUTH stuff is not working right, but I am really not sure. I do not remember having these issues on my other machine (it was 18.04 and this is 20.04).
+
+```
+sudo docker run --privileged --gpus all --net=host -e DISPLAY=$DISPLAY carlasim/carla:0.9.12 /bin/bash ./CarlaUE4.sh
+```
+
+This returns an error and the simulator does not open :( .
+```
+sh: 1: xdg-user-dir: not found
+error: XDG_RUNTIME_DIR not set in the environment.
+error: XDG_RUNTIME_DIR not set in the environment.
+error: XDG_RUNTIME_DIR not set in the environment.
+
+```
+
+Let's fix this soon.
+
+
+
+
+
+
+
+
