@@ -184,10 +184,23 @@ access control disabled, clients can connect from any host
 
 ```
 docker run -e DISPLAY=$DISPLAY --net=host --gpus all --runtime=nvidia carlasim/carla:0.9.12 /bin/bash CarlaUE4.sh -opengl
+=======
+## Testing CARLA in Docker on new office machine (P350) 
+
+I have tried the example docker line from the CARLA docs and I am getting an error. It seems like the XAUTH stuff is not working right, but I am really not sure. I do not remember having these issues on my other machine (it was 18.04 and this is 20.04).
+
+```
+sudo docker run --privileged --gpus all --net=host -e DISPLAY=$DISPLAY carlasim/carla:0.9.12 /bin/bash ./CarlaUE4.sh
+```
+
+This returns an error and the simulator does not open :( .
+```
+
 sh: 1: xdg-user-dir: not found
 error: XDG_RUNTIME_DIR not set in the environment.
 error: XDG_RUNTIME_DIR not set in the environment.
 error: XDG_RUNTIME_DIR not set in the environment.
+<<<<<<< HEAD
 ```
 
 The simulator did not open.
@@ -289,3 +302,6 @@ docker run --name carlaserver \
 ```
 
 I posted my solution to [issue #4755](https://github.com/carla-simulator/carla/issues/4755) 
+
+
+This documented needs to be cleaned up very badly... Team, get on that!
