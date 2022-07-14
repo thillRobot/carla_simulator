@@ -350,7 +350,7 @@ Alternatively, the server can be run in a docker container. Use the `--name` opt
 
   *Ports*: `-p` defines one to one mapping of ports host - container
 
-  *mystery it*: `-it` this is something that I need to read about   
+  *interactive*: `-it` this is something that I need to read about   
 
   *Graphics Quality*: Run the graphics in `Low` or `Epic` quality mode. The `Low` setting increases the display framerate significantly. If you run `0.9.10.1` in `Low` with `-opengl` the screen appears washed out with white and other colors. This is an over exposure issue related to the quality setting transistion that seems to be known in previous versions (not talked about much it in 0.9.10.1). If you run in `Low` then use `vulkan`. If you run in `Epic` you can use either `opengl` or `vulkan`.
 

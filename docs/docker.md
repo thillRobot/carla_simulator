@@ -7,6 +7,10 @@ This document needs work!
 
 add/find/update this section
 
+
+
+
+
 ## Build Unreal Engine and CARLA in Docker
 
 Follow the official instructions or building Unreal Engine and CARLA in Docker [here](https://carla.readthedocs.io/en/0.9.13/build_docker_unreal/). I used the 0.9.13 version selector.
@@ -156,3 +160,132 @@ XAUTHORITY=$XAUTHORITY \
 -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
 -p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
 ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+
+
+
+
+
+
+## testing CARLA in docker on Ubuntu 20.04 
+Host: New Office Rig - Lenovo P350
+ CPU: i7 11700k
+ GPU: RTX A4000 16GB
+
+
+login in as regular user,
+
+release xauthority permissions
+
+```
+xhost +
+
+access control disabled, clients can connect from any host
+```
+
+```
+docker run -e DISPLAY=$DISPLAY --net=host --gpus all --runtime=nvidia carlasim/carla:0.9.12 /bin/bash CarlaUE4.sh -opengl
+sh: 1: xdg-user-dir: not found
+error: XDG_RUNTIME_DIR not set in the environment.
+error: XDG_RUNTIME_DIR not set in the environment.
+error: XDG_RUNTIME_DIR not set in the environment.
+```
+
+The simulator did not open.
+
+Next try this:
+
+```
+docker run --name carlaserver \
+    -e SDL_VIDEODRIVER=x11 \
+    -e DISPLAY=$DISPLAY \
+    -e XAUTHORITY=$XAUTHORITY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $XAUTHORITY:$XAUTHORITY \
+    -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
+    -p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
+    ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+
+
+4.24.3-0+++UE4+Release-4.24 518 0
+Disabling core dumps.
+sh: 1: xdg-user-dir: not found
+ALSA lib confmisc.c:767:(parse_card) cannot find card '0'
+ALSA lib conf.c:4528:(_snd_config_evaluate) function snd_func_card_driver returned error: No such file or directory
+ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:4528:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1246:(snd_func_refer) error evaluating name
+ALSA lib conf.c:4528:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5007:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2495:(snd_pcm_open_noupdate) Unknown PCM default
+ALSA lib confmisc.c:767:(parse_card) cannot find card '0'
+ALSA lib conf.c:4528:(_snd_config_evaluate) function snd_func_card_driver returned error: No such file or directory
+ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:4528:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1246:(snd_func_refer) error evaluating name
+ALSA lib conf.c:4528:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5007:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2495:(snd_pcm_open_noupdate) Unknown PCM default
+^CFUnixPlatformMisc::RequestExitWithStatus
+FUnixPlatformMisc::RequestExit
+^CFUnixPlatformMisc::RequestExit
+```
+
+The simulator opened! 
+
+
+Now try again with 0.9.12
+
+```
+docker run --name carlaserver     -e SDL_VIDEODRIVER=x11     -e DISPLAY=$DISPLAY     -e XAUTHORITY=$XAUTHORITY     -v /tmp/.X11-unix:/tmp/.X11-unix     -v $XAUTHORITY:$XAUTHORITY     -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"'     -p 2000-2002:2000-2002 carlasim/carla:0.9.12     ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+
+4.26.2-0+++UE4+Release-4.26 522 0
+Disabling core dumps.
+sh: 1: xdg-user-dir: not found
+```
+
+The simulator did not open.
+
+Now try again with 0.9.13
+
+```
+docker run --name carlaserver     -e SDL_VIDEODRIVER=x11     -e DISPLAY=$DISPLAY     -e XAUTHORITY=$XAUTHORITY     -v /tmp/.X11-unix:/tmp/.X11-unix     -v $XAUTHORITY:$XAUTHORITY     -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"'     -p 2000-2002:2000-2002 carlasim/carla:0.9.13     ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+```
+
+Wow it works! this is a big deal.
+
+Next let's try to trim down that command.
+
+
+```
+docker run --name carlaserver     -e SDL_VIDEODRIVER=x11     -e DISPLAY=$DISPLAY     -e XAUTHORITY=$XAUTHORITY     -v /tmp/.X11-unix:/tmp/.X11-unix     -v $XAUTHORITY:$XAUTHORITY     -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"'     -p 2000-2002:2000-2002 carlasim/carla:0.9.13     ./CarlaUE4.sh -quality-level=Epic
+```
+
+This works.
+
+However, if you try without the `--gpus` line it does not
+
+``
+docker run --name carlaserver     -e SDL_VIDEODRIVER=x11     -e DISPLAY=$DISPLAY     -e XAUTHORITY=$XAUTHORITY     -v /tmp/.X11-unix:/tmp/.X11-unix     -v $XAUTHORITY:$XAUTHORITY     -it      -p 2000-2002:2000-2002 carlasim/carla:0.9.13     ./CarlaUE4.sh -quality-level=Epic
+```
+
+You get an error about no compatible Vulkan driver
+
+
+Next, lets log out and try again without the `xhost +` line, nope that does not work.
+
+
+Here is the final command in a readable format.
+
+```
+docker run --name carlaserver \
+    -e SDL_VIDEODRIVER=x11 \
+    -e DISPLAY=$DISPLAY \
+    -e XAUTHORITY=$XAUTHORITY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $XAUTHORITY:$XAUTHORITY \
+    -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
+    -p 2000-2002:2000-2002 carlasim/carla:0.9.13 \
+    ./CarlaUE4.sh -quality-level=Epic
+```
+
+I posted my solution to [issue #4755](https://github.com/carla-simulator/carla/issues/4755) 
