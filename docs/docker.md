@@ -94,6 +94,82 @@ Successfully tagged carla:latest
 
 The docs say that this docker build is for working with custom maps. This is what we need. 
 
+That will not work unless your / partition is huge (or you have LVM enabled). If that is the case follow the steps below.
+
+Solution from [Digital Ocean Post](https://www.digitalocean.com/community/questions/how-to-move-the-default-var-lib-docker-to-another-directory-for-docker-on-linux) Note: first solution with `-g` option is obsolete, use second solution as shown
+
+## build Unreal Engine and CARLA in Docker - use mounted volume for `data-root` 
+
+root `/` did not have enough space, because it is only 200GB, 
+
+To fix this do the following: (WARNING! This may result in loss of previous images and containers, reverting has not been tested)
+
+Create new directory if does not already exist
+
+```
+mkdir /mnt/<PATH TO DATA ROOT>/docker
+```
+
+Stop the docker service
+
+```
+sudo systemctl stop docker
+```
+
+Set the `data-root` location for docker in the docker daemon config file `/etc/docker/daemon.json`. The updated file is shown below.
+
+```
+{
+   "data-root": "/mnt/<PATH TO DATA ROOT>/docker", 
+   "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+```
+
+Start the service
+```
+sudo systemctl start docker
+```
+
+Test that is worked with `hello-world'
+```
+docker run hello-world
+
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+...
+
+```
+
+
+If that worked check the working directory of the image.
+
+```
+docker images
+
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    feb5d9fea6a5   9 months ago   13.3kB
+
+```
+
+Copy the image ID from the list and use it it check the working directory.
+
+```
+docker inspect feb5d9fea6a5 | grep WorkDir
+
+                "WorkDir": "/mnt/storage0/docker/overlay2/94fada88aacc3d87e196d8b2f1df6baf246bd56d5d95a1905979bf71a7e698c1/work"
+
+```
+
+Woop woop, it looks like it worked!
+
+
+
+
 
 
 
@@ -305,3 +381,13 @@ I posted my solution to [issue #4755](https://github.com/carla-simulator/carla/i
 
 
 This documented needs to be cleaned up very badly... Team, get on that!
+
+
+
+
+
+
+
+
+
+
