@@ -94,72 +94,81 @@ Successfully tagged carla:latest
 
 The docs say that this docker build is for working with custom maps. This is what we need. 
 
+That will not work unless your / partition is huge (or you have LVM enabled). If that is the case follow the steps below.
+
+Solution from [Digital Ocean Post](https://www.digitalocean.com/community/questions/how-to-move-the-default-var-lib-docker-to-another-directory-for-docker-on-linux) Note: first solution with `-g` option is obsolete, use second solution as shown
+
+## build Unreal Engine and CARLA in Docker - use mounted volume for `data-root` 
+
+root `/` did not have enough space, because it is only 200GB, 
+
+To fix this do the following: (WARNING! This may result in loss of previous images and containers, reverting has not been tested)
+
+Create new directory if does not already exist
+
+```
+mkdir /mnt/<PATH TO DATA ROOT>/docker
+```
+
+Stop the docker service
+
+```
+sudo systemctl stop docker
+```
+
+Set the `data-root` location for docker in the docker daemon config file `/etc/docker/daemon.json`. The updated file is shown below.
+
+```
+{
+   "data-root": "/mnt/<PATH TO DATA ROOT>/docker", 
+   "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    }
+}
+```
+
+Start the service
+```
+sudo systemctl start docker
+```
+
+Test that is worked with `hello-world'
+```
+docker run hello-world
+
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+...
+
+```
+
+
+If that worked check the working directory of the image.
+
+```
+docker images
+
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    feb5d9fea6a5   9 months ago   13.3kB
+
+```
+
+Copy the image ID from the list and use it it check the working directory.
+
+```
+docker inspect feb5d9fea6a5 | grep WorkDir
+
+                "WorkDir": "/mnt/<PATH TO DATA ROOT>/docker/overlay2/94fada88aacc3d87e196d8b2f1df6baf246bd56d5d95a1905979bf71a7e698c1/work"
+
+```
+
+Woop woop, it looks like it worked!
 
 
 
-
-Old stuff below here:
-
-How to bind mount a host directory when running a docker container
-
-docker run -d \
-    -it \
-    --name devtest \
-    -v "$(pwd)"/test:/home \
-    ubuntu
-
-docker inspect devtest
-
-"Mounts": [
-            {
-                "Type": "bind",
-                "Source": "/home/$USER/test",
-                "Destination": "/home",
-                "Mode": "",
-                "RW": true,
-                "Propagation": "rprivate"
-            }
-        ],
-
-you can see that /test has been mounted
-
-docker exec -it -u 0:0 devtest /bin/bash
-
-root@39fbdcf254d3:/# cd home
-root@39fbdcf254d3:/home# ls
-test.txt
-
-you can see the files from host directory
-
-docker run -d \
-    -it \
-    --name devtest \
-    -v "$(pwd)"/test:/home \
-    -it ubuntu /bin/bash
-
-
-
-
-    docker run --name carlabash\
- -e SDL_VIDEODRIVER=x11 \
- -e DISPLAY=$DISPLAY \
- -e XAUTHORITY=$XAUTHORITY \
- -v /tmp/.X11-unix:/tmp/.X11-unix \
- -v $XAUTHORITY:$XAUTHORITY \
- -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
- -p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
- ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
-
-
- docker start carlabash\
-SDL_VIDEODRIVER=x11 \
-DISPLAY=$DISPLAY \
-XAUTHORITY=$XAUTHORITY \
--v /tmp/.X11-unix:/tmp/.X11-unix \
--v $XAUTHORITY:$XAUTHORITY \
--it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
--p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
-./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
 
 
 
@@ -184,7 +193,8 @@ access control disabled, clients can connect from any host
 
 ```
 docker run -e DISPLAY=$DISPLAY --net=host --gpus all --runtime=nvidia carlasim/carla:0.9.12 /bin/bash CarlaUE4.sh -opengl
-=======
+
+
 ## Testing CARLA in Docker on new office machine (P350) 
 
 I have tried the example docker line from the CARLA docs and I am getting an error. It seems like the XAUTH stuff is not working right, but I am really not sure. I do not remember having these issues on my other machine (it was 18.04 and this is 20.04).
@@ -306,3 +316,85 @@ I posted my solution to [issue #4755](https://github.com/carla-simulator/carla/i
 
 This documented needs to be cleaned up very badly... Team, get on that!
 
+
+
+
+
+## Old stuff below here:
+
+How to bind mount a host directory when running a docker container
+
+docker run -d \
+    -it \
+    --name devtest \
+    -v "$(pwd)"/test:/home \
+    ubuntu
+
+docker inspect devtest
+
+"Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/$USER/test",
+                "Destination": "/home",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+
+you can see that /test has been mounted
+
+docker exec -it -u 0:0 devtest /bin/bash
+
+root@39fbdcf254d3:/# cd home
+root@39fbdcf254d3:/home# ls
+test.txt
+
+you can see the files from host directory
+
+docker run -d \
+    -it \
+    --name devtest \
+    -v "$(pwd)"/test:/home \
+    -it ubuntu /bin/bash
+
+
+
+
+    docker run --name carlabash\
+ -e SDL_VIDEODRIVER=x11 \
+ -e DISPLAY=$DISPLAY \
+ -e XAUTHORITY=$XAUTHORITY \
+ -v /tmp/.X11-unix:/tmp/.X11-unix \
+ -v $XAUTHORITY:$XAUTHORITY \
+ -it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
+ -p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
+ ./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+
+
+ docker start carlabash\
+SDL_VIDEODRIVER=x11 \
+DISPLAY=$DISPLAY \
+XAUTHORITY=$XAUTHORITY \
+-v /tmp/.X11-unix:/tmp/.X11-unix \
+-v $XAUTHORITY:$XAUTHORITY \
+-it --gpus 'all,"capabilities=graphics,utility,display,video,compute"' \
+-p 2000-2002:2000-2002 carlasim/carla:0.9.11 \
+./CarlaUE4.sh -quality-level=Epic -opengl -benchmark fps=20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> fdcbc5ffc7ce3936ed3073920d9631e94730072b
