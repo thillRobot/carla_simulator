@@ -161,7 +161,7 @@ Copy the image ID from the list and use it it check the working directory.
 ```
 docker inspect feb5d9fea6a5 | grep WorkDir
 
-                "WorkDir": "/mnt/storage0/docker/overlay2/94fada88aacc3d87e196d8b2f1df6baf246bd56d5d95a1905979bf71a7e698c1/work"
+                "WorkDir": "/mnt/<PATH TO DATA ROOT>/docker/overlay2/94fada88aacc3d87e196d8b2f1df6baf246bd56d5d95a1905979bf71a7e698c1/work"
 
 ```
 
