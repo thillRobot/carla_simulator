@@ -305,3 +305,4 @@ I posted my solution to [issue #4755](https://github.com/carla-simulator/carla/i
 
 
 This documented needs to be cleaned up very badly... Team, get on that!
+

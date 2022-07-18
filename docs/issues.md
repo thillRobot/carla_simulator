@@ -214,3 +214,108 @@ gpg: no ultimately trusted keys found
 
 this keys issue seems weird to me, because I do not remember seeing it the first time I did the same install...hmmm...
 either way QGIS seems to work fine
+
+
+
+
+
+
+
+
+
+#### Issues installing the PythonAPI with VENV ... SOLVED I THINK
+
+first attempt from pip, did not work, notice that it is trying to install CARLA 0.9.5, check [issue #4937](https://github.com/carla-simulator/carla/issues/4937)
+
+```
+pip install carla
+
+Collecting carla
+  Using cached carla-0.9.5.tar.gz (3.9 kB)
+    ERROR: Command errored out with exit status 1:
+     command: /home/tntech.edu/thill/.venv/carla-env/bin/python3 -c 'import sys, setuptools, tokenize; sys.argv[0] = '"'"'/tmp/pip-install-_frh7dho/carla/setup.py'"'"'; __file__='"'"'/tmp/pip-install-_frh7dho/carla/setup.py'"'"';f=getattr(tokenize, '"'"'open'"'"', open)(__file__);code=f.read().replace('"'"'\r\n'"'"', '"'"'\n'"'"');f.close();exec(compile(code, __file__, '"'"'exec'"'"'))' egg_info --egg-base /tmp/pip-install-_frh7dho/carla/pip-egg-info
+         cwd: /tmp/pip-install-_frh7dho/carla/
+    Complete output (7 lines):
+    Traceback (most recent call last):
+      File "<string>", line 1, in <module>
+      File "/tmp/pip-install-_frh7dho/carla/setup.py", line 114, in <module>
+        ext_modules=get_libcarla_extensions(),
+      File "/tmp/pip-install-_frh7dho/carla/setup.py", line 31, in get_libcarla_extensions
+        linux_distro = platform.dist()[0]  # pylint: disable=W1505
+    AttributeError: module 'platform' has no attribute 'dist'
+    ----------------------------------------
+ERROR: Command errored out with exit status 1: python setup.py egg_info Check the logs for full command output.
+```
+
+The suggestion to choose the version did not work either. It is still hung on version 0.9.5
+
+```
+pip install carla==0.9.13
+
+ERROR: Could not find a version that satisfies the requirement carla==0.9.13 (from versions: 0.9.5)
+ERROR: No matching distribution found for carla==0.9.13
+```
+
+Let's try again with a fresh venv.
+
+```
+deactivate
+rm -rf ~/.venv/carla-env
+```
+```
+python3 -m venv ~/.venv/carla-env 
+source ~/.venv/carla-env/bin/activate
+```
+
+That was not the problem. I used `ensurepip` to get it working. I am not really sure what happened there...
+
+```
+(carla-env)$ python -m ensurepip
+
+Looking in links: /tmp/tmphhzn_khg
+Requirement already satisfied: setuptools in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (44.0.0)
+Requirement already satisfied: pip in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (20.0.2)
+Requirement already satisfied: pkg_resources in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (0.0.0)
+```
+
+```
+(carla-env)$ python -m ensurepip --upgrade
+
+Looking in links: /tmp/tmpwf33e47q
+Requirement already up-to-date: setuptools in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (44.0.0)
+Requirement already up-to-date: pip in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (20.0.2)
+Requirement already up-to-date: pkg_resources in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (0.0.0)
+(carla-env) thill@BRWN305-D01:~/carla-simulator/dist$ pip install --upgrade pip
+Collecting pip
+  Downloading pip-22.1.2-py3-none-any.whl (2.1 MB)
+     |████████████████████████████████| 2.1 MB 4.2 MB/s 
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.0.2
+    Uninstalling pip-20.0.2:
+      Successfully uninstalled pip-20.0.2
+Successfully installed pip-22.1.2
+```
+
+Then reinstall the dependencies
+```
+(carla-env)$ pip install pygame numpy
+Collecting pygame
+  Using cached pygame-2.1.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (21.8 MB)
+Collecting numpy
+  Using cached numpy-1.23.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+Installing collected packages: pygame, numpy
+Successfully installed numpy-1.23.1 pygame-2.1.2
+
+```
+
+Finally, you can install CARLA from a .whl file. This one was manully downloaded from [pypi/carla](https://pypi.org/project/carla/)
+```
+(carla-env)$ pip install carla-0.9.13-cp38-cp38-manylinux_2_27_x86_64.whl 
+
+Processing ./carla-0.9.13-cp38-cp38-manylinux_2_27_x86_64.whl
+Installing collected packages: carla
+Successfully installed carla-0.9.13
+```
+
+I assume this means that you could skip the manual download and use pip for that too. Let's try that instead.

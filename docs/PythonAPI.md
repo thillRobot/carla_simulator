@@ -1,4 +1,4 @@
-# PythonAPI
+python# PythonAPI
 This is intended to be a guide to using the PythonAPI to interact with CARLA. This is not a distribution or source code of the PythonAPI.
 
 ## Installing Python Dependencies
@@ -9,12 +9,12 @@ This method has been reccomended by the CARLA team and others. I am testing this
 
 ```
 cd <CARLA_ROOT>
-python3 -m venv carla-env 
-source carla-env/bin/activate
+python3 -m venv .venv/carla-env 
+source .venv/carla-env/bin/activate
 
 pip install upgrade pip 
 pip install pygame numpy
-pip install pygame <PATH TO WHL FILE>
+pip install <PATH TO WHL FILE>
 ```
 
 Here is an example of installing the wheel file that was created when compiling CARLA-0.9.12 from source with `make package`.
@@ -41,6 +41,75 @@ You can see the venv is now active
 (carla-env) user@host:~/carla-ros-bridge/catkin_ws$ carla
 ```
 That is not neccesary but it is very useful.
+
+
+#### Installing PythonAPI in Python-venv
+
+##### Create and activate a new virtual environment
+
+```
+python3 -m venv ~/.venv/carla-env 
+source ~/.venv/carla-env/bin/activate
+```
+
+##### Upgrade `pip` in the venv
+```
+python -m ensurepip
+
+Looking in links: /tmp/tmps932ocd0
+Requirement already satisfied: setuptools in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (44.0.0)
+Requirement already satisfied: pip in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (20.0.2)
+Requirement already satisfied: pkg_resources in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (0.0.0)
+```
+
+```
+python -m ensurepip --upgrade
+
+Looking in links: /tmp/tmpkbevdfrc
+Requirement already up-to-date: setuptools in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (44.0.0)
+Requirement already up-to-date: pip in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (20.0.2)
+Requirement already up-to-date: pkg_resources in /home/tntech.edu/thill/.venv/carla-env/lib/python3.8/site-packages (0.0.0)
+```
+
+```
+pip install --upgrade pip
+
+Collecting pip
+  Using cached pip-22.1.2-py3-none-any.whl (2.1 MB)
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 20.0.2
+    Uninstalling pip-20.0.2:
+      Successfully uninstalled pip-20.0.2
+Successfully installed pip-22.1.2
+```
+
+##### Install Python dependencies using `pip`
+
+```
+pip install pygame numpy
+
+Collecting pygame
+  Using cached pygame-2.1.2-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (21.8 MB)
+Collecting numpy
+  Using cached numpy-1.23.1-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+Installing collected packages: pygame, numpy
+Successfully installed numpy-1.23.1 pygame-2.1.2
+```
+
+##### Install CARLA using `pip`
+```
+$ pip install carla
+Collecting carla
+  Downloading carla-0.9.13-cp38-cp38-manylinux_2_27_x86_64.whl (29.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 29.8/29.8 MB 44.7 MB/s eta 0:00:00
+Installing collected packages: carla
+Successfully installed carla-0.9.13
+```
+
+That what pretty smooth in the end. Now it is time to test. Skip to `using PythonAPI`.
+
+
 
 ### Python Dependencies Option 2: Use CONDA Environments
 This was my preffered method to manage the Python dependencies, but now I like method two more. **I need to re-order them**
@@ -285,4 +354,14 @@ This sets the simulation fixed frame (frames per second). This does not affect t
 ```
 python3 PythonAPI/util/config.py --fps 10
 ```
+
+
+
+
+
+
+
+
+
+
 
